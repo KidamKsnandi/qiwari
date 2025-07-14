@@ -4,12 +4,14 @@
 <script>
     var tokenEmail = "{{ $slug }}"
     var formData = new FormData();
+    var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
 
     formData.append('token', tokenEmail);
 
-    axios.post('https://api-bal.zuppaqu.com/v1/complete-checkout', formData, {
+    axios.post(`${API_URL}/v1/complete-checkout`, formData, {
             headers: {
-                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                'secret': API_SECRET,
                 'device': 'web'
             }
         })

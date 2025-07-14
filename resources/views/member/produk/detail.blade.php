@@ -372,6 +372,8 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('lib/axios.min.js') }}"></script>
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         var slug = '{{ $slug }}'
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
@@ -387,9 +389,9 @@
 
         function getDetailProduk() {
 
-            axios.get(`https://api-bal.zuppaqu.com/v1/barang-public/${slug}?harga=retail`, {
+            axios.get(`${API_URL}/v1/barang-public/${slug}?harga=retail`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })

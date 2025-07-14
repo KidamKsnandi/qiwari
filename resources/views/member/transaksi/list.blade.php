@@ -13,6 +13,8 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         const rp = (number, prefix = undefined) => {
             // return new Intl.NumberFormat("id-ID", {
             //     style: "currency",
@@ -110,9 +112,9 @@
             var token = localStorage.getItem('token')
             // Pending
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=pending&view_as_invoice=1&start=0&length=20`, {
+                    `${API_URL}/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=pending&view_as_invoice=1&start=0&length=20`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -161,9 +163,9 @@
 
             // Diproses
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=diproses&view_as_invoice=1&start=0&length=20`, {
+                    `${API_URL}/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=diproses&view_as_invoice=1&start=0&length=20`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -212,9 +214,9 @@
 
             // Dikirim
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=dikirim&view_as_invoice=1&start=0&length=20`, {
+                    `${API_URL}/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=dikirim&view_as_invoice=1&start=0&length=20`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -264,9 +266,9 @@
 
             // Diterima
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=diterima&view_as_invoice=1&start=0&length=20`, {
+                    `${API_URL}/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=diterima&view_as_invoice=1&start=0&length=20`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -316,9 +318,9 @@
 
             // Selesai
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=selesai&view_as_invoice=1&start=0&length=20`, {
+                    `${API_URL}/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=selesai&view_as_invoice=1&start=0&length=20`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -368,9 +370,9 @@
 
             // Dibatalkan
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=dibatalkan&view_as_invoice=1&start=0&length=20`, {
+                    `${API_URL}/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=dibatalkan&view_as_invoice=1&start=0&length=20`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }

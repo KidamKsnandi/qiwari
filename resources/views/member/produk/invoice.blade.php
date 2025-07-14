@@ -262,6 +262,8 @@
     <script src="{{ asset('lib/axios.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         const rp = (number, prefix = undefined) => {
             // return new Intl.NumberFormat("id-ID", {
             //     style: "currency",
@@ -389,9 +391,9 @@
             let newInvoice = noInvoices.replace(/-/, '/').replace(/-/, '/');
             console.log('data', data)
             if (data == null) {
-                axios.get(`https://api-bal.zuppaqu.com/v1/view-invoice/${noInvoices}`, {
+                axios.get(`${API_URL}/v1/view-invoice/${noInvoices}`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })
@@ -414,9 +416,9 @@
                 return false
             }
             if (data.no_invoice != newInvoice) {
-                axios.get(`https://api-bal.zuppaqu.com/v1/view-invoice/${noInvoices}`, {
+                axios.get(`${API_URL}/v1/view-invoice/${noInvoices}`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })
@@ -609,9 +611,9 @@
                         formData.append('rekening_id', rekening_id);
                         formData.append('file', file);
 
-                        axios.post('https://api-bal.zuppaqu.com/v1/conf-order', formData, {
+                        axios.post(`${API_URL}/v1/conf-order`, formData, {
                                 headers: {
-                                    'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                    'secret': API_SECRET,
                                     'device': 'web'
                                 }
                             })
@@ -640,9 +642,9 @@
         async function cekStatus() {
             try {
                 var data = JSON.parse(localStorage.getItem('invoice'));
-                let response = await axios.get(`https://api-bal.zuppaqu.com/v1/view-invoice/${data.id}`, {
+                let response = await axios.get(`${API_URL}/v1/view-invoice/${data.id}`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })

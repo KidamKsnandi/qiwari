@@ -40,8 +40,11 @@ class MainController extends Controller
 
     public function katalogProduk($gudang_id)
     {
+         // Get the full API URL
+        $apiUrl = config('api.url');
+
         $client = new Client();
-        $response = $client->get('https://api-bal.zuppaqu.com/v1/toko-penyimpanan-public?harga=retail&gudang_id=' . $gudang_id . '&show_as_product=1', [
+        $response = $client->get($apiUrl . '/v1/toko-penyimpanan-public?harga=retail&gudang_id=' . $gudang_id . '&show_as_product=1', [
             'headers' => [
                 'secret' => 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                 'device' => 'web'

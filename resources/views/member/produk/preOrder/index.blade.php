@@ -344,6 +344,8 @@
     <script src="{{ asset('lib/axios.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         let page = 1;
         var itemsPerPage = 6;
         var currentPage = 1;
@@ -357,12 +359,12 @@
         const getPOMembership = async () => {
             try {
                 render = false;
-                const response = await axios.get('https://api-bal.zuppaqu.com/v1/po-membership', {
+                const response = await axios.get(`${API_URL}/v1/po-membership`, {
                     params: {
                         member_id: JSON.parse(user).member_id
                     },
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }
@@ -387,9 +389,9 @@
                 document.getElementById('skeleton-loader').style.display = 'block';
 
                 axios.get(
-                        `https://api-bal.zuppaqu.com/v1/toko-penyimpanan-public?harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&order=desc&show_as_product=1`, {
+                        `${API_URL}/v1/toko-penyimpanan-public?harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&order=desc&show_as_product=1`, {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'device': 'web'
                             }
                         })
@@ -453,12 +455,12 @@
         const getRekening = async () => {
             try {
                 render = false;
-                const response = await axios.get('https://api-bal.zuppaqu.com/v1/rekening', {
+                const response = await axios.get(`${API_URL}/v1/rekening`, {
                     params: {
                         member_id: 80
                     },
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }
@@ -665,9 +667,9 @@
             $(".loadingOverlay").attr("hidden", false);
             var token = localStorage.getItem('token')
 
-            axios.post('https://api-bal.zuppaqu.com/v1/po-membership/store', payload, {
+            axios.post(`${API_URL}/v1/po-membership/store`, payload, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }

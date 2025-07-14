@@ -242,6 +242,8 @@
     </script>
 
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         window.onload = function() {
             const params = new URLSearchParams(window.location.search);
             const type = params.get('type');
@@ -327,11 +329,11 @@
             $(".custom-login").attr("hidden", true);
             $(".custom-loader").attr("hidden", false);
             const headers = {
-                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                'secret': API_SECRET,
                 'device': 'web',
             }
 
-            axios.post('https://api-bal.zuppaqu.com/v1/auth/user-login', data, {
+            axios.post(`${API_URL}/v1/auth/user-login`, data, {
                     headers: headers
                 })
                 .then(function(response) {
@@ -387,11 +389,11 @@
                     kode_otp: otp
                 }
                 const headers = {
-                    'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                    'secret': API_SECRET,
                     'device': 'web',
                 }
 
-                axios.post('https://api-bal.zuppaqu.com/v1/auth/user-login', data, {
+                axios.post(`${API_URL}/v1/auth/user-login`, data, {
                         headers: headers
                     })
                     .then(function(response) {

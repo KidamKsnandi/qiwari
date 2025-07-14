@@ -345,6 +345,8 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('lib/axios.min.js') }}"></script>
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         const rp = (number, prefix = undefined) => {
             // return new Intl.NumberFormat("id-ID", {
             //     style: "currency",
@@ -393,9 +395,9 @@
                 `)
                 var token = localStorage.getItem('token')
                 let dataKeranjang;
-                axios.get(`https://api-bal.zuppaqu.com/v1/cart?member_id=${JSON.parse(user).karyawan.id}`, {
+                axios.get(`${API_URL}/v1/cart?member_id`${JSON.parse(user).karyawan.id}`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -467,9 +469,9 @@
                                             member_id: JSON.parse(user).karyawan.id,
                                         }
                                         var token = localStorage.getItem('token')
-                                        axios.post('https://api-bal.zuppaqu.com/v1/input/cart', [payload], {
+                                        axios.post(`${API_URL}/v1/input/cart`, [payload], {
                                                 headers: {
-                                                    'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                                    'secret': API_SECRET,
                                                     'Author': 'bearer ' + token,
                                                     'device': 'web'
                                                 }
@@ -509,9 +511,9 @@
                                             member_id: JSON.parse(user).karyawan.id,
                                         }
                                         var token = localStorage.getItem('token')
-                                        axios.post('https://api-bal.zuppaqu.com/v1/input/cart', [payload], {
+                                        axios.post(`${API_URL}/v1/input/cart`, [payload], {
                                                 headers: {
-                                                    'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                                    'secret': API_SECRET,
                                                     'Author': 'bearer ' + token,
                                                     'device': 'web'
                                                 }
@@ -714,9 +716,9 @@
                     id: id,
                 }
                 var token = localStorage.getItem('token')
-                axios.post('https://api-bal.zuppaqu.com/v1/delete/cart', [payload], {
+                axios.post(`${API_URL}/v1/delete/cart`, [payload], {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -775,9 +777,9 @@
                         member_id: JSON.parse(user).karyawan.id,
                     }
                     var token = localStorage.getItem('token')
-                    axios.post('https://api-bal.zuppaqu.com/v1/input/cart', payload, {
+                    axios.post(`${API_URL}/v1/input/cart`, [payload], {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'Author': 'bearer ' + token,
                                 'device': 'web'
                             }

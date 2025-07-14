@@ -520,6 +520,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         const rp = (number, prefix = undefined) => {
             // return new Intl.NumberFormat("id-ID", {
             //     style: "currency",
@@ -1174,9 +1176,9 @@
 
         function getBiaya() {
             return new Promise((resolve, reject) => {
-                axios.get(`https://api-bal.zuppaqu.com/v1/get-transaction-fee?member_id=${toko_id}`, {
+                axios.get(`${API_URL}/v1/get-transaction-fee?member_id=${toko_id}`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })
@@ -1271,9 +1273,9 @@
         }
 
         function getAlamatToko() {
-            axios.get(`https://api-bal.zuppaqu.com/v1/member/get-alamat-toko?member_id=${toko_id}`, {
+            axios.get(`${API_URL}/v1/member/get-alamat-toko?member_id=${toko_id}`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })
@@ -1310,9 +1312,9 @@
 
         function renderAlamat() {
             var token = localStorage.getItem('token')
-            axios.get(`https://api-bal.zuppaqu.com/v1/member/index-alamat?member_id=${JSON.parse(user).karyawan.id}`, {
+            axios.get(`${API_URL}/v1/member/index-alamat?member_id=${JSON.parse(user).karyawan.id}`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }
@@ -1528,9 +1530,9 @@
                         id: idAlamat
                     }
 
-                    axios.post('https://api-bal.zuppaqu.com/v1/member/delete-alamat', payload, {
+                    axios.post(API_URL + '/v1/member/delete-alamat', payload, {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'Author': 'bearer ' + token,
                                 'device': 'web',
 
@@ -1585,9 +1587,9 @@
 
         function getJasaKirim() {
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/p-jasa-kirim?view_all=1`, {
+                    `${API_URL}/v1/p-jasa-kirim?view_all=1`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })
@@ -1690,9 +1692,9 @@
             async function fetchRates() {
                 try {
                     const response = await axios.post(
-                        `https://api-bal.zuppaqu.com/v1/p-jasa-kirim-rates`, payload, {
+                        `${API_URL}/v1/p-jasa-kirim-rates`, payload, {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'Author': 'bearer ' + token,
                                 'device': 'web'
                             }
@@ -1741,7 +1743,7 @@
                     const response = await axios.post(
                         `https://express-api-bal.zuppaqu.com/v2/shipping-prices/calculate`, payloadExpress, {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'device': 'web'
                             }
                         }
@@ -1923,9 +1925,9 @@
             //     },
             // ];
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/get-available-discounts`, {
+                    `${API_URL}/v1/get-available-discounts`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })
@@ -2067,9 +2069,9 @@
 
         function getPaymentMethod() {
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/p-method?member_id=${toko_id}`, {
+                    `${API_URL}/v1/p-method?member_id=${toko_id}`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })
@@ -2713,9 +2715,9 @@
                 $(".custom-loader").attr("hidden", false);
                 $(".loadingOverlay").attr("hidden", false);
                 var token = localStorage.getItem('token')
-                axios.post('https://api-bal.zuppaqu.com/v1/checkout', payload, {
+                axios.post(API_URL + '/v1/checkout', payload, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -2755,9 +2757,9 @@
                 $(".custom-beli").attr("hidden", true);
                 $(".custom-loader").attr("hidden", false);
                 $(".loadingOverlay").attr("hidden", false);
-                axios.post('https://api-bal.zuppaqu.com/v1/checkout', payload, {
+                axios.post(API_URL + '/v1/checkout', payload, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })
@@ -2798,9 +2800,9 @@
         // Get Provinsi
         async function getProvinsi() {
             try {
-                const response = await axios.get('https://api-bal.zuppaqu.com/v1/wilayah/provinsi', {
+                const response = await axios.get(API_URL + '/v1/wilayah/provinsi', {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 });
@@ -2837,9 +2839,9 @@
                 var id_provinsi = this.value;
                 try {
                     const response = await axios.get(
-                        `https://api-bal.zuppaqu.com/v1/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
+                        `${API_URL}/v1/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'device': 'web'
                             }
                         }
@@ -2862,9 +2864,9 @@
                 var id_kab_kota = this.value;
                 try {
                     const response = await axios.get(
-                        `https://api-bal.zuppaqu.com/v1/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
+                        `${API_URL}/v1/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'device': 'web'
                             }
                         }
@@ -2886,9 +2888,9 @@
                 var id_kecamatan = this.value;
                 try {
                     const response = await axios.get(
-                        `https://api-bal.zuppaqu.com/v1/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
+                        `${API_URL}/v1/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'device': 'web'
                             }
                         }
@@ -2933,9 +2935,9 @@
                 catatan: $('#catatan').val(),
             }
             var token = localStorage.getItem('token')
-            axios.post('https://api-bal.zuppaqu.com/v1/member/input-alamat', payload, {
+            axios.post(API_URL + '/v1/member/input-alamat', payload, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }

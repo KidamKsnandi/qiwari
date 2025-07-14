@@ -151,6 +151,8 @@
     <script src="{{ asset('lib/axios.min.js') }}"></script>
 
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
         var member = urlParams.get('member')
@@ -183,9 +185,9 @@
         var gudang_id
 
         function cekMember() {
-            axios.get(`https://api-bal.zuppaqu.com/v1/affiliator/member-public/${member}`, {
+            axios.get(`${API_URL}/v1/affiliator/member-public/${member}`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })
@@ -210,9 +212,9 @@
         }
 
         function getGudang() {
-            axios.get(`https://api-bal.zuppaqu.com/v1/gudang-public?member_id=${member}`, {
+            axios.get(`${API_URL}/v1/gudang-public?member_id=${member}`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })
@@ -243,9 +245,9 @@
             loadingElement.style.display = 'block';
 
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/toko-penyimpanan-public?harga=retail&search=${search}&gudang_id=${gudang_id}&show_as_product=1`, {
+                    `${API_URL}/v1/toko-penyimpanan-public?harga=retail&search=${search}&gudang_id=${gudang_id}&show_as_product=1`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })

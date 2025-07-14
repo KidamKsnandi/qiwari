@@ -199,6 +199,8 @@
     <script src="{{ asset('lib/select2.min.js') }}"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         $(".theSelect").select2();
         var id_provinsi;
         var id_kab_kota;
@@ -278,9 +280,9 @@
 
         function getProvinsi() {
             // Provinsi
-            axios.get('https://api-bal.zuppaqu.com/v1/wilayah/provinsi', {
+            axios.get(`${API_URL}/v1/wilayah/provinsi`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })
@@ -300,9 +302,9 @@
 
             // Kab Kota
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
+                    `${API_URL}/v1/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })
@@ -322,9 +324,9 @@
 
             // Kecamatan
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
+                    `${API_URL}/v1/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })
@@ -344,9 +346,9 @@
 
             // Kelurahan
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
+                    `${API_URL}/v1/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })
@@ -373,9 +375,9 @@
             $('#provinsi_id').on('change', function() {
                 var id_provinsi = this.value;
                 axios.get(
-                        `https://api-bal.zuppaqu.com/v1/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
+                        `${API_URL}/v1/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'device': 'web'
                             }
                         })
@@ -398,9 +400,9 @@
             $('#kab_kota_id').on('change', function() {
                 var id_kab_kota = this.value;
                 axios.get(
-                        `https://api-bal.zuppaqu.com/v1/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
+                        `${API_URL}/v1/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'device': 'web'
                             }
                         })
@@ -422,9 +424,9 @@
             $('#kecamatan_id').on('change', function() {
                 var id_kecamatan = this.value;
                 axios.get(
-                        `https://api-bal.zuppaqu.com/v1/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
+                        `${API_URL}/v1/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'device': 'web'
                             }
                         })
@@ -456,9 +458,9 @@
         function getAlamat() {
             var id = '{{ $id }}'
             var token = localStorage.getItem('token')
-            axios.get(`https://api-bal.zuppaqu.com/v1/member/index-alamat/detail/${id}`, {
+            axios.get(`${API_URL}/v1/member/index-alamat/detail/${id}`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }
@@ -519,9 +521,9 @@
                 alert('Harap isi semua form!')
 
             } else {
-                axios.post('https://api-bal.zuppaqu.com/v1/member/input-alamat', payload, {
+                axios.post(`${API_URL}/v1/member/input-alamat`, payload, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }

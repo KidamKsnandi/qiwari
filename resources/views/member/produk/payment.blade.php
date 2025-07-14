@@ -312,6 +312,8 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('lib/axios.min.js') }}"></script>
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         const rp = (number, prefix = undefined) => {
             // return new Intl.NumberFormat("id-ID", {
             //     style: "currency",
@@ -435,10 +437,10 @@
                 kecamatan: data.kecamatan_id,
                 desa: data.desa_id,
             }
-            console.log("payload", payload)
-            axios.post('https://api-bal.zuppaqu.com/v1/checkout', payload, {
+            
+            axios.post(`${API_URL}/v1/checkout`, payload, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })

@@ -853,6 +853,8 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         if (user) {
             document.getElementById('nameUser').innerHTML = JSON.parse(user).karyawan.nama_lengkap
         } else {
@@ -868,9 +870,9 @@
             var token = localStorage.getItem('token')
             var user = JSON.parse(localStorage.getItem('user'))
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/poin/index-rekap?member_id=${user.karyawan.id}&type=konsumen`, {
+                    `${API_URL}/v1/poin/index-rekap?member_id=${user.karyawan.id}&type=konsumen`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -893,9 +895,9 @@
         function getReward() {
             var token = localStorage.getItem('token')
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/reward`, {
+                    `${API_URL}/v1/reward`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -944,9 +946,9 @@
                         reward_id: reward.id,
                     }
 
-                    axios.post('https://api-bal.zuppaqu.com/v1/pengajuan-reward', payload, {
+                    axios.post(`${API_URL}/v1/pengajuan-reward`, payload, {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'Author': 'bearer ' + token,
                                 'device': 'web',
 
@@ -968,9 +970,9 @@
 
         function getAlamat() {
             var token = localStorage.getItem('token')
-            axios.get(`https://api-bal.zuppaqu.com/v1/member/index-alamat?member_id=${JSON.parse(user).karyawan.id}`, {
+            axios.get(`${API_URL}/v1/member/index-alamat?member_id=${JSON.parse(user).karyawan.id}`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }
@@ -1039,9 +1041,9 @@
                         id: idAlamat
                     }
 
-                    axios.post('https://api-bal.zuppaqu.com/v1/member/delete-alamat', payload, {
+                    axios.post(`${API_URL}/v1/member/delete-alamat`, payload, {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'Author': 'bearer ' + token,
                                 'device': 'web',
 

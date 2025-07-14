@@ -288,6 +288,8 @@
     <script src="{{ asset('lib/axios.min.js') }}"></script>
 
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
         var member = urlParams.get('member');
@@ -327,9 +329,9 @@
         getGerai()
 
         function getGerai() {
-            axios.get('https://api-bal.zuppaqu.com/v1/affiliator/cabang', {
+            axios.get(`${API_URL}/v1/affiliator/cabang`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })
@@ -439,9 +441,9 @@
         getKategori()
 
         function getKategori() {
-            axios.get('https://api-bal.zuppaqu.com/v1/kategori-public', {
+            axios.get(`${API_URL}/v1/kategori-public`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })
@@ -541,9 +543,9 @@
 
 
         function cekMember() {
-            axios.get(`https://api-bal.zuppaqu.com/v1/affiliator/member-public/${gerai_id}`, {
+            axios.get(`${API_URL}/v1/affiliator/member-public/${gerai_id}`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })
@@ -575,9 +577,9 @@
             loadingElement.style.display = 'block';
 
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/toko-penyimpanan-public?search=${search}${kategori_id ? `&kategori_id=${kategori_id}&` : `&`}harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&order=desc&show_as_product=1`, {
+                    `${API_URL}/v1/toko-penyimpanan-public?search=${search}${kategori_id ? `&kategori_id=${kategori_id}&` : `&`}harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&order=desc&show_as_product=1`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })
@@ -662,9 +664,9 @@
 
 
         function getGudang() {
-            axios.get(`https://api-bal.zuppaqu.com/v1/gudang-public?member_id=${gerai_id}`, {
+            axios.get(`${API_URL}/v1/gudang-public?member_id=${gerai_id}`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })
@@ -691,9 +693,9 @@
             isLoading = true;
             loadingElement.style.display = 'block';
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/toko-penyimpanan-public?&search=${search}${kategori_id ? `&kategori_id=${kategori_id}&` : `&`}harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&show_as_product=1`, {
+                    `${API_URL}/v1/toko-penyimpanan-public?&search=${search}${kategori_id ? `&kategori_id=${kategori_id}&` : `&`}harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&show_as_product=1`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })
@@ -784,9 +786,9 @@
                         member_id: JSON.parse(user).karyawan.id,
                     }
                     var token = localStorage.getItem('token')
-                    axios.post('https://api-bal.zuppaqu.com/v1/input/cart', [payload], {
+                    axios.post(`${API_URL}/v1/input/cart`, [payload], {
                             headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'secret': API_SECRET,
                                 'Author': 'bearer ' + token,
                                 'device': 'web'
                             }

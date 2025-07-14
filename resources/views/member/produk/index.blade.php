@@ -125,6 +125,8 @@
     <script src="{{ asset('lib/axios.min.js') }}"></script>
 
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
         var member = urlParams.get('member')
@@ -160,9 +162,9 @@
             loadingElement.style.display = 'block';
 
             axios.get(
-                    `https://api-bal.zuppaqu.com/v1/barang-public?harga=retail&order=desc&search=${search}&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&show_as_product=1&member_id=${gerai_id}`, {
+                    `${API_URL}/v1/barang-public?harga=retail&order=desc&search=${search}&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&show_as_product=1&member_id=${gerai_id}`, {
                         headers: {
-                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                            'secret': API_SECRET,
                             'device': 'web'
                         }
                     })

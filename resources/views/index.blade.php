@@ -1147,6 +1147,8 @@
         crossorigin=""></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         function copyPromoCode(promoCode) {
             navigator.clipboard.writeText(promoCode).then(function() {
                 alert("Kode promo berhasil disalin!");
@@ -1205,9 +1207,9 @@
         gerai_id = localStorage.getItem('gerai_id')
 
         function getGerai() {
-            axios.get('https://api-bal.zuppaqu.com/v1/affiliator/cabang', {
+            axios.get(`${API_URL}/v1/affiliator/cabang`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })

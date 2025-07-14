@@ -193,6 +193,8 @@
     </script>
 
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         function showPassword() {
             var x = document.getElementById("password");
             if (x.type === "password") {
@@ -213,9 +215,9 @@
 
         // Get Provinsi
         function getProvinsi() {
-            axios.get('https://api-bal.zuppaqu.com/v1/wilayah/provinsi', {
+            axios.get(API_URL + '/v1/wilayah/provinsi', {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })
@@ -228,7 +230,6 @@
                     });
                 })
                 .catch(function(error) {
-                    // handle error
                     console.log(error);
                 });
         }
@@ -239,13 +240,12 @@
         $(document).ready(function() {
             $('#provinsi_id').on('change', function() {
                 var id_provinsi = this.value;
-                axios.get(
-                        `https://api-bal.zuppaqu.com/v1/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
-                            headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
-                                'device': 'web'
-                            }
-                        })
+                axios.get(API_URL + `/v1/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
+                        headers: {
+                            'secret': API_SECRET,
+                            'device': 'web'
+                        }
+                    })
                     .then(function(response) {
                         let dataKabKota = response.data.data
                         $("#kab_kota_id").attr("disabled", false);
@@ -256,7 +256,6 @@
                         });
                     })
                     .catch(function(error) {
-                        // handle error
                         console.log(error);
                     });
             });
@@ -264,13 +263,12 @@
             // Get Kecamatan
             $('#kab_kota_id').on('change', function() {
                 var id_kab_kota = this.value;
-                axios.get(
-                        `https://api-bal.zuppaqu.com/v1/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
-                            headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
-                                'device': 'web'
-                            }
-                        })
+                axios.get(API_URL + `/v1/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
+                        headers: {
+                            'secret': API_SECRET,
+                            'device': 'web'
+                        }
+                    })
                     .then(function(response) {
                         let dataKabKota = response.data.data
                         $("#kecamatan_id").attr("disabled", false);
@@ -281,20 +279,19 @@
                         });
                     })
                     .catch(function(error) {
-                        // handle error
                         console.log(error);
                     });
             });
+
             // Get Desa Kelurahan
             $('#kecamatan_id').on('change', function() {
                 var id_kecamatan = this.value;
-                axios.get(
-                        `https://api-bal.zuppaqu.com/v1/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
-                            headers: {
-                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
-                                'device': 'web'
-                            }
-                        })
+                axios.get(API_URL + `/v1/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
+                        headers: {
+                            'secret': API_SECRET,
+                            'device': 'web'
+                        }
+                    })
                     .then(function(response) {
                         let dataKabKota = response.data.data
                         $("#kelurahan_id").attr("disabled", false);
@@ -305,7 +302,6 @@
                         });
                     })
                     .catch(function(error) {
-                        // handle error
                         console.log(error);
                     });
             });
@@ -314,14 +310,8 @@
         function daftar() {
             let data = {
                 nama_lengkap: document.getElementById('nama').value,
-                // jk: document.getElementById('jk').value,
                 email: document.getElementById('email').value,
                 no_hp: document.getElementById('no_hp').value,
-                // provinsi_id: document.getElementById('provinsi_id').value,
-                // kab_kota_id: document.getElementById('kab_kota_id').value,
-                // kecamatan_id: document.getElementById('kecamatan_id').value,
-                // kelurahan_id: document.getElementById('kelurahan_id').value,
-                // alamat: document.getElementById('alamat').value,
                 password: document.getElementById('password').value,
                 konfirmasi_password: document.getElementById('konfirmasi_password').value
             }
@@ -329,11 +319,11 @@
             $(".custom-daftar").attr("hidden", true);
             $(".custom-loader").attr("hidden", false);
             const headers = {
-                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                'secret': API_SECRET,
                 'device': 'web',
             }
 
-            axios.post('https://api-bal.zuppaqu.com/v1/affiliator/register', data, {
+            axios.post(API_URL + '/v1/affiliator/register', data, {
                     headers: headers
                 })
                 .then(function(response) {
@@ -345,7 +335,6 @@
                     })
                     toastList.forEach(toast => toast.show())
                     window.location.href = "/login"
-                    // location.reload();
                 })
                 .catch(function(error) {
                     $(".custom-daftar").attr("hidden", false);
@@ -358,7 +347,6 @@
                     toastList.forEach(toast => toast.show())
                     console.log(error);
                 });
-
         }
     </script>
 @endsection

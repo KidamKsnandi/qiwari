@@ -165,6 +165,8 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('lib/axios.min.js') }}"></script>
     <script>
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         const rp = (number, prefix = undefined) => {
             let isMinus = "";
             if (parseInt(number) < 0) {
@@ -232,12 +234,12 @@
 
         const getPOMembership = async () => {
             try {
-                const response = await axios.get('https://api-bal.zuppaqu.com/v1/po-membership', {
+                const response = await axios.get(`${API_URL}/v1/po-membership`, {
                     params: {
                         member_id: JSON.parse(user).member_id
                     },
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }

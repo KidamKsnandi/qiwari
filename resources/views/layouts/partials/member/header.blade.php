@@ -62,8 +62,8 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser">
                         <li><a class="dropdown-item" href="/profile-dashboard">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="/member/pre-order/member-card">Pre-Order</a></li>
                         <li><a class="dropdown-item" href="https://app.balanja.id">Seller</a></li>
-                        <li><a class="dropdown-item" href="https://app.balanja.id">Affiliator</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -121,8 +121,8 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser">
                             <li><a class="dropdown-item" href="/profile-dashboard">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="/member/pre-order/member-card">Pre-Order</a></li>
                             <li><a class="dropdown-item" href="https://app.balanja.id">Seller</a></li>
-                            <li><a class="dropdown-item" href="https://app.balanja.id">Affiliator</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -157,14 +157,16 @@
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('lib/axios.min.js') }}"></script>
 <script>
+    var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
     var search = urlParams.get('search')
     let checkMember = localStorage.getItem('member_id')
     var user = localStorage.getItem('user')
     var token = localStorage.getItem('token')
-    var transaksi = localStorage.getItem('dataTransaksi')
-    var keranjang = localStorage.getItem('listKeranjang')
+    var transaksi = localStorage.getItem('dataTransaksi') || []
+    var keranjang = localStorage.getItem('listKeranjang') || []
 
     if (window.innerWidth <= 768) {
         document.getElementById("searchM").addEventListener("keyup", function(event) {
@@ -186,9 +188,9 @@
 
     if (user != null) {
         var token = localStorage.getItem('token')
-        axios.get(`https://api-bal.zuppaqu.com/v1/cart?member_id=${JSON.parse(user).karyawan.id}`, {
+        axios.get(`${API_URL}/v1/cart?member_id=${JSON.parse(user).karyawan.id}`, {
                 headers: {
-                    'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                    'secret': API_SECRET,
                     'Author': 'bearer ' + token,
                     'device': 'web'
                 }
@@ -209,17 +211,17 @@
                 console.log(error);
             });
         axios.get(
-                `https://api-bal.zuppaqu.com/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=pending&view_as_invoice=1&start=0&length=20`, {
+                `${API_URL}/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=pending&view_as_invoice=1&start=0&length=20`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }
                 })
             .then(function(response) {
                 let dataTransaksi = response.data
-                if (dataTransaksi[0]) {
-                    document.getElementById('jmlTransaksi').innerHTML = dataTransaksi.length
+                if (dataTransaksi.length > 0) {
+                    document.getElementById('jmlTransaksi').innerHTML = dataTransaksi.length || 0
                     // document.getElementById('jmlTransaksiM').innerHTML = dataTransaksi.length
                 } else {
                     document.getElementById('jmlTransaksi').style.display = "none"
@@ -238,14 +240,14 @@
         document.getElementById('daftar').style.display = "none";
         document.getElementById('userName').innerHTML = JSON.parse(user).karyawan.nama_lengkap;
     } else {
-        if (transaksi) {
+        if (transaksi.length > 0) {
             document.getElementById('jmlTransaksi').innerHTML = JSON.parse(transaksi).length
             // document.getElementById('jmlTransaksiM').innerHTML = JSON.parse(transaksi).length
         } else {
             document.getElementById('jmlTransaksi').style.display = "none";
             // document.getElementById('jmlTransaksiM').style.display = "none";
         }
-        if (keranjang) {
+        if (keranjang.length > 0) {
             document.getElementById('jmlKeranjang').innerHTML = JSON.parse(keranjang).length
             // document.getElementById('jmlKeranjangM').innerHTML = JSON.parse(keranjang).length
         } else {

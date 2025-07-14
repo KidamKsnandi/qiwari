@@ -87,12 +87,12 @@
 
     <script>
         getProduk()
-
-
+        var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         function getProduk() {
-            axios.get('https://api-bal.zuppaqu.com/v1/affiliator/cabang', {
+            axios.get(`${API_URL}/v1/affiliator/cabang`, {
                     headers: {
-                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                        'secret': API_SECRET,
                         'device': 'web'
                     }
                 })
