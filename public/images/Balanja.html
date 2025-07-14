@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://localhost:8000/login -->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+        <title>Qiwari</title>
+        <meta content="" name="description" />
+
+        <meta content="" name="keywords" />
+
+        <!-- Favicons -->
+        <link href="http://localhost:8000/images/logo-qiwari.png" rel="icon" />
+        <link
+            href="http://localhost:8000/images/logo-qiwari.png"
+            rel="apple-touch-icon"
+        />
+
+        <!-- Google Fonts -->
+        <link href="./Qiwari_files/css" rel="stylesheet" />
+
+        <!-- Vendor CSS Files -->
+        <link href="./Qiwari_files/aos.css" rel="stylesheet" />
+        <link href="./Qiwari_files/bootstrap.min.css" rel="stylesheet" />
+        <link href="./Qiwari_files/bootstrap-icons.css" rel="stylesheet" />
+        <link href="./Qiwari_files/glightbox.min.css" rel="stylesheet" />
+        <link href="./Qiwari_files/remixicon.css" rel="stylesheet" />
+        <link href="./Qiwari_files/swiper-bundle.min.css" rel="stylesheet" />
+
+        <link href="./Qiwari_files/splide.css" rel="stylesheet" />
+
+        <!-- Template Main CSS File -->
+        <link href="./Qiwari_files/style.css" rel="stylesheet" />
+        <style>
+            .atasButton {
+                margin-bottom: 50px;
+            }
+
+            #menuBottom a {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        </style>
+    </head>
+
+    <body
+        data-aos-easing="ease-in-out"
+        data-aos-duration="1000"
+        data-aos-delay="0"
+    >
+        <!-- ======= Header ======= -->
+
+        <header id="header" class="header fixed-top bg-white shadow">
+            <div
+                class="container-fluid container-xl d-flex align-items-center justify-content-between"
+            >
+                <a
+                    href="http://localhost:8000/"
+                    class="logo d-flex align-items-center"
+                >
+                    <img
+                        src="./Qiwari_files/logo-qiwari.png"
+                        width="100%"
+                        alt="Logo"
+                    />
+                </a>
+
+                <div class="list-navbar">
+                    <ul>
+                        <li>
+                            <a
+                                class="nav-link scrollto"
+                                href="https://wa.me/6285861345339?text=Hai,%20Qiwari.id%20Saya%20Butuh%20Bantuan!!"
+                            >
+                                <span class="position-relative">
+                                    <i
+                                        class="bi bi-whatsapp"
+                                        style="font-size: 20px"
+                                    ></i> </span
+                            ></a>
+                        </li>
+                        <li>
+                            <a
+                                class="nav-link scrollto"
+                                onclick="alert(&#39;Coming Soon&#39;)"
+                            >
+                                <span class="position-relative">
+                                    <i
+                                        class="bi bi-bell"
+                                        style="font-size: 20px"
+                                    ></i> </span
+                            ></a>
+                        </li>
+                        <li id="loginM">
+                            <a
+                                style="height: 30px"
+                                class="getstarted scrollto"
+                                href="http://localhost:8000/login"
+                                >Login</a
+                            >
+                        </li>
+                        <li id="userLogins" style="display: none">
+                            <a
+                                class="nav-link scrollto"
+                                href="http://localhost:8000/profile"
+                                ><i
+                                    class="bi bi-person"
+                                    style="font-size: 20px"
+                                ></i
+                            ></a>
+                        </li>
+                    </ul>
+                </div>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li>
+                            <div class="input-group">
+                                <input
+                                    type="text"
+                                    value=""
+                                    id="search"
+                                    class="form-control"
+                                    style="width: 500px"
+                                    placeholder="Cari produk..."
+                                    aria-describedby="submitButton"
+                                    fdprocessedid="96ri3q"
+                                />
+                                <button
+                                    onclick="cari()"
+                                    class="btn"
+                                    style="
+                                        background: rgb(31, 198, 16);
+                                        color: white;
+                                        margin-right: 10px;
+                                    "
+                                    type="button"
+                                    id="submitButton"
+                                    fdprocessedid="kl918"
+                                >
+                                    <i class="bi bi-search text-white"></i>
+                                </button>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a
+                                class="nav-link scrollto mt-2"
+                                href="https://wa.me/6285861345339?text=Hai,%20Qiwari.id%20Saya%20Butuh%20Bantuan!!"
+                            >
+                                <span class="position-relative">
+                                    <i
+                                        class="bi bi-whatsapp"
+                                        style="font-size: 20px"
+                                    ></i> </span
+                            ></a>
+                        </li>
+                        <li>
+                            <a
+                                class="nav-link scrollto mt-1"
+                                href="http://localhost:8000/keranjang"
+                            >
+                                <span class="position-relative">
+                                    <i
+                                        class="bi bi-cart"
+                                        style="font-size: 20px"
+                                    ></i>
+                                    <span
+                                        id="jmlKeranjang"
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                        style="display: none"
+                                    ></span> </span
+                            ></a>
+                        </li>
+                        <li>
+                            <a
+                                class="nav-link scrollto mt-1"
+                                href="http://localhost:8000/list-transaksi"
+                            >
+                                <span class="position-relative">
+                                    <i
+                                        class="bi bi-bag"
+                                        style="font-size: 20px"
+                                    ></i>
+                                    <span
+                                        id="jmlTransaksi"
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                        style="display: none"
+                                    ></span> </span
+                            ></a>
+                        </li>
+                        <li id="daftar">
+                            <a
+                                class="getstarted scrollto"
+                                href="http://localhost:8000/daftar"
+                                >Daftar</a
+                            >
+                        </li>
+                        <li id="login">
+                            <a
+                                class="getstarted scrollto"
+                                href="http://localhost:8000/login"
+                                >Login</a
+                            >
+                        </li>
+                        <li id="userLogin" style="display: none">
+                            <a
+                                class="nav-link scrollto"
+                                href="http://localhost:8000/profile"
+                                ><i
+                                    class="bi bi-person"
+                                    style="font-size: 20px"
+                                ></i
+                                ><span id="userName" class="ms-2"></span
+                            ></a>
+                        </li>
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav>
+                <!-- .navbar -->
+            </div>
+            <div class="search-mobile">
+                <div class="container">
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            value=""
+                            id="searchM"
+                            class="form-control"
+                            placeholder="Cari produk..."
+                            aria-describedby="submitButtonMobile"
+                        />
+                        <button
+                            onclick="cariM()"
+                            class="btn"
+                            style="
+                                background: rgb(31, 198, 16);
+                                color: white;
+                                margin-right: 10px;
+                            "
+                            type="button"
+                            id="submitButtonMobile"
+                        >
+                            <i class="bi bi-search text-white"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- End Header -->
+        <script src="./Qiwari_files/jquery.min.js.download"></script>
+        <script src="./Qiwari_files/axios.min.js.download"></script>
+        <script>
+            var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString);
+            var search = urlParams.get("search");
+            let checkMember = localStorage.getItem("member_id");
+            var user = localStorage.getItem("user");
+            var token = localStorage.getItem("token");
+            var transaksi = localStorage.getItem("dataTransaksi");
+            var keranjang = localStorage.getItem("listKeranjang");
+
+            if (window.innerWidth <= 768) {
+                document
+                    .getElementById("searchM")
+                    .addEventListener("keyup", function (event) {
+                        // Check if the key pressed is Enter (key code 13)
+                        if (event.keyCode === 13) {
+                            // Trigger the click event of the button with the specified ID
+                            document
+                                .getElementById("submitButtonMobile")
+                                .click();
+                        }
+                    });
+            } else {
+                document
+                    .getElementById("search")
+                    .addEventListener("keyup", function (event) {
+                        // Check if the key pressed is Enter (key code 13)
+                        if (event.keyCode === 13) {
+                            // Trigger the click event of the button with the specified ID
+                            document.getElementById("submitButton").click();
+                        }
+                    });
+            }
+
+            if (user != null) {
+                var token = localStorage.getItem("token");
+                axios
+                    .get(
+                        `https://api-bal.zuppaqu.com/v1/cart?member_id=${
+                            JSON.parse(user).karyawan.id
+                        }`,
+                        {
+                            headers: {
+                                secret: "aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq",
+                                Author: "bearer " + token,
+                                device: "web",
+                            },
+                        }
+                    )
+                    .then(function (response) {
+                        keranjangL = response.data.data;
+
+                        if (keranjangL[0]) {
+                            document.getElementById("jmlKeranjang").innerHTML =
+                                keranjangL.length;
+                            // document.getElementById('jmlKeranjangM').innerHTML = keranjangL.length
+                        } else {
+                            document.getElementById(
+                                "jmlKeranjang"
+                            ).style.display = "none";
+                            // document.getElementById('jmlKeranjangM').style.display = "none";
+                        }
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    });
+                axios
+                    .get(
+                        `https://api-bal.zuppaqu.com/v1/transaksi-online?konsumen_member_id=${
+                            JSON.parse(user).karyawan.id
+                        }&show_bukti_tf=1&status=pending&view_as_invoice=1&start=0&length=20`,
+                        {
+                            headers: {
+                                secret: "aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq",
+                                Author: "bearer " + token,
+                                device: "web",
+                            },
+                        }
+                    )
+                    .then(function (response) {
+                        let dataTransaksi = response.data;
+                        if (dataTransaksi[0]) {
+                            document.getElementById("jmlTransaksi").innerHTML =
+                                dataTransaksi.length;
+                            // document.getElementById('jmlTransaksiM').innerHTML = dataTransaksi.length
+                        } else {
+                            document.getElementById(
+                                "jmlTransaksi"
+                            ).style.display = "none";
+                            // document.getElementById('jmlTransaksiM').style.display = "none"
+                        }
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    });
+
+                document.getElementById("loginM").style.display = "none";
+                document.getElementById("login").style.display = "none";
+                document.getElementById("daftar").style.display = "none";
+                document.getElementById("userName").innerHTML =
+                    JSON.parse(user).karyawan.nama_lengkap;
+            } else {
+                if (transaksi) {
+                    document.getElementById("jmlTransaksi").innerHTML =
+                        JSON.parse(transaksi).length;
+                    // document.getElementById('jmlTransaksiM').innerHTML = JSON.parse(transaksi).length
+                } else {
+                    document.getElementById("jmlTransaksi").style.display =
+                        "none";
+                    // document.getElementById('jmlTransaksiM').style.display = "none";
+                }
+                if (keranjang) {
+                    document.getElementById("jmlKeranjang").innerHTML =
+                        JSON.parse(keranjang).length;
+                    // document.getElementById('jmlKeranjangM').innerHTML = JSON.parse(keranjang).length
+                } else {
+                    document.getElementById("jmlKeranjang").style.display =
+                        "none";
+                    // document.getElementById('jmlKeranjangM').style.display = "none";
+                }
+                document.getElementById("userLogin").style.display = "none";
+                document.getElementById("userLogins").style.display = "none";
+            }
+            if (search != null) {
+                document.getElementById("search").value = search;
+                document.getElementById("searchM").value = search;
+            } else {
+                search = "";
+            }
+
+            // if (checkMember == null) {
+            //     document.getElementById('cabang').innerHTML =
+            //         ` <li><a class="nav-link scrollto" href="/sellers">Cabang</a></li>`
+            // }
+
+            function cari() {
+                var search = document.getElementById("search").value;
+                if (checkMember == null) {
+                    window.location.href = `/list-produk?search=${search}`;
+                } else {
+                    window.location.href = `/list-produk?member=${checkMember}&search=${search}`;
+                }
+            }
+
+            function cariM() {
+                var searchM = document.getElementById("searchM").value;
+                if (checkMember == null) {
+                    window.location.href = `/list-produk?search=${searchM}`;
+                } else {
+                    window.location.href = `/list-produk?member=${checkMember}&search=${searchM}`;
+                }
+            }
+        </script>
+
+        <div class="top-header-margin" style="margin-bottom: 150px">
+            <meta
+                name="csrf-token"
+                content="1R4UDUejNfGAFJhfYjoRYvigluaPSAk80uQ6UGnC"
+            />
+            <link rel="stylesheet" href="./Qiwari_files/all.min.css" />
+            <link
+                rel="stylesheet"
+                href="./Qiwari_files/bootstrap-icons(1).css"
+            />
+
+            <link href="./Qiwari_files/select2.min.css" rel="stylesheet" />
+            <script src="./Qiwari_files/feather-icons"></script>
+            <style>
+                label {
+                    float: left;
+                    font-size: 11px;
+                    margin-bottom: 5px;
+                }
+
+                .bg-daftar {
+                    background: #7044ef;
+                    height: 300px;
+                }
+
+                button:hover {
+                    background: #7044ef;
+                }
+
+                .custom-loader {
+                    width: 25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    background: radial-gradient(
+                                farthest-side,
+                                #f4f4f4 94%,
+                                #0000
+                            )
+                            top/4px 4px no-repeat,
+                        conic-gradient(#0000 30%, #f4f4f4);
+                    -webkit-mask: radial-gradient(
+                        farthest-side,
+                        #0000 calc(100% - 4px),
+                        #000 0
+                    );
+                    animation: s3 0.5s infinite linear;
+                }
+
+                @keyframes s3 {
+                    100% {
+                        transform: rotate(1turn);
+                    }
+                }
+            </style>
+            <br /><br /><br />
+
+            <div
+                class="toast-container position-fixed bottom-0 end-0 p-3"
+                style="z-index: 11"
+            >
+                <div
+                    id="liveToast"
+                    class="toast toast-success border-0"
+                    style="padding: 5px"
+                    role="alert"
+                    aria-live="assertive"
+                    aria-atomic="true"
+                >
+                    <div class="toast-header text-success">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <strong class="me-auto">Success</strong>
+                        <a
+                            href="http://localhost:8000/login"
+                            data-bs-dismiss="toast"
+                            aria-label="Close"
+                            ><i class="bi bi-x-lg text-dark"></i
+                        ></a>
+                    </div>
+                    <div class="toast-body">
+                        <h6>Anda berhasil login</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="toast-container position-fixed bottom-0 end-0 p-3"
+                style="z-index: 11"
+            >
+                <div
+                    id="liveToast"
+                    class="toast toast-error border-0 fade show"
+                    style="padding: 5px"
+                    role="alert"
+                    aria-live="assertive"
+                    aria-atomic="true"
+                >
+                    <div class="toast-header text-danger">
+                        <i class="bi bi-x-circle-fill me-2"></i>
+                        <strong class="me-auto">Gagal</strong>
+                        <a
+                            href="http://localhost:8000/login"
+                            data-bs-dismiss="toast"
+                            aria-label="Close"
+                            ><i class="bi bi-x-lg text-dark"></i
+                        ></a>
+                    </div>
+                    <div class="toast-body">
+                        <h6 id="message">User Tidak Terdaftar.</h6>
+                    </div>
+                </div>
+            </div>
+
+            <section
+                id="contact"
+                class="contact"
+                style="background: rgba(245, 245, 245, 0.116)"
+            >
+                <div class="container aos-init aos-animate" data-aos="fade-up">
+                    <h2 class="text-center text--primary"><b> Login </b></h2>
+                    <br />
+
+                    <div style="display: flex; justify-content: center">
+                        <form
+                            action="http://localhost:8000/login"
+                            method="post"
+                            class="col-lg-7 php-email-form bg-white card border-0"
+                            style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.13)"
+                        >
+                            <div class="row gy-4">
+                                <div class="col-md-12">
+                                    <label for="">EMAIL</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        class="form-control"
+                                        name="email"
+                                        placeholder=""
+                                        required=""
+                                        fdprocessedid="ipqkan"
+                                    />
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="">PASSWORD</label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        class="form-control"
+                                        name="password"
+                                        placeholder=""
+                                        required=""
+                                        fdprocessedid="x65j1h"
+                                    />
+                                    <div class="float-start mt-1">
+                                        <input
+                                            type="checkbox"
+                                            onclick="showPassword()"
+                                            class="mr-1"
+                                        />&nbsp; Lihat Password
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button
+                                        type="submit"
+                                        onclick="login()"
+                                        style="
+                                            background: rgb(10, 115, 250);
+                                            background: linear-gradient(
+                                                139deg,
+                                                rgba(10, 115, 250, 1) 0%,
+                                                rgba(112, 68, 239, 1) 72%
+                                            );
+                                        "
+                                        class="col-5 mt-3"
+                                        fdprocessedid="ukv2kg"
+                                    >
+                                        <center>
+                                            <div class="custom-daftar">
+                                                Login
+                                            </div>
+                                            <div
+                                                class="custom-loader"
+                                                hidden="hidden"
+                                            ></div>
+                                        </center>
+                                    </button>
+                                </div>
+
+                                <div class="text-center">
+                                    Belum punya akun?
+                                    <a href="http://localhost:8000/daftar"
+                                        >Daftar Disini</a
+                                    >
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <script src="./Qiwari_files/jquery.min.js.download"></script>
+            <script src="./Qiwari_files/jquery.validate.min.js.download"></script>
+            <script src="./Qiwari_files/axios.min.js.download"></script>
+            <script src="./Qiwari_files/select2.min.js.download"></script>
+
+            <script>
+                $(".theSelect").select2();
+            </script>
+
+            <script>
+                function showPassword() {
+                    var x = document.getElementById("password");
+                    if (x.type === "password") {
+                        x.type = "text";
+                    } else {
+                        x.type = "password";
+                    }
+                }
+
+                function showKonfirmasiPassword() {
+                    var y = document.getElementById("konfirmasi_password");
+                    if (y.type === "password") {
+                        y.type = "text";
+                    } else {
+                        y.type = "password";
+                    }
+                }
+
+                function login() {
+                    let data = {
+                        email: document.getElementById("email").value,
+                        password: document.getElementById("password").value,
+                    };
+                    $(".custom-daftar").attr("hidden", true);
+                    $(".custom-loader").attr("hidden", false);
+                    const headers = {
+                        secret: "aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq",
+                        device: "web",
+                    };
+
+                    axios
+                        .post(
+                            "https://api-bal.zuppaqu.com/v1/auth/user-login",
+                            data,
+                            {
+                                headers: headers,
+                            }
+                        )
+                        .then(function (response) {
+                            $(".custom-daftar").attr("hidden", false);
+                            $(".custom-loader").attr("hidden", true);
+                            var toastElList = [].slice.call(
+                                document.querySelectorAll(".toast-success")
+                            );
+                            var toastList = toastElList.map(function (toastEl) {
+                                return new bootstrap.Toast(toastEl);
+                            });
+                            toastList.forEach((toast) => toast.show());
+                            localStorage.setItem("token", response.data.tokens);
+                            localStorage.setItem(
+                                "user",
+                                JSON.stringify(response.data.data)
+                            );
+                            window.location.href = "/";
+                        })
+                        .catch(function (error) {
+                            $(".custom-daftar").attr("hidden", false);
+                            $(".custom-loader").attr("hidden", true);
+                            document.getElementById("message").innerHTML =
+                                error.response.data.message;
+                            var toastElList = [].slice.call(
+                                document.querySelectorAll(".toast-error")
+                            );
+                            var toastList = toastElList.map(function (toastEl) {
+                                return new bootstrap.Toast(toastEl);
+                            });
+                            toastList.forEach((toast) => toast.show());
+                            console.log(error);
+                        });
+                }
+            </script>
+            <nav
+                class="fixed-bottom bg-white d-lg-none d-lg-block"
+                style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.205)"
+            >
+                <div
+                    id="menuBottom"
+                    class="p-2"
+                    style="
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                    "
+                >
+                    <div>
+                        <a
+                            href="http://localhost:8000/"
+                            class="text--secondary"
+                        >
+                            <i class="bi bi-house me-1"></i> Home</a
+                        >
+                    </div>
+                    <div>
+                        <a
+                            href="http://localhost:8000/list-transaksi"
+                            class="text--secondary position-relative"
+                        >
+                            <span class="position-relative">
+                                <i class="bi bi-bag me-1"></i>
+                                <span
+                                    id="jmlTransaksiM"
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                ></span>
+                            </span>
+                            Pesanan</a
+                        >
+                    </div>
+                    <div>
+                        <a
+                            href="http://localhost:8000/keranjang"
+                            class="text--secondary"
+                        >
+                            <span class="position-relative">
+                                <i class="bi bi-cart2 me-1"></i>
+                                <span
+                                    id="jmlKeranjangM"
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                ></span>
+                            </span>
+                            Keranjang</a
+                        >
+                    </div>
+                    <div>
+                        <a
+                            onclick="alert(&#39;Coming Soon&#39;)"
+                            class="text--secondary"
+                        >
+                            <i class="bi bi-heart me-1"></i> Disukai</a
+                        >
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- ======= Footer ======= -->
+        <footer id="footer" class="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row gy-4">
+                        <div class="col-lg-5 col-md-12 footer-info">
+                            <a
+                                href="http://localhost:8000/"
+                                class="logo d-flex align-items-center"
+                            >
+                                <img
+                                    src="./Qiwari_files/logo-qiwari.png"
+                                    alt="Logo"
+                                />
+                            </a>
+
+                            <div class="social-links mt-3">
+                                <a
+                                    href="http://localhost:8000/login#"
+                                    class="twitter"
+                                    ><i class="bi bi-twitter"></i
+                                ></a>
+                                <a
+                                    href="http://localhost:8000/login#"
+                                    class="facebook"
+                                    ><i class="bi bi-facebook"></i
+                                ></a>
+                                <a
+                                    href="http://localhost:8000/login#"
+                                    class="instagram"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    href="http://localhost:8000/login#"
+                                    class="youtube"
+                                    ><i class="bi bi-youtube"></i
+                                ></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-6 footer-links">
+                            <h4>Tentang Qiwari</h4>
+                            <ul>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <a href="http://localhost:8000/login#"
+                                        >Blog</a
+                                    >
+                                </li>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <a href="http://localhost:8000/login#"
+                                        >Kabar Terbaru</a
+                                    >
+                                </li>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <a href="http://localhost:8000/login#"
+                                        >Karir</a
+                                    >
+                                </li>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <a href="http://localhost:8000/login#"
+                                        >Ketentuan dan Kebijakan Privasi</a
+                                    >
+                                </li>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <a
+                                        href="http://localhost:8000/privacy-policy"
+                                        >Privacy Policy</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-2 col-6 footer-links">
+                            <h4>Kerja Sama</h4>
+                            <ul>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <a href="http://localhost:8000/login#"
+                                        >Affiliate Program</a
+                                    >
+                                </li>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <a href="http://localhost:8000/login#"
+                                        >Jual Di Qiwari</a
+                                    >
+                                </li>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <a href="http://localhost:8000/login#"
+                                        >B2B Program</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div
+                            class="col-lg-3 col-md-12 footer-contact text-center text-md-start"
+                        >
+                            <h4>Kontak Kami</h4>
+                            <p>
+                                Bandung, Indonesia <br />
+                                <strong>Phone:</strong>085861345339<br />
+                                <strong>Email:</strong>
+                                info.balanja.id@gmail.com<br />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="copyright">
+                    © Copyright <strong><span>Qiwari 2023</span></strong
+                    >. All Rights Reserved
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+
+        <a
+            href="http://localhost:8000/login#"
+            class="back-to-top d-flex align-items-center atasButton justify-content-center"
+            ><i class="bi bi-arrow-up-short"></i
+        ></a>
+
+        <!-- Vendor JS Files -->
+        <script src="./Qiwari_files/mixin.js.download"></script>
+        <script src="./Qiwari_files/purecounter_vanilla.js.download"></script>
+        <script src="./Qiwari_files/aos.js.download"></script>
+        <script src="./Qiwari_files/bootstrap.bundle.min.js.download"></script>
+        <script src="./Qiwari_files/glightbox.min.js.download"></script>
+        <script src="./Qiwari_files/isotope.pkgd.min.js.download"></script>
+        <script src="./Qiwari_files/swiper-bundle.min.js.download"></script>
+        <script src="./Qiwari_files/validate.js.download"></script>
+
+        <script>
+            var transaksi = localStorage.getItem("dataTransaksi");
+            var keranjang = localStorage.getItem("listKeranjang");
+            if (user) {
+                var token = localStorage.getItem("token");
+                axios
+                    .get(
+                        `https://api-bal.zuppaqu.com/v1/cart?member_id=${
+                            JSON.parse(user).karyawan.id
+                        }`,
+                        {
+                            headers: {
+                                secret: "aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq",
+                                Author: "bearer " + token,
+                                device: "web",
+                            },
+                        }
+                    )
+                    .then(function (response) {
+                        keranjangL = response.data.data;
+
+                        if (keranjangL[0]) {
+                            document.getElementById("jmlKeranjangM").innerHTML =
+                                keranjangL.length;
+                            // document.getElementById('jmlKeranjangM').innerHTML = keranjangL.length
+                        } else {
+                            document.getElementById(
+                                "jmlKeranjangM"
+                            ).style.display = "none";
+                            // document.getElementById('jmlKeranjangM').style.display = "none";
+                        }
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    });
+                axios
+                    .get(
+                        `https://api-bal.zuppaqu.com/v1/transaksi-online?konsumen_member_id=${
+                            JSON.parse(user).karyawan.id
+                        }&show_bukti_tf=1&status=pending&view_as_invoice=1&start=0&length=20`,
+                        {
+                            headers: {
+                                secret: "aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq",
+                                Author: "bearer " + token,
+                                device: "web",
+                            },
+                        }
+                    )
+                    .then(function (response) {
+                        let dataTransaksi = response.data;
+                        if (dataTransaksi[0]) {
+                            document.getElementById("jmlTransaksiM").innerHTML =
+                                dataTransaksi.length;
+                            // document.getElementById('jmlTransaksiM').innerHTML = dataTransaksi.length
+                        } else {
+                            document.getElementById(
+                                "jmlTransaksiM"
+                            ).style.display = "none";
+                            // document.getElementById('jmlTransaksiM').style.display = "none"
+                        }
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    });
+            } else {
+                if (transaksi[0]) {
+                    document.getElementById("jmlTransaksiM").innerHTML =
+                        JSON.parse(transaksi).length;
+                    // document.getElementById('jmlTransaksiM').innerHTML = JSON.parse(transaksi).length
+                } else {
+                    document.getElementById("jmlTransaksiM").style.display =
+                        "none";
+                    // document.getElementById('jmlTransaksiM').style.display = "none";
+                }
+                if (keranjang[0]) {
+                    document.getElementById("jmlKeranjangM").innerHTML =
+                        JSON.parse(keranjang).length;
+                    // document.getElementById('jmlKeranjangM').innerHTML = JSON.parse(keranjang).length
+                } else {
+                    document.getElementById("jmlKeranjangM").style.display =
+                        "none";
+                    // document.getElementById('jmlKeranjangM').style.display = "none";
+                }
+            }
+            document.onkeydown = function (e) {
+                if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 117)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            };
+        </script>
+
+        <!-- Template Main JS File -->
+        <script src="./Qiwari_files/main.js.download"></script>
+
+        <span id="PING_IFRAME_FORM_DETECTION" style="display: none"></span>
+    </body>
+</html>
