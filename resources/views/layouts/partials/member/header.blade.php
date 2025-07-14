@@ -33,7 +33,7 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
         <a href="/" class="logo d-flex align-items-center">
-            <img src="{{ asset('images/logo-qiwari.png') }}" width="100%" alt="Logo">
+            <img src="{{ asset('images/logo-balanja.png') }}" width="100%" alt="Logo">
             {{-- <span class="">mybisnis</span> --}}
         </a>
 

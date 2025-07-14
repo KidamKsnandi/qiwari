@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="col-lg-2 col-6 footer-links">
-                    <h4>Tentang Qiwari</h4>
+                    <h4>Tentang Balanja.id</h4>
                     <ul>
                         <li><i class="bi bi-chevron-right"></i> <a href="#">Blog</a></li>
                         <li><i class="bi bi-chevron-right"></i> <a href="#">Kabar Terbaru</a></li>
@@ -35,7 +35,7 @@
                     <h4>Kerja Sama</h4>
                     <ul>
                         <li><i class="bi bi-chevron-right"></i> <a href="#">Affiliate Program</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Jual Di Qiwari</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#">Jual Di Balanja.id</a></li>
                         <li><i class="bi bi-chevron-right"></i> <a href="#">B2B Program</a></li>
                     </ul>
                 </div>
@@ -56,7 +56,7 @@
 
     <div class="container">
         <div class="copyright">
-            &copy; Copyright <strong><span>Qiwari {{ date('Y') }}</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>Balanja.id {{ date('Y') }}</span></strong>. All Rights Reserved
         </div>
 
     </div>

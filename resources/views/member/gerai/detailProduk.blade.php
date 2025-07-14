@@ -539,16 +539,16 @@
         var produkDetail;
         if (member) {
             let member_id = localStorage.getItem('member_id')
-            $('#copyText').val(`https://qiwari.id/detail-produk/${slug}?member=${member_id}`)
-            $('#linkAffiliate').html(`https://qiwari.id/detail-produk/${slug}?member=${member_id}`)
+            $('#copyText').val(`https://balanja.id/detail-produk/${slug}?member=${member_id}`)
+            $('#linkAffiliate').html(`https://balanja.id/detail-produk/${slug}?member=${member_id}`)
             $('#linkSalin').html(
-                `   <a onclick="salinLink('https://qiwari.id/detail-produk/${slug}?member=${member_id}')" style="cursor: pointer">
+                `   <a onclick="salinLink('https://balanja.id/detail-produk/${slug}?member=${member_id}')" style="cursor: pointer">
                         <i style="font-size: 40px;color: blue" class="fas fa-copy"></i>
                         <p class="text-center">Salin Link</p>
                     </a> `
             )
             $('#linkWhatsapp').html(
-                `   <a href="whatsapp://send?text=https://qiwari.id/detail-produk/${slug}?member=${member_id}" style="cursor: pointer">
+                `   <a href="whatsapp://send?text=https://balanja.id/detail-produk/${slug}?member=${member_id}" style="cursor: pointer">
                         <i style="font-size: 40px;color: green" class="bi bi-whatsapp"></i>
                         <p class="text-center">Whatsapp</p>
                     </a> `
@@ -564,17 +564,17 @@
                 var member = localStorage.getItem('member_id')
                 window.location.href = `/detail-produk/${slug}?member=${member_id}`
             }
-            $('#copyText').val(`https://qiwari.id/detail-produk/${slug}`)
-            $('#linkAffiliate').html(`https://qiwari.id/detail-produk/${slug}`)
+            $('#copyText').val(`https://balanja.id/detail-produk/${slug}`)
+            $('#linkAffiliate').html(`https://balanja.id/detail-produk/${slug}`)
             $('#linkSalin').html(
-                `<a onclick="salinLink('https://qiwari.id/detail-produk/${slug}')" style="cursor: pointer">
+                `<a onclick="salinLink('https://balanja.id/detail-produk/${slug}')" style="cursor: pointer">
                     <i style="font-size: 40px;color: blue" class="fas fa-copy"></i>
                     <p class="text-center">Salin Link</p>
                 </a>
                 `
             )
             $('#linkWhatsapp').html(
-                `   <a href="whatsapp://send?text=https://qiwari.id/detail-produk/${slug}" style="cursor: pointer">
+                `   <a href="whatsapp://send?text=https://balanja.id/detail-produk/${slug}" style="cursor: pointer">
                         <i style="font-size: 40px;color: green" class="bi bi-whatsapp"></i>
                         <p class="text-center">Whatsapp</p>
                     </a> `

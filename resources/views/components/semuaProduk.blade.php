@@ -472,17 +472,17 @@
     }
 
     function share(item) {
-        $('#copyText').val(`https://qiwari.id/detail-produk/${item.slug}`)
-        $('#linkAffiliate').html(`https://qiwari.id/detail-produk/${item.slug}`)
+        $('#copyText').val(`https://balanja.id/detail-produk/${item.slug}`)
+        $('#linkAffiliate').html(`https://balanja.id/detail-produk/${item.slug}`)
         $('#linkSalin').html(
-            `<a onclick="salinLink('https://qiwari.id/detail-produk/${item.slug}')" style="cursor: pointer">
+            `<a onclick="salinLink('https://balanja.id/detail-produk/${item.slug}')" style="cursor: pointer">
                     <i style="font-size: 40px;color: blue" class="fas fa-copy"></i>
                     <p class="text-center">Salin Link</p>
                 </a>
                 `
         )
         $('#linkWhatsapp').html(
-            `   <a href="whatsapp://send?text=https://qiwari.id/detail-produk/${item.slug}" style="cursor: pointer">
+            `   <a href="whatsapp://send?text=https://balanja.id/detail-produk/${item.slug}" style="cursor: pointer">
                         <i style="font-size: 40px;color: green" class="bi bi-whatsapp"></i>
                         <p class="text-center">Whatsapp</p>
                     </a> `

@@ -225,7 +225,7 @@
                             <div class="card-header bg-white ">
                                 <div class="row">
                                     <div class="col">
-                                        <b>Akun Qiwari</b>
+                                        <b>Akun Balanja.id</b>
                                     </div>
                                     <div class="col">
                                         <a href="" class="btn text-white btn-sm" type="button"
@@ -312,7 +312,7 @@
             <div class="tab__content"><br>
                 <center>
                     <h2><b>Belum ada Transaksi</b></h2>
-                    Yuk, mulai belanja dan penuhi berbagai kebutuhanmu di Qiwari! <br>
+                    Yuk, mulai belanja dan penuhi berbagai kebutuhanmu di Balanja.id! <br>
                     <a href="/" class="btn text-white mt-4" style="background: rgb(33, 195, 22);"
                         data-aos="fade-up">Mulai Belanja</a>
                 </center>
@@ -323,7 +323,7 @@
 
                 <div class="row mb-3">
                     <div class="col-sm-10">
-                        <h5>Saldo Qiwari kamu bisa ditarik ke rekening ini.</h5>
+                        <h5>Saldo Balanja.id kamu bisa ditarik ke rekening ini.</h5>
                     </div>
                     <div class="col">
                         <a href="" class="btn text-white" type="button" data-bs-toggle="modal"
@@ -370,7 +370,7 @@
                     <img src="{{ asset('images/transaksi.png') }}" width="250px" data-aos="fade-left" alt="">
                     <h3 class="mt-3" data-aos="fade-in"><b> Kamu belum pernah bertransaksi </b></h3>
                     <div class="text-secondary" data-aos="fade-in">Yuk, mulai belanja dan penuhi berbagai kebutuhanmu di
-                        Qiwari!</div>
+                        Balanja.id!</div>
                     <a href="/" class="btn text-white mt-4" style="background: rgb(33, 195, 22);"
                         data-aos="fade-up">Mulai Belanja</a>
                 </center>
@@ -399,7 +399,7 @@
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faq-content-1">
-                                    Apa itu Qiwari?
+                                    Apa itu Balanja.id?
                                 </button>
                             </h2>
                             <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
@@ -414,12 +414,12 @@
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faq-content-2">
-                                    Bagaimana cara menjadi afiliator Qiwari ??
+                                    Bagaimana cara menjadi afiliator Balanja.id ??
                                 </button>
                             </h2>
                             <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                                 <div class="accordion-body">
-                                    Silahkan isi form online afiliator yang telah disediakan nanti CS dari Qiwari
+                                    Silahkan isi form online afiliator yang telah disediakan nanti CS dari Balanja.id
                                     akan menghubungi anda
                                 </div>
                             </div>
@@ -429,12 +429,12 @@
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faq-content-3">
-                                    Bagaimana cara menjadi cabang Qiwari ??
+                                    Bagaimana cara menjadi cabang Balanja.id ??
                                 </button>
                             </h2>
                             <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                                 <div class="accordion-body">
-                                    Silahkan isi form online cabang yang telah disediakan nanti CS dari Qiwari akan
+                                    Silahkan isi form online cabang yang telah disediakan nanti CS dari Balanja.id akan
                                     menghubungi anda
                                 </div>
                             </div>
@@ -452,7 +452,7 @@
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faq2-content-1">
-                                    Apa keuntungan bergabung menjadi afiliator Qiwari ?
+                                    Apa keuntungan bergabung menjadi afiliator Balanja.id ?
 
                                 </button>
                             </h2>
@@ -468,7 +468,7 @@
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faq2-content-2">
-                                    Saya gaptek apakah bisa gabung di Qiwari ?
+                                    Saya gaptek apakah bisa gabung di Balanja.id ?
 
                                 </button>
                             </h2>
@@ -484,7 +484,7 @@
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faq2-content-3">
-                                    Berapa biaya untuk bergabung menjadi afiliator Qiwari ??
+                                    Berapa biaya untuk bergabung menjadi afiliator Balanja.id ??
 
                                 </button>
                             </h2>

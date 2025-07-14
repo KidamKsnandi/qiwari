@@ -9,7 +9,7 @@
     <link href="{{ asset('images/logo-qiwari.png') }}" rel="apple-touch-icon">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Katalog Qiwari</title>
+    <title>Katalog Balanja.id</title>
     <style>
         body {
             font-family: Arial, sans-serif;

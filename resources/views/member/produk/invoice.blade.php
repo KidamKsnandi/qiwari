@@ -505,7 +505,7 @@
                 $('#ongkir').html("Rp. 0")
             } else {
                 $('#pengiriman').html("Dikirim")
-                $('#kurir').html("Qiwari Express")
+                $('#kurir').html("Ekspresif")
                 $('#ongkir').html(rp(data.ongkir))
             }
             if (data.status_bayar == "belum_lunas") {

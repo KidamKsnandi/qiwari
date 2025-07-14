@@ -118,7 +118,7 @@
                 <use xlink:href="#info-fill" />
             </svg>
             <span>
-                Selamat datang dan selamat berbelanja di Qiwari
+                Selamat datang dan selamat berbelanja di Balanja.id
             </span>
 
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
