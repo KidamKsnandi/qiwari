@@ -11,76 +11,77 @@
 @section('content')
     <div class="container mt-4" style="padding-top: 120px">
         <!-- Ringkasan Pesanan -->
-        <div class="card mb-4 shadow-sm border-0">
-            <!-- Kartu Member Header -->
-            <div class="card-header text-white" style="background-color: #23ca23; border-radius: 10px 10px 0 0;">
-                <h4 class="mb-0 text-center">Kartu Membership Pre-Order</h4>
-            </div>
-
-            <!-- Kartu Member Body -->
-            <div class="card-body p-4" style="background-color: #f8f9fa;">
-                <div id="listPesanan" class="mb-3">
+        <div id="kartuMembershipContent">
+            <div class="card mb-4 shadow-sm border-0">
+                <!-- Kartu Member Header -->
+                <div class="card-header text-white" style="background-color: #23ca23; border-radius: 10px 10px 0 0;">
+                    <h4 class="mb-0 text-center">Kartu Membership Pre-Order</h4>
                 </div>
 
-                <!-- Jika belum mendaftar sebagai member -->
-                <div id="belumMember" class="text-center p-3"
-                    style="background-color: #ffebcc; border: 1px solid #ffc107; border-radius: 10px;">
-                    <h5 class="text-warning">Belum menjadi member?</h5>
-                    <p>Pilih produk untuk mendapatkan kartu member dan menikmati berbagai keuntungan.</p>
-                    <a href="/member/pre-order/produk" class="btn btn-primary">Pilih Produk</a>
-                </div>
-
-                <!-- Jika sudah menjadi member, tampilkan detail pesanan -->
-                <div id="sudahMember" style="display: none;">
-                    <div class="card mb-3 shadow-sm" style="border: 1px solid #007bff; border-radius: 10px;">
-                        <div class="card-body">
-                            <h5 class="card-title text-primary">Detail Pesanan</h5>
-                            <ul class="list-group">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <strong>Tanggal Update Pesanan:</strong> <span id="tanggal"></span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <strong>Nama:</strong> <span id="nama"></span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <strong>No. Hp:</strong> <span id="no_hp"></span>
-                                </li>
-                                {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <strong>Email:</strong> <span id="email"></span>
-                                </li> --}}
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <strong>Periode PO:</strong> <span id="periode_po"></span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <strong>Metode Pengiriman:</strong> <span id="metode_pengiriman"></span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <strong>Metode Pembayaran:</strong> <span id="metode_bayar"></span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <strong>Alamat:</strong> <span id="alamat"></span>
-                                </li>
-                            </ul>
-                        </div>
+                <!-- Kartu Member Body -->
+                <div class="card-body p-4" style="background-color: #f8f9fa;">
+                    <div id="listPesanan" class="mb-3">
                     </div>
 
-                    <!-- Diskon -->
-                    {{-- <div class="alert alert-warning mt-3 d-flex justify-content-between align-items-center"
-                        style="border-radius: 10px;">
-                        <span>Diskon Rp10.000 dengan GrabUnlimited. Bisa digabung promo lain.</span>
-                        <a href="#" class="text-primary">Tambahkan</a>
-                    </div> --}}
+                    <!-- Jika belum mendaftar sebagai member -->
+                    <div id="belumMember" class="text-center p-3"
+                        style="background-color: #ffebcc; border: 1px solid #ffc107; border-radius: 10px;">
+                        <h5 class="text-warning">Belum menjadi member?</h5>
+                        <p>Pilih produk untuk mendapatkan kartu member dan menikmati berbagai keuntungan.</p>
+                        <a href="/member/pre-order/produk" class="btn btn-primary">Pilih Produk</a>
+                    </div>
+
+                    <!-- Jika sudah menjadi member, tampilkan detail pesanan -->
+                    <div id="sudahMember" style="display: none;">
+                        <div class="card mb-3 shadow-sm" style="border: 1px solid #007bff; border-radius: 10px;">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Detail Pesanan</h5>
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Tanggal Update Pesanan:</strong> <span id="tanggal"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Nama:</strong> <span id="nama"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>No. Hp:</strong> <span id="no_hp"></span>
+                                    </li>
+                                    {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Email:</strong> <span id="email"></span>
+                                    </li> --}}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Periode PO:</strong> <span id="periode_po"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Metode Pengiriman:</strong> <span id="metode_pengiriman"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Metode Pembayaran:</strong> <span id="metode_bayar"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Alamat:</strong> <span id="alamat"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Diskon -->
+                        {{-- <div class="alert alert-warning mt-3 d-flex justify-content-between align-items-center"
+                            style="border-radius: 10px;">
+                            <span>Diskon Rp10.000 dengan GrabUnlimited. Bisa digabung promo lain.</span>
+                            <a href="#" class="text-primary">Tambahkan</a>
+                        </div> --}}
+                    </div>
                 </div>
+
+                <!-- Kartu Member Footer -->
+                <a href="/member/pre-order/produk/ubah" id="tombolUbah" class="text-white">
+                    <div class="card-footer text-center" style="background-color: #007bff; border-radius: 0 0 10px 10px;">
+                        <span>Ubah Pesanan</span>
+                    </div>
+                </a>
             </div>
-
-            <!-- Kartu Member Footer -->
-            <a href="/member/pre-order/produk/ubah" id="tombolUbah" class="text-white">
-                <div class="card-footer text-center" style="background-color: #007bff; border-radius: 0 0 10px 10px;">
-                    <span>Ubah Pesanan</span>
-                </div>
-            </a>
         </div>
-
 
 
         <!-- Pilih Pengiriman -->
@@ -146,8 +147,7 @@
                 </b>
             </div>
             <button class="btn btn-light text-dark btn-lg align-self-end mt-3 mt-md-0"
-                onclick="alert('coming soon')">Download
-                Kartu</button>
+                onclick="downloadKartuPDF()">Download Kartu</button>
         </div>
     </div>
 
@@ -245,6 +245,7 @@
                     }
                 });
                 let dataPOMembership = response.data.data[0];
+                dataPOMembership.items = dataPOMembership.items.filter(item => item.barang != null);
                 if (dataPOMembership != null) {
                     document.getElementById('sudahMember').style.display = 'block';
                     document.getElementById('belumMember').style.display = 'none';
@@ -307,11 +308,27 @@
             }
         };
 
+        function downloadKartuPDF() {
+            const element = document.getElementById('kartuMembershipContent');
+
+            const opt = {
+                margin:       0.5,
+                filename:     `kartu-membership-${new Date().toLocaleDateString('id-ID').replace(/\//g, '-')}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+
+
         created()
     </script>
 @endsection
 
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
         $('#menuBottom').remove()
         $('.atasButton').remove()

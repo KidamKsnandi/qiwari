@@ -306,7 +306,7 @@
                             <label for="pembayaran" class="form-label">Metode Pembayaran</label>
                             <select class="form-select" id="metode_bayar" name="pembayaran" required
                                 onchange="showBankInfo()">
-                                <option value="1">Cash</option>
+                                {{-- <option value="1">Cash</option> --}}
                                 {{-- <option value="1">Transfer - Mandiri</option>
                                 <option value="transfer-bca">Transfer - BCA</option> --}}
                             </select>
@@ -327,10 +327,13 @@
                         <!-- Pengiriman -->
                         <div class="mb-3">
                             <label for="pengiriman" class="form-label">Metode Pengiriman</label>
-                            <select class="form-select" id="metode_pengiriman" name="pengiriman" required>
+                            <select class="form-select" id="metode_pengiriman" name="pengiriman" required onchange="toggleOngkirNote()">
                                 <option value="1">Diambil</option>
                                 <option value="2">Dikirim</option>
                             </select>
+                            <small id="ongkir_note" class="text-muted mt-1 d-none">
+                                * Pengiriman memungkinkan akan ada biaya ongkir.
+                            </small>
                         </div>
 
                         <!-- Alamat Konsumen -->
@@ -383,6 +386,7 @@
                     }
                 });
                 dataPOMembership = response.data.data[0];
+                dataPOMembership.items = dataPOMembership.items.filter(item => item.barang != null);
                 itemsBarang = dataPOMembership.items;
                 const now = new Date();
                 const formattedDate = now.getFullYear() + '-' +
@@ -424,6 +428,23 @@
                 }
                 $('#metode_pengiriman').val(dataPOMembership.metode_pengiriman)
                 $('#alamat').val(dataPOMembership.alamat)
+                toggleOngkirNote();
+                let dataPreOrder = localStorage.getItem('listPreOrder') ? JSON.parse(localStorage.getItem('listPreOrder')) :
+                []
+                if (dataPreOrder.length == 0) {
+                    itemsBarang.map(data => {
+                        dataPreOrder.push({
+                            id: data.penyimpanan_id,
+                            qty: data.qty,
+                            jumlah: data.qty,
+                            barang: data.barang,
+                            harga: data.harga,
+                        }
+                    )
+
+                    localStorage.setItem('listPreOrder', JSON.stringify(dataPreOrder))
+                    })
+                }
                 loadProducts()
             } catch (error) {
                 render = true
@@ -439,9 +460,10 @@
             isLoading = true;
             if (isProduk == true) {
                 document.getElementById('skeleton-loader').style.display = 'block';
-
+                const urlParams = new URLSearchParams(window.location.search);
+                const search = urlParams.get('search') ?? '';
                 axios.get(
-                        `${API_URL}/v1/toko-penyimpanan-public?harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&order=desc&show_as_product=1`, {
+                        `${API_URL}/v1/toko-penyimpanan-public?harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&order=desc&show_as_product=1&search=${search}`, {
                             headers: {
                                 'secret': API_SECRET,
                                 'device': 'web'
@@ -461,30 +483,31 @@
                             .getItem(
                                 'listPreOrder')) : []
 
-                        if (listPreOrder.length > 0) {
-                            listPreOrder = []
-                        }
+                        // if (listPreOrder.length > 0) {
+                        //     listPreOrder = []
+                        // }
 
 
                         products.forEach(product => {
                             let findData = itemsBarang.find(res => res.penyimpanan_id == product
                                 .id);
-                            if (findData != null) {
-                                listPreOrder.push({
-                                    id: product.id,
-                                    qty: findData.qty,
-                                    jumlah: product.varian_barang[0].jumlah,
-                                    barang: product.varian_barang[0].barang,
-                                    harga: product.harga,
-                                });
-                            }
+                            // if (findData != null) {
+                            //     listPreOrder.push({
+                            //         id: product.id,
+                            //         qty: findData.qty,
+                            //         jumlah: product.varian_barang[0].jumlah,
+                            //         barang: product.varian_barang[0].barang,
+                            //         harga: product.harga,
+                            //     });
+                            // }
 
-                            localStorage.setItem('listPreOrder', JSON.stringify(
-                                listPreOrder))
+                            // localStorage.setItem('listPreOrder', JSON.stringify(
+                            //     listPreOrder))
 
                             let dataPre = localStorage.getItem('listPreOrder') ? JSON.parse(
                                 localStorage.getItem(
                                     'listPreOrder')) : []
+
                             keepHarga = dataPre.reduce((a, item) => {
                                 return a += (item.harga * item.qty)
                             }, 0)
@@ -512,7 +535,7 @@
                             productList.innerHTML += productCard;
                         });
 
-                        totalBayar += keepHarga
+                        totalBayar = keepHarga
                         document.getElementById('total-amount').innerHTML = rupiah(totalBayar)
 
                         page++;
@@ -611,6 +634,16 @@
                 document.getElementById('total-amount').innerHTML = "Rp. 0"
             }
 
+        }
+
+        function toggleOngkirNote() {
+            const metode = document.getElementById('metode_pengiriman').value;
+            const note = document.getElementById('ongkir_note');
+            if (metode === '2') {
+                note.classList.remove('d-none');
+            } else {
+                note.classList.add('d-none');
+            }
         }
 
         function showBankInfo() {
@@ -793,6 +826,16 @@
             // loadProducts();
             getRekening()
             getPOMembership();
+
+            var listPreOrder = localStorage.getItem('listPreOrder') ? JSON.parse(localStorage
+                .getItem(
+                    'listPreOrder')) : []
+
+            if (listPreOrder.length > 0) {
+                listPreOrder = []
+                localStorage.setItem('listPreOrder', JSON.stringify(
+                    listPreOrder))
+            }
 
             // localStorage.removeItem('listPreOrder')
             if (user) {

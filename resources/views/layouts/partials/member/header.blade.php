@@ -271,20 +271,36 @@
     // }
 
     function cari() {
-        var search = document.getElementById('search').value;
-        if (checkMember == null) {
-            window.location.href = `/list-produk?search=${search}`
+        const search = document.getElementById('search').value;
+        const path = window.location.pathname;
+        let url = '';
+        if (path == '/member/pre-order/produk/ubah' || path == '/member/pre-order/produk') {
+            url = `${path}?search=${encodeURIComponent(search)}`;
         } else {
-            window.location.href = `/list-produk?member=${checkMember}&search=${search}`
+            if (checkMember == null) {
+                url = `/list-produk?search=${encodeURIComponent(search)}`;
+            } else {
+                url = `/list-produk?member=${checkMember}&search=${encodeURIComponent(search)}`;
+            }
         }
+
+        window.location.href = url;
     }
 
     function cariM() {
-        var searchM = document.getElementById('searchM').value;
-        if (checkMember == null) {
-            window.location.href = `/list-produk?search=${searchM}`
+        const searchM = document.getElementById('searchM').value;
+        const path = window.location.pathname;
+        let url = '';
+        if (path == '/member/pre-order/produk/ubah' || path == '/member/pre-order/produk') {
+            url = `${path}?search=${encodeURIComponent(searchM)}`;
         } else {
-            window.location.href = `/list-produk?member=${checkMember}&search=${searchM}`
+            if (checkMember == null) {
+                url = `/list-produk?search=${encodeURIComponent(searchM)}`;
+            } else {
+                url = `/list-produk?member=${checkMember}&search=${encodeURIComponent(searchM)}`;
+            }
         }
+
+        window.location.href = url;
     }
 </script>

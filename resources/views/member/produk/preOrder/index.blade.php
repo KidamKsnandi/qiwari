@@ -295,32 +295,36 @@
                             <label for="pembayaran" class="form-label">Metode Pembayaran</label>
                             <select class="form-select" id="metode_bayar" name="pembayaran" required
                                 onchange="showBankInfo()">
-                                <option value="1">Cash</option>
-                                {{-- <option value="1">Transfer - Mandiri</option>
-                                <option value="transfer-bca">Transfer - BCA</option> --}}
+                                {{-- <option value="1">Cash</option> --}}
+                                {{-- <option value="2">Transfer</option> --}}
+                                {{-- <option value="transfer-bca">Transfer - BCA</option> --}}
                             </select>
                         </div>
 
                         <!-- Informasi Rekening -->
-                        <div id="bankInfo" class="d-none">
+                        <div id="bankInfo" class="">
                             <div class="mb-3">
                                 <label class="form-label">Nomor Rekening</label>
-                                <input type="text" id="nomorRekening" class="form-control" readonly disabled>
+                                <input type="text" id="nomorRekening"  class="form-control" readonly disabled>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Nama Akun</label>
-                                <input type="text" id="namaAkun" class="form-control" readonly disabled>
+                                <input type="text" id="namaAkun"  class="form-control" readonly disabled>
                             </div>
                         </div>
 
                         <!-- Pengiriman -->
                         <div class="mb-3">
                             <label for="pengiriman" class="form-label">Metode Pengiriman</label>
-                            <select class="form-select" id="metode_pengiriman" name="pengiriman" required>
+                            <select class="form-select" id="metode_pengiriman" name="pengiriman" required onchange="toggleOngkirNote()">
                                 <option value="1">Diambil</option>
                                 <option value="2">Dikirim</option>
                             </select>
+                            <small id="ongkir_note" class="text-muted mt-1 d-none">
+                                * Pengiriman memungkinkan akan ada biaya ongkir.
+                            </small>
                         </div>
+
 
                         <!-- Alamat Konsumen -->
                         <div class="mb-3">
@@ -387,9 +391,10 @@
             render = false;
             if (isProduk == true) {
                 document.getElementById('skeleton-loader').style.display = 'block';
-
+                const urlParams = new URLSearchParams(window.location.search);
+                const search = urlParams.get('search') ?? '';
                 axios.get(
-                        `${API_URL}/v1/toko-penyimpanan-public?harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&order=desc&show_as_product=1`, {
+                        `${API_URL}/v1/toko-penyimpanan-public?harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&order=desc&show_as_product=1&search=${search}`, {
                             headers: {
                                 'secret': API_SECRET,
                                 'device': 'web'
@@ -406,7 +411,17 @@
                         document.getElementById('skeleton-loader').style.display = 'none';
 
                         products.forEach(product => {
-                            quantities[product.id] = 0;
+                            let dataPre = localStorage.getItem('listPreOrder') ? JSON.parse(
+                                localStorage.getItem(
+                                    'listPreOrder')) : []
+                            let findData = dataPre.find(res => res.id == product
+                            .id);
+
+                            keepHarga = dataPre.reduce((a, item) => {
+                                return a += (item.harga * item.qty)
+                            }, 0)
+
+                            quantities[product.id] = findData ? findData.qty : 0;
 
                             const productCard = `
                                 <div class="col-12 product-card d-flex">
@@ -428,6 +443,9 @@
                             `;
                             productList.innerHTML += productCard;
                         });
+
+                        totalBayar = keepHarga
+                        document.getElementById('total-amount').innerHTML = rupiah(totalBayar)
 
                         page++;
                         isLoading = false;
@@ -472,6 +490,13 @@
                             <option value='${JSON.stringify(value)}'>Transfer - ${value.nama}</option>
                         `)
                     })
+
+                    var nomorRekening = document.getElementById("nomorRekening");
+                    var namaAkun = document.getElementById("namaAkun");
+
+                    nomorRekening.value = rekening[0].no_rekening;
+                    namaAkun.value = rekening[0].deskripsi;
+
                 }
             } catch (error) {
                 console.error('Error fetching', error);
@@ -525,6 +550,17 @@
                 document.getElementById('total-amount').innerHTML = "Rp. 0"
             }
 
+        }
+
+        function toggleOngkirNote() {
+            const metode = document.getElementById('metode_pengiriman').value;
+            const note = document.getElementById('ongkir_note');
+
+            if (metode === '2') {
+                note.classList.remove('d-none');
+            } else {
+                note.classList.add('d-none');
+            }
         }
 
         function showBankInfo() {
@@ -722,6 +758,15 @@
             getPOMembership();
             getRekening();
             loadProducts();
+            // var listPreOrder = localStorage.getItem('listPreOrder') ? JSON.parse(localStorage
+            //     .getItem(
+            //         'listPreOrder')) : []
+
+            // if (listPreOrder.length > 0) {
+            //     listPreOrder = []
+            //     localStorage.setItem('listPreOrder', JSON.stringify(
+            //         listPreOrder))
+            // }
             // localStorage.removeItem('listPreOrder')
             if (user) {
                 document.getElementById('namaUser').innerHTML = JSON.parse(user).karyawan.nama_lengkap
