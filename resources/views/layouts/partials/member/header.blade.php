@@ -93,11 +93,11 @@
                 {{-- <li><a class="nav-link scrollto" href="/produk">Produk</a></li>
                 <li id="cabang"></li> --}}
                 <li><a class="nav-link scrollto mt-2"
-                        href="https://wa.me/6285861345339?text=Hai,%20Qiwari.id%20Saya%20Butuh%20Bantuan!!"> <span
+                        href="https://wa.me/6285861345339?text=Hai,%20Balanja.id%20Saya%20Butuh%20Bantuan!!"> <span
                             class="position-relative">
                             <i class="bi bi-whatsapp" style="font-size: 20px;"></i>
                     </a></li>
-                <li><a class="nav-link scrollto mt-1" href="/keranjang"> <span class="position-relative">
+                <li style="display: none"><a class="nav-link scrollto mt-1" href="/keranjang"> <span class="position-relative">
                             <i class="bi bi-cart" style="font-size: 20px;"></i>
                             <span id="jmlKeranjang"
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>

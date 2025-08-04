@@ -306,14 +306,14 @@
                                     </b>
                                 </span>
                             </div>
-                            <div class="mb-2 ">
+                            {{-- <div class="mb-2 ">
                                 <span style="" id="labelBerat">
                                     Berat :
                                     <b class="" id="beratProduk">
                                         <div class="skeleton-content"></div>
                                     </b>
                                 </span>
-                            </div>
+                            </div> --}}
                             <br>
                             <div class="mb-3 ">
                                 <label for=""><b> Deskripsi </b></label> <br>
@@ -701,6 +701,8 @@
         }
 
         function booking(detailProduk, detailProduks) {
+            window.location.href = `/member/pre-order/member-card`
+            return false
             let data = []
             var qty = $('#qty').val()
             data.push({
@@ -715,7 +717,6 @@
 
             localStorage.setItem('produkItem', JSON.stringify(data))
             activeModalBooking()
-            // window.location.href = `/checkout?pass_cart=n`
         }
 
         function bookingPesan() {
@@ -950,14 +951,7 @@
                     let detailProduk = detailProduks.varian_barang.find(response => response.barang.slug == slug)
                     produkDetail = detailProduk
                     if (produkDetail.barang.product_type != 'jasa') {
-                        $('#handleButton').html(`<button ${detailProduk.jumlah == 0 ? 'disabled' : ''} id="keranjangButton" onclick='masukKeranjang(${JSON.stringify(detailProduk)})' type="button"
-                                            class="btn col-sm-12 text--primary btn-white"
-                                            style="border: 1px solid #7044ef; width: 100%">
-                                            <center>
-                                            <div class="custom-keranjang">+ Masukan Keranjang </div>
-                                            <div class="custom-loader" hidden></div>
-                                            </center>
-                                            </button>
+                        $('#handleButton').html(`
                                             <button ${detailProduk.jumlah == 0 ? 'disabled' : ''} type="button" onclick='beliSekarang(${JSON.stringify(detailProduk)}, ${JSON.stringify(detailProduks)})' class='${detailProduk.jumlah == 0 ? 'btn btn-secondary' : 'btn--primary' } form-control mt-3'> Beli Sekarang
                                             </button>`);
                         if (detailProduk.barang.is_pre_order) {

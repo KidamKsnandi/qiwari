@@ -161,7 +161,8 @@
                             <div class="col-md-12 text-center">
                                 <button type="submit" onclick="loginEmail()" class="btn btn-primary col-8 mt-3"
                                     style="background: linear-gradient(47deg, rgb(126, 213, 149) 0%, #23ca23 68%); border-radius: 25px;">
-                                    <div class="custom-login"> <i class="bi bi-envelope me-2"></i>Login via Email</div>
+                                    {{-- <div class="custom-login"> <i class="bi bi-envelope me-2"></i>Login via Email</div> --}}
+                                    <div class="custom-login">Login</div>
                                     <center>
                                         <div class="custom-loader" hidden></div>
                                     </center>
@@ -267,7 +268,7 @@
                 document.getElementById('loginView').style.display = 'block';
                 document.getElementById('kodeOtpView').remove();
                 document.getElementById('email-login').style.display = 'block';
-                document.getElementById('link-whatsapp').style.display = 'block';
+                document.getElementById('link-whatsapp').style.display = 'none';
                 document.getElementById('whatsapp-login').remove();
                 document.getElementById('link-email').remove();
             }

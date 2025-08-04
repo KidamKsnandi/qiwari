@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicons -->
-    <link href="{{ asset('images/logo-qiwari.png') }}" rel="icon">
-    <link href="{{ asset('images/logo-qiwari.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('images/logo-balanja.png') }}" rel="icon">
+    <link href="{{ asset('images/logo-balanja.png') }}" rel="apple-touch-icon">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <title>Katalog Balanja.id</title>
@@ -107,13 +107,13 @@
 <body>
     <div class="container print-area">
         <header>
-            <img src="{{ asset('images/logo-qiwari.png') }}" alt="Qiwari Logo">
+            <img src="{{ asset('images/logo-balanja.png') }}" alt="Qiwari Logo">
             <h1>PASTI HEMAT EDISI 4 PERIODE: {{ date('d F Y') }}</h1>
 
         </header>
         <section class="promo-section ">
             {{-- <center>
-                <img src="{{ asset('images/logo-qiwari.png') }}" alt="" width="200px">
+                <img src="{{ asset('images/logo-balanja.png') }}" alt="" width="200px">
             </center> --}}
             <div class="promo-grid">
                 @foreach ($data as $item)

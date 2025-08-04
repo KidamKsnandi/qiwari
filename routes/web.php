@@ -27,6 +27,10 @@ Route::get('/clear', function () {
 
     return view('clear');
 });
+
+Route::get('/sso-login', function () {
+    return view('ssoLogin');
+});
 Route::get('/logout', function () {
 
     return view('logout');

@@ -290,6 +290,13 @@
                             </select>
                         </div>
 
+                        <!--  (Pilihan Periode Tanggal) -->
+                        <div class="mb-3">
+                            <label for="po" class="form-label">Pilih Tanggal</label>
+                            <select class="form-select" id="periode_tanggal" name="po_tanggal" required>
+                            </select>
+                        </div>
+
                         <!-- Pembayaran -->
                         <div class="mb-3">
                             <label for="pembayaran" class="form-label">Metode Pembayaran</label>
@@ -325,9 +332,14 @@
                             </small>
                         </div>
 
-
-                        <!-- Alamat Konsumen -->
+                        <!-- Catatan -->
                         <div class="mb-3">
+                            <label for="catatan" class="form-label">Catatan</label>
+                            <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan"></textarea>
+                        </div>
+
+                          <!-- Alamat Konsumen -->
+                          <div class="mb-3">
                             <label for="alamat" class="form-label">Alamat</label>
                             <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Alamat Konsumen"></textarea>
                             <button type="button" class="btn btn-secondary mt-2" onclick="getLocation()">Ambil Lokasi
@@ -359,6 +371,9 @@
         const quantities = {};
         var isProduk = true;
         var render = true
+        var hari = '';
+        var bulan = '';
+        var tahun = '';
 
         const getPOMembership = async () => {
             try {
@@ -498,6 +513,64 @@
                     namaAkun.value = rekening[0].deskripsi;
 
                 }
+            } catch (error) {
+                console.error('Error fetching', error);
+                return null;
+            }
+        };
+
+        const getPeriodeTanggalSet = async () => {
+            try {
+                render = false;
+                const response = await axios.get(`${API_URL}/v1/periode-tanggal-set`, {
+                    headers: {
+                        'secret': API_SECRET,
+                        'Author': 'bearer ' + token,
+                        'device': 'web'
+                    }
+                });
+                hari = response.data.hari;
+                bulan = response.data.bulan;
+                tahun = response.data.tahun;
+                getPeriodeTanggal();
+            } catch (error) {
+                console.error('Error fetching', error);
+                return null;
+            }
+        };
+
+        const getPeriodeTanggal = async () => {
+            try {
+                render = false;
+                const response = await axios.get(`${API_URL}/v1/periode-tanggal`, {
+                    params: {
+                        hari: hari,
+                        bulan: bulan,
+                        tahun: tahun
+                    },
+                    headers: {
+                        'secret': API_SECRET,
+                        'Author': 'bearer ' + token,
+                        'device': 'web'
+                    }
+                });
+                let periodeTanggal = response.data;
+                if (periodeTanggal.length > 0) {
+                    $.each(periodeTanggal, (i, value) => {
+                        const date = new Date(value.tanggal);
+                        const formatted = date.toLocaleDateString('id-ID', {
+                            weekday: 'long',    // Hari
+                            day: 'numeric',     // Tanggal
+                            month: 'long',      // Bulan
+                            year: 'numeric'     // Tahun
+                        });
+
+                        $('#periode_tanggal').append(`
+                            <option value='${value.id}'>${formatted}</option>
+                        `);
+                    });
+                }
+
             } catch (error) {
                 console.error('Error fetching', error);
                 return null;
@@ -687,6 +760,8 @@
                 metode_pengiriman: parseInt($('#metode_pengiriman').val()),
                 total_bayar: totalBayar,
                 alamat: $('#alamat').val(),
+                periode_tanggal_id: $('#periode_tanggal').val(),
+                catatan: $('#catatan').val(),
                 items: items,
             }
 
@@ -757,6 +832,7 @@
             hariInput.value = hari;
             getPOMembership();
             getRekening();
+            getPeriodeTanggalSet();
             loadProducts();
             // var listPreOrder = localStorage.getItem('listPreOrder') ? JSON.parse(localStorage
             //     .getItem(

@@ -231,10 +231,6 @@
                                                 class="bi bi-heart text-center text-primary" style="cursor:pointer"></i>
                                         </div>
                                         <div class="col">
-                                            <i onclick='masukKeranjangs(${JSON.stringify(value)})'
-                                                class="bi bi-cart text-center text-primary" style="cursor:pointer"></i>
-                                        </div>
-                                        <div class="col">
                                             <a onclick='shares(${JSON.stringify(value)})' data-bs-toggle="modal" style="cursor: pointer;"
                                                 data-bs-target="#modalLinks"> <i class="bi bi-share text-center text-primary"></i>
                                             </a>
@@ -346,10 +342,6 @@
                                         <div class="col">
                                             <i onclick="alert('Coming Soon')"
                                                 class="bi bi-heart text-center text-primary" style="cursor:pointer"></i>
-                                        </div>
-                                        <div class="col">
-                                            <i onclick='masukKeranjangs(${JSON.stringify(value)})'
-                                                class="bi bi-cart text-center text-primary" style="cursor:pointer"></i>
                                         </div>
                                         <div class="col">
                                             <a onclick='shares(${JSON.stringify(value)})' data-bs-toggle="modal" style="cursor: pointer;"

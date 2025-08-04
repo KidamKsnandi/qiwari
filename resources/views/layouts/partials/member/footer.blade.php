@@ -8,7 +8,7 @@
                     <a href="/" class="logo d-flex align-items-center">
                         {{-- <img src="assets/img/logo.png" alt=""> --}}
                         {{-- <span>My Bisnis</span> --}}
-                        <img src="{{ asset('images/logo-qiwari.png') }}" alt="Logo">
+                        <img src="{{ asset('images/logo-balanja.png') }}" alt="Logo">
                     </a>
                     {{-- <p>Bandung, Indonesia.</p> --}}
                     <div class="social-links mt-3">

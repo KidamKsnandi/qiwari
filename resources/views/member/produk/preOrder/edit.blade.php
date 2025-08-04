@@ -301,6 +301,13 @@
                             </select>
                         </div>
 
+                        <!--  (Pilihan Periode Tanggal) -->
+                        <div class="mb-3">
+                            <label for="po" class="form-label">Pilih Tanggal</label>
+                            <select class="form-select" id="periode_tanggal" name="po_tanggal" required>
+                            </select>
+                        </div>
+
                         <!-- Pembayaran -->
                         <div class="mb-3">
                             <label for="pembayaran" class="form-label">Metode Pembayaran</label>
@@ -334,6 +341,12 @@
                             <small id="ongkir_note" class="text-muted mt-1 d-none">
                                 * Pengiriman memungkinkan akan ada biaya ongkir.
                             </small>
+                        </div>
+
+                        <!-- Catatan -->
+                        <div class="mb-3">
+                            <label for="catatan" class="form-label">Catatan</label>
+                            <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan"></textarea>
                         </div>
 
                         <!-- Alamat Konsumen -->
@@ -428,23 +441,9 @@
                 }
                 $('#metode_pengiriman').val(dataPOMembership.metode_pengiriman)
                 $('#alamat').val(dataPOMembership.alamat)
+                $('#periode_tanggal').val(dataPOMembership.periode_tanggal_id)
+                $('#catatan').val(dataPOMembership.catatan)
                 toggleOngkirNote();
-                let dataPreOrder = localStorage.getItem('listPreOrder') ? JSON.parse(localStorage.getItem('listPreOrder')) :
-                []
-                if (dataPreOrder.length == 0) {
-                    itemsBarang.map(data => {
-                        dataPreOrder.push({
-                            id: data.penyimpanan_id,
-                            qty: data.qty,
-                            jumlah: data.qty,
-                            barang: data.barang,
-                            harga: data.harga,
-                        }
-                    )
-
-                    localStorage.setItem('listPreOrder', JSON.stringify(dataPreOrder))
-                    })
-                }
                 loadProducts()
             } catch (error) {
                 render = true
@@ -489,8 +488,7 @@
 
 
                         products.forEach(product => {
-                            let findData = itemsBarang.find(res => res.penyimpanan_id == product
-                                .id);
+
                             // if (findData != null) {
                             //     listPreOrder.push({
                             //         id: product.id,
@@ -507,6 +505,9 @@
                             let dataPre = localStorage.getItem('listPreOrder') ? JSON.parse(
                                 localStorage.getItem(
                                     'listPreOrder')) : []
+
+                            let findData = dataPre.find(res => res.id == product
+                            .id);
 
                             keepHarga = dataPre.reduce((a, item) => {
                                 return a += (item.harga * item.qty)
@@ -572,6 +573,65 @@
                         `)
                     })
                 }
+            } catch (error) {
+                console.error('Error fetching', error);
+                return null;
+            }
+        };
+
+        const getPeriodeTanggalSet = async () => {
+            try {
+                render = false;
+                const response = await axios.get(`${API_URL}/v1/periode-tanggal-set`, {
+                    headers: {
+                        'secret': API_SECRET,
+                        'Author': 'bearer ' + token,
+                        'device': 'web'
+                    }
+                });
+                hari = response.data.hari;
+                bulan = response.data.bulan;
+                tahun = response.data.tahun;
+                getPeriodeTanggal();
+            } catch (error) {
+                console.error('Error fetching', error);
+                return null;
+            }
+        };
+
+        const getPeriodeTanggal = async () => {
+            try {
+                render = false;
+                const response = await axios.get(`${API_URL}/v1/periode-tanggal`, {
+                    params: {
+                        hari: hari,
+                        bulan: bulan,
+                        tahun: tahun
+                    },
+                    headers: {
+                        'secret': API_SECRET,
+                        'Author': 'bearer ' + token,
+                        'device': 'web'
+                    }
+                });
+                let periodeTanggal = response.data;
+                if (periodeTanggal.length > 0) {
+                    $.each(periodeTanggal, (i, value) => {
+                        const date = new Date(value.tanggal);
+                        const formatted = date.toLocaleDateString('id-ID', {
+                            weekday: 'long',    // Hari
+                            day: 'numeric',     // Tanggal
+                            month: 'long',      // Bulan
+                            year: 'numeric'     // Tahun
+                        });
+
+                        $('#periode_tanggal').append(`
+                            <option value='${value.id}'>${formatted}</option>
+                        `);
+                    });
+                }
+                getPOMembership();
+
             } catch (error) {
                 console.error('Error fetching', error);
                 return null;
@@ -771,6 +831,8 @@
                 metode_pengiriman: parseInt($('#metode_pengiriman').val()),
                 total_bayar: totalBayar,
                 alamat: $('#alamat').val(),
+                periode_tanggal_id: $('#periode_tanggal').val(),
+                catatan: $('#catatan').val(),
                 items: items,
             }
 
@@ -825,17 +887,7 @@
         const created = () => {
             // loadProducts();
             getRekening()
-            getPOMembership();
-
-            var listPreOrder = localStorage.getItem('listPreOrder') ? JSON.parse(localStorage
-                .getItem(
-                    'listPreOrder')) : []
-
-            if (listPreOrder.length > 0) {
-                listPreOrder = []
-                localStorage.setItem('listPreOrder', JSON.stringify(
-                    listPreOrder))
-            }
+            getPeriodeTanggalSet();
 
             // localStorage.removeItem('listPreOrder')
             if (user) {

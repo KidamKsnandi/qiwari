@@ -51,7 +51,7 @@
         <div class="card" id="printableArea">
             <div class="card-body">
                 <center>
-                    <img class="mb-4" src="{{ asset('images/logo-qiwari.png') }}" alt="" width="200px">
+                    <img class="mb-4" src="{{ asset('images/logo-balanja.png') }}" alt="" width="200px">
                 </center>
                 <div class="d-flex justify-content-between">
                     <h3><b>INVOICE</b></h3>

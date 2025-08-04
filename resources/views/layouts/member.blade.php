@@ -13,8 +13,8 @@
     <meta name="api-secret" content="{{ config('api.secret') }}">
 
     <!-- Favicons -->
-    <link href="{{ asset('images/logo-qiwari.png') }}" rel="icon">
-    <link href="{{ asset('images/logo-qiwari.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('images/logo-balanja.png') }}" rel="icon">
+    <link href="{{ asset('images/logo-balanja.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link

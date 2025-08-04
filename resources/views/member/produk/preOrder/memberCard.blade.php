@@ -28,7 +28,7 @@
                         style="background-color: #ffebcc; border: 1px solid #ffc107; border-radius: 10px;">
                         <h5 class="text-warning">Belum menjadi member?</h5>
                         <p>Pilih produk untuk mendapatkan kartu member dan menikmati berbagai keuntungan.</p>
-                        <a href="/member/pre-order/produk" class="btn btn-primary">Pilih Produk</a>
+                        <button onclick="pilihProduk()" class="btn btn-primary">Pilih Produk</button>
                     </div>
 
                     <!-- Jika sudah menjadi member, tampilkan detail pesanan -->
@@ -53,10 +53,16 @@
                                         <strong>Periode PO:</strong> <span id="periode_po"></span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Periode Tanggal:</strong> <span id="periode_tanggal"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <strong>Metode Pengiriman:</strong> <span id="metode_pengiriman"></span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <strong>Metode Pembayaran:</strong> <span id="metode_bayar"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Catatan:</strong> <span id="catatan"></span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <strong>Alamat:</strong> <span id="alamat"></span>
@@ -75,11 +81,11 @@
                 </div>
 
                 <!-- Kartu Member Footer -->
-                <a href="/member/pre-order/produk/ubah" id="tombolUbah" class="text-white">
+                <button onclick="ubahPesanan()" id="tombolUbah" class="text-white">
                     <div class="card-footer text-center" style="background-color: #007bff; border-radius: 0 0 10px 10px;">
                         <span>Ubah Pesanan</span>
                     </div>
-                </a>
+                </button>
             </div>
         </div>
 
@@ -167,6 +173,7 @@
     <script>
         var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
         var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+        var itemsBarang = [];
         const rp = (number, prefix = undefined) => {
             let isMinus = "";
             if (parseInt(number) < 0) {
@@ -245,7 +252,9 @@
                     }
                 });
                 let dataPOMembership = response.data.data[0];
-                dataPOMembership.items = dataPOMembership.items.filter(item => item.barang != null);
+                if (dataPOMembership != null) {
+                    dataPOMembership.items = dataPOMembership.items.filter(item => item.barang != null);
+                }
                 if (dataPOMembership != null) {
                     document.getElementById('sudahMember').style.display = 'block';
                     document.getElementById('belumMember').style.display = 'none';
@@ -253,25 +262,34 @@
                     document.getElementById('sudahMember').style.display = 'none';
                     document.getElementById('belumMember').style.display = 'block';
                     document.getElementById('tombolUbah').style.display = 'none';
+                    console.log("hai")
 
                     return false;
                 }
-                let itemsBarang = dataPOMembership.items
+                itemsBarang = dataPOMembership.items
                 const options = {
                     weekday: 'long',
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
-                    // hour: '2-digit',
-                    // minute: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
                     // second: '2-digit'
                 };
+                const optionsPO = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                };
                 const formattedDate = new Date(dataPOMembership.tanggal).toLocaleDateString('id-ID', options);
-                $('#tanggal').text(formattedDate);
+                const formattedDatePO = new Date(dataPOMembership.periode_tanggal.tanggal).toLocaleDateString('id-ID', optionsPO);
+                $('#tanggal').text(formattedDate + ' WIB');
                 $('#nama').text(dataPOMembership.nama ?? '-');
                 $('#no_hp').text(dataPOMembership.no_hp ?? '-');
                 // $('#email').text(dataPOMembership.email ?? '-');
                 $('#periode_po').text(dataPOMembership.periode_po ?? '-');
+                $('#periode_tanggal').text(formattedDatePO ?? '-');
                 $('#metode_pengiriman').text(dataPOMembership.metode_pengiriman == 1 ? 'Diambil' : "Dikirim");
                 if (dataPOMembership.metode_bayar == 1) {
                     $('#metode_bayar').text('Cash');
@@ -284,6 +302,7 @@
                 //     `${dataPOMembership.alamat.alamat}, ${dataPOMembership.alamat.desa.name} ${dataPOMembership.alamat.kecamatan.name} ${dataPOMembership.alamat.kab_kota.name} ${dataPOMembership.alamat.provinsi.name} ${dataPOMembership.alamat.postal_code}` :
                 //     '-';
                 $('#alamat').text(dataPOMembership.alamat);
+                $('#catatan').text(dataPOMembership.catatan);
                 $.each(itemsBarang, function(key, value) {
                     $('#listPesanan').append(`
                         <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mt-2">
@@ -297,11 +316,23 @@
                         </div>
                     `)
                 })
+                $('#listPesanan').append(`
+                    <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mt-2">
+                        <div>
+                            <span class="fw-bold">Total</span>
+                        </div>
+                        <div class="text-end">
+                            <span class="text-success fw-bold" id="totalBelanja"></span><br>
+                            {{-- <del class="text-muted">Rp33.500</del> --}}
+                        </div>
+                    </div>
+                `)
                 let totalHarga = itemsBarang.reduce((a, value) => {
                     return a += parseInt(value.total_harga)
                 }, 0)
 
                 $('#totalHarga').html(rp(totalHarga))
+                $('#totalBelanja').html(rp(totalHarga))
             } catch (error) {
                 console.error('Error fetching PO Membership:', error);
                 return null;
@@ -310,6 +341,9 @@
 
         function downloadKartuPDF() {
             const element = document.getElementById('kartuMembershipContent');
+            const tombolUbah = document.getElementById('tombolUbah');
+
+            if (tombolUbah) tombolUbah.style.display = 'none';
 
             const opt = {
                 margin:       0.5,
@@ -319,7 +353,47 @@
                 jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
             };
 
-            html2pdf().set(opt).from(element).save();
+            html2pdf().set(opt).from(element).save().then(() => {
+                if (tombolUbah) tombolUbah.style.display = 'block';
+            });
+        }
+
+        function pilihProduk() {
+            var listPreOrder = localStorage.getItem('listPreOrder') ? JSON.parse(localStorage
+                .getItem(
+                    'listPreOrder')) : []
+
+            if (listPreOrder.length > 0) {
+                listPreOrder = []
+                localStorage.setItem('listPreOrder', JSON.stringify(
+                    listPreOrder))
+            }
+            localStorage.removeItem('listPreOrder')
+            window.location.href = '/member/pre-order/produk';
+        }
+
+        function ubahPesanan() {
+            let dataPreOrder = localStorage.getItem('listPreOrder') ? JSON.parse(localStorage.getItem('listPreOrder')) :
+                []
+                if (dataPreOrder.length > 0) {
+                    dataPreOrder = []
+                    localStorage.setItem('listPreOrder', JSON.stringify(
+                        dataPreOrder))
+                }
+                localStorage.removeItem('listPreOrder')
+                itemsBarang.map(data => {
+                    dataPreOrder.push({
+                        id: data.penyimpanan_id,
+                        qty: data.qty,
+                        jumlah: data.qty,
+                        barang: data.barang,
+                        harga: data.harga,
+                    }
+                )
+
+                localStorage.setItem('listPreOrder', JSON.stringify(dataPreOrder))
+                })
+            window.location.href = '/member/pre-order/produk/ubah';
         }
 
 
