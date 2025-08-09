@@ -291,7 +291,7 @@
                         </div>
 
                         <!-- PO (Pilihan Minggu 1 sampai 4) -->
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="po" class="form-label">Pilih PO</label>
                             <select class="form-select" id="periode_po" name="po" required>
                                 <option value="Minggu 1">Minggu 1</option>
@@ -299,11 +299,11 @@
                                 <option value="Minggu 3">Minggu 3</option>
                                 <option value="Minggu 4">Minggu 4</option>
                             </select>
-                        </div>
+                        </div> --}}
 
                         <!--  (Pilihan Periode Tanggal) -->
                         <div class="mb-3">
-                            <label for="po" class="form-label">Pilih Tanggal</label>
+                            <label for="po" class="form-label">Pilih Periode Tanggal PO</label>
                             <select class="form-select" id="periode_tanggal" name="po_tanggal" required>
                             </select>
                         </div>
@@ -359,8 +359,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" form="checkoutForm">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary" form="checkoutForm">Pesan</button>
                 </div>
             </div>
         </div>
@@ -417,7 +417,7 @@
                     now);
 
                 hariInput.value = hari;
-                $('#periode_po').val(dataPOMembership.periode_po)
+                // $('#periode_po').val(dataPOMembership.periode_po)
                 if (dataPOMembership.metode_bayar == 1) {
                     $('#metode_bayar').val(dataPOMembership.metode_bayar)
                 } else {
@@ -813,6 +813,13 @@
             if (alamat == null || alamat == "") {
                 alert('Harap isi alamar')
             }
+
+            let periode_tanggal = $('#periode_tanggal').val();
+            if (periode_tanggal == null || periode_tanggal == "") {
+                alert('Harap Isi Periode Tanggal')
+                return false
+            }
+
             dataPreOrder.forEach(res => {
                 items.push({
                     penyimpanan_id: res.id,
@@ -827,12 +834,13 @@
                 nama: JSON.parse(user).karyawan.nama_lengkap,
                 no_hp: JSON.parse(user).no_hp,
                 email: JSON.parse(user).email,
-                periode_po: $('#periode_po').val(),
+                // periode_po: $('#periode_po').val(),
                 metode_pengiriman: parseInt($('#metode_pengiriman').val()),
                 total_bayar: totalBayar,
                 alamat: $('#alamat').val(),
                 periode_tanggal_id: $('#periode_tanggal').val(),
                 catatan: $('#catatan').val(),
+                status_po: 0,
                 items: items,
             }
 
@@ -862,9 +870,14 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Berhasil',
-                        text: 'Data Preorder anda berhasil diubah!'
+                        text: 'Pesanan sudah kami terima mohon tunggu admin kami menghubungi dan mengirimkan invoice!',
+                        timer: 4500,
+                        showConfirmButton: false
                     });
-                    window.location.href = `/member/pre-order/member-card`
+
+                    setTimeout(function () {
+                        window.location.href = `/member/pre-order/member-card`;
+                    }, 5000);
                 })
                 .catch(function(error) {
                     $(".loadingOverlay").attr("hidden", true);

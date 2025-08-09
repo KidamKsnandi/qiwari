@@ -49,9 +49,9 @@
                                     {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <strong>Email:</strong> <span id="email"></span>
                                     </li> --}}
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <strong>Periode PO:</strong> <span id="periode_po"></span>
-                                    </li>
+                                    </li> --}}
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <strong>Periode Tanggal:</strong> <span id="periode_tanggal"></span>
                                     </li>
@@ -83,9 +83,17 @@
                 <!-- Kartu Member Footer -->
                 <button onclick="ubahPesanan()" id="tombolUbah" class="text-white">
                     <div class="card-footer text-center" style="background-color: #007bff; border-radius: 0 0 10px 10px;">
-                        <span>Ubah Pesanan</span>
+                        <span id="tombolUbahPesanan">Ubah Pesanan</span>
                     </div>
                 </button>
+
+                <!-- Riwayat PO -->
+                <div id="historyContainer" class="mt-4">
+                    <h5 style="font-weight: bold;">Riwayat Pre-Order</h5>
+                    <div id="historyList" style="border: 1px solid #dee2e6; border-radius: 10px; overflow: hidden;"></div>
+                </div>
+
+
             </div>
         </div>
 
@@ -152,8 +160,8 @@
                     </strong>
                 </b>
             </div>
-            <button class="btn btn-light text-dark btn-lg align-self-end mt-3 mt-md-0"
-                onclick="downloadKartuPDF()">Download Kartu</button>
+            <button class="btn btn-light text-dark btn-lg align-self-end mt-3 mt-md-0" onclick="downloadKartuPDF()">Download
+                Kartu</button>
         </div>
     </div>
 
@@ -212,6 +220,7 @@
             // }
             // getListPesanan()
             getPOMembership()
+            loadHistoryPO()
             // Jika sudah menjadi member
 
 
@@ -258,6 +267,10 @@
                 if (dataPOMembership != null) {
                     document.getElementById('sudahMember').style.display = 'block';
                     document.getElementById('belumMember').style.display = 'none';
+                    if (dataPOMembership.status_po == true) {
+                        let tombolUbahPesanan = document.getElementById('tombolUbahPesanan');
+                        tombolUbahPesanan.innerHTML = 'Pre Order Lagi';
+                    }
                 } else {
                     document.getElementById('sudahMember').style.display = 'none';
                     document.getElementById('belumMember').style.display = 'block';
@@ -283,13 +296,14 @@
                     day: 'numeric',
                 };
                 const formattedDate = new Date(dataPOMembership.tanggal).toLocaleDateString('id-ID', options);
-                const formattedDatePO = new Date(dataPOMembership.periode_tanggal.tanggal).toLocaleDateString('id-ID', optionsPO);
+                const formattedDatePO = dataPOMembership.periode_tanggal_id ? new Date(dataPOMembership
+                    .periode_tanggal.tanggal).toLocaleDateString('id-ID', optionsPO) : '-';
                 $('#tanggal').text(formattedDate + ' WIB');
                 $('#nama').text(dataPOMembership.nama ?? '-');
                 $('#no_hp').text(dataPOMembership.no_hp ?? '-');
                 // $('#email').text(dataPOMembership.email ?? '-');
-                $('#periode_po').text(dataPOMembership.periode_po ?? '-');
-                $('#periode_tanggal').text(formattedDatePO ?? '-');
+                // $('#periode_po').text(dataPOMembership.periode_po ?? '-');
+                $('#periode_tanggal').text(formattedDatePO);
                 $('#metode_pengiriman').text(dataPOMembership.metode_pengiriman == 1 ? 'Diambil' : "Dikirim");
                 if (dataPOMembership.metode_bayar == 1) {
                     $('#metode_bayar').text('Cash');
@@ -301,38 +315,46 @@
                 // let alamat = dataPOMembership.alamat ?
                 //     `${dataPOMembership.alamat.alamat}, ${dataPOMembership.alamat.desa.name} ${dataPOMembership.alamat.kecamatan.name} ${dataPOMembership.alamat.kab_kota.name} ${dataPOMembership.alamat.provinsi.name} ${dataPOMembership.alamat.postal_code}` :
                 //     '-';
-                $('#alamat').text(dataPOMembership.alamat);
-                $('#catatan').text(dataPOMembership.catatan);
-                $.each(itemsBarang, function(key, value) {
+                $('#alamat').text(dataPOMembership.alamat ?? '-');
+                $('#catatan').text(dataPOMembership.catatan ?? '-');
+                if (dataPOMembership.status_po == true) {
+                    $('#listPesanan').append(`
+                        <div class="alert alert-warning text-center mt-3" role="alert">
+                            <strong>Pre Order Anda telah diselesaikan, harap Pre Order Kembali!</strong>
+                        </div>
+                    `);
+                } else {
+                    $.each(itemsBarang, function(key, value) {
+                        $('#listPesanan').append(`
+                            <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mt-2">
+                                <div>
+                                    <span class="fw-bold">${value.qty}x ${value.barang.nama}</span>
+                                </div>
+                                <div class="text-end">
+                                    <span class="text-success fw-bold">${rp(value.harga * value.qty)}</span><br>
+                                    {{-- <del class="text-muted">Rp33.500</del> --}}
+                                </div>
+                            </div>
+                        `)
+                    })
                     $('#listPesanan').append(`
                         <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mt-2">
                             <div>
-                                <span class="fw-bold">${value.qty}x ${value.barang.nama}</span>
+                                <span class="fw-bold">Total</span>
                             </div>
                             <div class="text-end">
-                                <span class="text-success fw-bold">${rp(value.harga * value.qty)}</span><br>
+                                <span class="text-success fw-bold" id="totalBelanja"></span><br>
                                 {{-- <del class="text-muted">Rp33.500</del> --}}
                             </div>
                         </div>
                     `)
-                })
-                $('#listPesanan').append(`
-                    <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mt-2">
-                        <div>
-                            <span class="fw-bold">Total</span>
-                        </div>
-                        <div class="text-end">
-                            <span class="text-success fw-bold" id="totalBelanja"></span><br>
-                            {{-- <del class="text-muted">Rp33.500</del> --}}
-                        </div>
-                    </div>
-                `)
-                let totalHarga = itemsBarang.reduce((a, value) => {
-                    return a += parseInt(value.total_harga)
-                }, 0)
+                    let totalHarga = itemsBarang.reduce((a, value) => {
+                        return a += parseInt(value.total_harga)
+                    }, 0)
 
-                $('#totalHarga').html(rp(totalHarga))
-                $('#totalBelanja').html(rp(totalHarga))
+                    $('#totalHarga').html(rp(totalHarga))
+                    $('#totalBelanja').html(rp(totalHarga))
+                }
             } catch (error) {
                 console.error('Error fetching PO Membership:', error);
                 return null;
@@ -346,11 +368,20 @@
             if (tombolUbah) tombolUbah.style.display = 'none';
 
             const opt = {
-                margin:       0.5,
-                filename:     `kartu-membership-${new Date().toLocaleDateString('id-ID').replace(/\//g, '-')}.pdf`,
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 },
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                margin: 0.5,
+                filename: `kartu-membership-${new Date().toLocaleDateString('id-ID').replace(/\//g, '-')}.pdf`,
+                image: {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2
+                },
+                jsPDF: {
+                    unit: 'in',
+                    format: 'letter',
+                    orientation: 'portrait'
+                }
             };
 
             html2pdf().set(opt).from(element).save().then(() => {
@@ -373,28 +404,149 @@
         }
 
         function ubahPesanan() {
-            let dataPreOrder = localStorage.getItem('listPreOrder') ? JSON.parse(localStorage.getItem('listPreOrder')) :
-                []
-                if (dataPreOrder.length > 0) {
-                    dataPreOrder = []
-                    localStorage.setItem('listPreOrder', JSON.stringify(
-                        dataPreOrder))
-                }
-                localStorage.removeItem('listPreOrder')
-                itemsBarang.map(data => {
-                    dataPreOrder.push({
-                        id: data.penyimpanan_id,
-                        qty: data.qty,
-                        jumlah: data.qty,
-                        barang: data.barang,
-                        harga: data.harga,
-                    }
-                )
+            let dataPreOrder = localStorage.getItem('listPreOrder') ? JSON.parse(localStorage.getItem('listPreOrder')) : []
+            if (dataPreOrder.length > 0) {
+                dataPreOrder = []
+                localStorage.setItem('listPreOrder', JSON.stringify(
+                    dataPreOrder))
+            }
+            localStorage.removeItem('listPreOrder')
+            itemsBarang.map(data => {
+                dataPreOrder.push({
+                    id: data.penyimpanan_id,
+                    qty: data.qty,
+                    jumlah: data.qty,
+                    barang: data.barang,
+                    harga: data.harga,
+                })
 
                 localStorage.setItem('listPreOrder', JSON.stringify(dataPreOrder))
-                })
+            })
             window.location.href = '/member/pre-order/produk/ubah';
         }
+
+        async function loadHistoryPO() {
+            const container = document.getElementById('historyList');
+            container.innerHTML = '<div style="padding: 10px;">Loading...</div>';
+
+            try {
+                const response = await axios.get(`${API_URL}/v1/po-membership/history`, {
+                            params: {
+                                member_id: JSON.parse(user).member_id
+                            },
+                            headers: {
+                                'secret': API_SECRET,
+                                'Author': 'bearer ' + token,
+                                'device': 'web'
+                            }
+                        });
+                        console.log('response', response)
+
+                const data = await response.data.data;
+
+                if (!Array.isArray(data) || data.length === 0) {
+                    container.innerHTML = '<div style="padding: 10px; color: #6c757d;">Belum ada riwayat pre-order.</div>';
+                    return;
+                }
+
+                container.innerHTML = '';
+
+                data.forEach(item => {
+                    const tanggal = new Date(item.tanggal);
+                    const formattedTanggal = tanggal.toLocaleDateString('id-ID', {
+                        weekday: 'long',
+                        day: '2-digit',
+                        month: 'long',
+                        year: 'numeric'
+                    });
+
+                    const nominalFormatted = new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0
+                    }).format(item.total_bayar);
+
+                    const div = document.createElement('div');
+                    div.style.display = 'flex';
+                    div.style.justifyContent = 'space-between';
+                    div.style.alignItems = 'center';
+                    div.style.padding = '12px 16px';
+                    div.style.borderBottom = '1px solid #dee2e6';
+
+                    div.innerHTML = `
+                        <div>
+                            <div style="font-weight: bold;">${formattedTanggal}</div>
+                            <div style="color: #6c757d;">${nominalFormatted}</div>
+                        </div>
+                        <button onclick='cetakStruk(${JSON.stringify(item)})' style="background-color: #28a745; border: none; color: white; padding: 6px 12px; border-radius: 5px; cursor: pointer;">
+                            Cetak Struk
+                        </button>
+                    `;
+
+                    container.appendChild(div);
+                });
+
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = '<div style="padding: 10px; color: red;">Terjadi kesalahan saat mengambil data.</div>';
+            }
+        }
+
+        // Fungsi cetak struk (misalnya membuka halaman cetak)
+        async function cetakStruk(item) {
+    try {
+        const id = item.id;
+        const nama = item.nama || 'tanpa-nama';
+
+        // Format tanggal lengkap dengan jam menit detik
+        const today = new Date();
+        const tanggal = today
+            .toLocaleString('id-ID', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+            })
+            .replace(/[\/:]/g, '-') // Ganti / dan : dengan -
+            .replace(/\s/g, '_'); // Ganti spasi dengan underscore
+
+        // Panggil API cetak struk (harus mengembalikan PDF blob)
+        const response = await axios.get(`${API_URL}/v1/po-membership/${id}/cetak-struk-history`, {
+            headers: {
+                'secret': API_SECRET,
+                'Author': 'bearer ' + token,
+                'device': 'web'
+            },
+            responseType: 'blob',
+        });
+
+        if (!response.data) {
+            throw new Error('Gagal mengunduh struk.');
+        }
+
+        const blob = new Blob([response.data], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+
+        const namaFile = `struk-penjualan-${nama.replace(/\s+/g, '-')}-${tanggal}.pdf`;
+        link.setAttribute('download', namaFile);
+
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        window.URL.revokeObjectURL(url);
+
+    } catch (error) {
+        console.error('Gagal mengunduh struk:', error);
+        alert('Terjadi kesalahan saat mencetak struk.');
+    }
+}
+
 
 
         created()
