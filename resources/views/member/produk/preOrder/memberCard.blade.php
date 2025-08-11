@@ -9,6 +9,8 @@
 @endsection
 
 @section('content')
+    
+
     <div class="container mt-4" style="padding-top: 120px">
         <!-- Ringkasan Pesanan -->
         <div id="kartuMembershipContent">
@@ -174,6 +176,8 @@
         }
     </style> --}}
 
+    <!-- Invoice Modal -->
+    @include('member.produk.preOrder.modals.payment-instruction')
 
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
@@ -252,7 +256,8 @@
             try {
                 const response = await axios.get(`${API_URL}/v1/po-membership`, {
                     params: {
-                        member_id: JSON.parse(user).member_id
+                        member_id: JSON.parse(user).member_id,
+                        show_payment: 1
                     },
                     headers: {
                         'secret': API_SECRET,
@@ -305,9 +310,41 @@
                 // $('#periode_po').text(dataPOMembership.periode_po ?? '-');
                 $('#periode_tanggal').text(formattedDatePO);
                 $('#metode_pengiriman').text(dataPOMembership.metode_pengiriman == 1 ? 'Diambil' : "Dikirim");
+                const isManualTransfer = dataPOMembership.metode_bayar == 1
+                const isUsingPaymentGateway = dataPOMembership.payment_gateway == 'payment_service';
                 if (dataPOMembership.metode_bayar == 1) {
                     $('#metode_bayar').text('Cash');
-                } else {
+                } 
+                else if(isUsingPaymentGateway) {
+                    let paymentMethods = [dataPOMembership.latest_payment?.payment_type?.toUpperCase()];
+
+                    if (dataPOMembership.latest_payment?.payment_type === 'bank_transfer') {
+                        const bankName = dataPOMembership.latest_payment?.payment_channel?.toUpperCase();
+                        const status = dataPOMembership.latest_payment?.status ?? "pending";
+                        const isPaid = ["settlement", 'captured'].includes(status);
+                        const isPending = status === 'pending';
+                        const statusLabel = isPending ? 
+                            `<span class="text-danger">(Pending) </span> <a id="showPaymentInstructionBtn" class="text-primary" href="javascript:void(0)"><b>Bayar</b></a>` :
+                            (isPaid ? "(Lunas)" : `${status}`);  // Corrected string interpolation
+
+                        paymentMethods = ['Bank Transfer', bankName, `${statusLabel}`];  // Make sure to use backticks for interpolation
+                        
+                    }
+                    
+                    // Display the result in the #metode_bayar element
+                    $('#metode_bayar').html(
+                        `<b>${paymentMethods.join(' - ')}</b>`
+                    );
+                    const showPaymentInstructionBtn = document.getElementById('showPaymentInstructionBtn');
+                    
+                    if (showPaymentInstructionBtn) {
+                        showPaymentInstructionBtn.addEventListener('click', function() {
+                            $('#invoiceModal').modal('show')
+                        });
+                    }
+
+                }
+                else {
                     $('#metode_bayar').html(
                         `Transfer - ${dataPOMembership.rekening.nama} (${dataPOMembership.rekening.no_rekening} ${dataPOMembership.rekening.deskripsi})`
                     );
@@ -355,11 +392,207 @@
                     $('#totalHarga').html(rp(totalHarga))
                     $('#totalBelanja').html(rp(totalHarga))
                 }
+
+                // fill the invoice modal for payment instruction
+                fillInvoiceInfo(dataPOMembership)
             } catch (error) {
                 console.error('Error fetching PO Membership:', error);
                 return null;
             }
         };
+
+
+        function showInvoiceModal(ev) {
+            ev.preventDefault()
+            alert('adwa')
+            $('#invoiceModal').modal('show')
+        }
+
+        function fillInvoiceInfo(dataPOMembership) {
+            const paymentInfo = dataPOMembership.latest_payment
+            if(!paymentInfo) {
+                return
+            }
+
+            const metadata = JSON.parse(dataPOMembership.latest_payment?.metadata ?? "null")
+            if(!metadata || !metadata?.data) {
+                return
+            }
+
+            const {paymentResponse} = metadata.data
+            // Update the modal content
+            $('#orderId').text(paymentResponse.order_id);
+            $('#expiry_time').text(`Batas Waktu: ${new Date(paymentResponse.expiry_time).toLocaleString('id-ID')}`);
+            $('#amount').text(`Jumlah yang Harus Dibayar: Rp ${paymentResponse.gross_amount}`);
+            
+            const status = paymentResponse.transaction_status;
+            $('#status').html(`
+                <b class="text-danger">${status.toUpperCase()}</b>
+            `);
+
+            // Change status text color based on transaction status
+            const statusElement = $('#status');
+            statusElement.removeClass('text-danger text-green-500 text-red-500'); // Remove previous status color classes
+            if (status === 'pending') {
+                statusElement.addClass('text-danger'); // Pending status
+            } else if (status === 'success') {
+                statusElement.addClass('text-success'); // Success status
+            } else if (status === 'failed') {
+                statusElement.addClass('text-danger'); // Failed status
+            }
+
+            // Show specific instructions based on payment method
+            $('#payment_instructions').empty();
+            $('#payment_instruction_header').empty();
+            if (paymentResponse.payment_type === 'bank_transfer') {
+                if(paymentResponse.permata_va_number) {
+                    
+                    const bankName = "Bank Permata";
+                    const vaNumber = paymentResponse.permata_va_number;
+                    $('#payment_instruction_header').html(`
+                        <div><strong>VA Number (${bankName}):</strong> ${vaNumber}</div>
+                    `);
+                }
+                else {
+                    // If payment method is Virtual Account (VA), display VA Number
+                    const bankName = paymentResponse.va_numbers[0]['bank'] ?? "N/A";
+                    const vaNumber = paymentResponse.va_numbers[0]['va_number'] ?? "N/A";
+                    $('#payment_instruction_header').html(`
+                        <div><strong>VA Number (${bankName}):</strong> ${vaNumber}</div>
+                    `);
+                }
+            } 
+            else if (['gopay', 'shopeepay', 'qris'].includes(paymentResponse.payment_type)) {
+                // get qris image
+                const qrcodeUrl = paymentResponse.actions.find(item => item.name == "generate-qr-code") ?? {url: ""}
+                $('#payment_instruction_header').html(`
+                    <div><strong>QR Code:</strong></div>
+                    <img src="${qrcodeUrl.url}" alt="QR Code" class="img-fluid" />
+                `);
+                
+            }
+
+
+            // Call the API to get payment instructions for other methods
+            axios.get(`${API_URL}/v1/po-payment/payment-instruction/${paymentResponse.order_id}`, {
+                headers: {
+                    'secret': API_SECRET,
+                    'Author': 'bearer ' + token,
+                    'device': 'web'
+                }
+            })
+            .then(function(instructionResponse) {
+                // Clear previous instructions
+                const instructionsContainer = $('#payment_instructions');
+                instructionsContainer.empty(); // jQuery method to clear content
+
+                let instructionsHTML = '';
+                
+                // Loop through each payment method and its associated instructions
+                $.each(instructionResponse.data.instruction, function(method, instructionList) {
+                    // Create a unique ID for each accordion item
+                    const accordionId = 'accordion_' + method.replace(/\s+/g, '_').toLowerCase();
+
+                    // Create accordion for each payment method
+                    instructionsHTML += `
+                    <div class="accordion" id="${accordionId}">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading_${method}">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_${method}" aria-expanded="true" aria-controls="collapse_${method}">
+                                    ${method === 'general' ? "Petunjuk" : method.toUpperCase()}
+                                </button>
+                            </h2>
+                            <div id="collapse_${method}" class="accordion-collapse collapse" aria-labelledby="heading_${method}" data-bs-parent="#${accordionId}">
+                                <div class="accordion-body">
+                                    <ul class="list-disc pl-5">
+                                        ${instructionList.map(instruction => `<li>${instruction}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+
+                // Set the instructions in the modal
+                instructionsContainer.html(instructionsHTML); 
+            })
+            .catch(function(error) {
+                console.log('Error fetching payment instructions:', error);
+            });
+        }
+
+        $(document).ready(function() {
+            // Handler for the confirm payment button click
+            $('#confirmPaymentBtn').on('click', function() {
+                $(this).text('Loading...')
+                $(this).attr('disabled', true)                
+                // Get the orderId from the #orderId element
+                const orderId = $('#orderId').text();
+
+                if (!orderId) {
+                    console.log('Order ID is missing');
+                    return;
+                }
+
+                // Show the loading spinner
+                $(".loadingOverlay").attr("hidden", false);
+
+                // Perform the fetch request
+                axios.get(`${API_URL}/v1/po-payment/transaction/${orderId}`, {
+                    headers: {
+                        'secret': API_SECRET,
+                        'Author': 'bearer ' + token,
+                        'device': 'web'
+                    }
+                })
+                .then(response => {
+                    $(this).text('Saya Sudah Bayar')
+                    $(this).attr('disabled', false)
+                    // Hide the loading spinner once the response is received
+                    $(".loadingOverlay").attr("hidden", true);
+
+                    const poPayment = response.data
+                    const {status} = poPayment
+                    console.log('status', status)
+                    const isPaid = ['settlement', 'captured'].includes(status)
+                    const badgeColor = isPaid ? `success` : `danger`
+                    const statusLabel = isPaid ? "LUNAS" : status
+                    const statusHtml = `
+                        <b class="text-${badgeColor}">${statusLabel.toUpperCase()}</b>
+                    `
+
+                    $('#status').html(statusHtml)
+
+                    
+                    if(isPaid) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: 'Pesanan sudah kami terima mohon tunggu admin kami menghubungi dan mengirimkan invoice!',
+                            timer: 4500,
+                            showConfirmButton: false,
+                            willClose: () => {
+                                // Reload the page after the Swal disappears
+                                window.location.reload();
+                            }
+                        });
+                    }
+                    
+                    // Log the response to the console
+                    console.log('Response:', response);
+                })
+                .catch(error => {
+                    $(this).text('Saya Sudah Bayar')
+                    $(this).attr('disabled', false)
+
+                    // Hide the loading spinner in case of an error
+                    $(".loadingOverlay").attr("hidden", true);
+
+                    // Log the error
+                    console.error('Error fetching data:', error);
+                })
+            });
+        })
 
         function downloadKartuPDF() {
             const element = document.getElementById('kartuMembershipContent');
