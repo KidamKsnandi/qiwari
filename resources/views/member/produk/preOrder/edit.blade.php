@@ -132,45 +132,22 @@
             align-items: center;
         }
 
-        /* Make the image inside the payment card consistent in size with a rounded frame */
-        .payment-card img.payment-icon {
-            width: 50px; /* Set a fixed size for the image */
-            height: 50px; /* Ensure the height matches the width */
-            border-radius: 50%; /* Make the image round */
-            object-fit: cover; /* Ensure the image covers the space without distortion */
-            margin-right: 10px; /* Space between the image and the text */
-        }
-
-        /* Horizontal layout for payment card content */
-        .payment-card .card-body {
-            display: flex;
-            align-items: center; /* Vertically align items */
-            justify-content: flex-start; /* Align content to the left */
-            gap: 10px; /* Space between elements */
-        }
-
-        /* Style for radio button */
-        .payment-card input[type="radio"] {
-            margin-right: 10px; /* Space between the radio button and image */
-        }
-
-        /* Bold style for the payment method name */
-        .payment-card .form-check-label {
-            font-weight: bold;
-        }
-
-        /* Add shadow effect on card selection */
-        .payment-card.selected {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.2);
-            border-radius: 10px; /* Rounded corners */
-        }
-
-        /* Hover effect for the card */
-        .payment-card:hover {
-            transform: scale(1.05); /* Slight zoom effect on hover */
-            cursor: pointer; /* Change cursor to pointer to show it's clickable */
-        }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      } */
+        /* @media (max-width: 768px) {
+                                                                                                                                                                                                                                                                                                         .overlay {
+                                                                                                                                                                                                                                                                                            position: fixed;
+                                                                                                                                                                                                                                                                                            top: 0;
+                                                                                                                                                                                                                                                                                            left: 0;
+                                                                                                                                                                                                                                                                                            width: 100%;
+                                                                                                                                                                                                                                                                                            height: 100%;
+                                                                                                                                                                                                                                                                                            background-color: rgba(255, 255, 255, 0.9);
+                                                                                                                                                                                                                                                                                            z-index: 9999;
+                                                                                                                                                                                                                                                                                            display: flex;
+                                                                                                                                                                                                                                                                                            justify-content: center;
+                                                                                                                                                                                                                                                                                            align-items: center;
+                                                                                                                                                                                                                                                                                        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               .bottom-bar {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            bottom: 65px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } */
     </style>
 @endsection
 
@@ -292,7 +269,7 @@
     </div>
     <!-- Modal -->
     <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
@@ -334,27 +311,21 @@
                         <!-- Pembayaran -->
                         <div class="mb-3">
                             <label for="pembayaran" class="form-label">Metode Pembayaran</label>
-                            <!-- <select class="form-select" id="metode_bayar" name="pembayaran" required
+                            <select class="form-select" id="metode_bayar" name="pembayaran" required
                                 onchange="showBankInfo()">
                                 {{-- <option value="1">Cash</option> --}}
                                 {{-- <option value="1">Transfer - Mandiri</option>
                                 <option value="transfer-bca">Transfer - BCA</option> --}}
-                            </select> -->
-                            <div>
-                                <button type="button" class="btn btn-primary" id="selectPaymentMethodBtn" data-bs-toggle="modal" data-bs-target="#paymentMethodModal">
-                                    <strong>Pilih</strong>
-                                </button>
-                            </div>
-                            <p id="selectedPaymentMethod" class="mt-2"></p> <!-- Description of the selected payment method -->
+                            </select>
                         </div>
 
                         <!-- Informasi Rekening -->
                         <div id="bankInfo" class="d-none">
-                            <div class="mb-3 d-none">
+                            <div class="mb-3">
                                 <label class="form-label">Nomor Rekening</label>
                                 <input type="text" id="nomorRekening" class="form-control" readonly disabled>
                             </div>
-                            <div class="mb-3 d-none">
+                            <div class="mb-3">
                                 <label class="form-label">Nama Akun</label>
                                 <input type="text" id="namaAkun" class="form-control" readonly disabled>
                             </div>
@@ -395,38 +366,6 @@
         </div>
     </div>
 
-    <!-- Modal for Selecting Payment Method -->
-    <div class="modal fade" id="paymentMethodModal" tabindex="-1" aria-labelledby="paymentMethodModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="paymentMethodModalLabel">Pilih Metode Pembayaran</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="paymentMethodsList" class="row">
-                        <!-- Payment methods will be dynamically added here -->
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary" id="submitPaymentMethodBtn">Pilih</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- / -->
-
-    <!-- Invoice Modal -->
-    @include('member.produk.preOrder.modals.payment-instruction')
-
-    <!-- Add CSS to prevent closing on ESC or clicking outside -->
-    <style>
-        .modal.fade {
-            pointer-events: auto !important;
-        }
-    </style>
-    <!-- / -->
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('lib/axios.min.js') }}"></script>
@@ -497,8 +436,8 @@
                         }
                     });
                     bankInfo.classList.remove("d-none");
-                    nomorRekening.value = rekeningTerpilih?.no_rekening ?? 1;
-                    namaAkun.value = rekeningTerpilih?.deskripsi ?? "-";
+                    nomorRekening.value = rekeningTerpilih.no_rekening;
+                    namaAkun.value = rekeningTerpilih.deskripsi;
                 }
                 $('#metode_pengiriman').val(dataPOMembership.metode_pengiriman)
                 $('#alamat').val(dataPOMembership.alamat)
@@ -513,162 +452,6 @@
             }
         };
 
-        const getPaymentMethods = async () => {
-            try {
-                const response = await axios.get(`${API_URL}/v1/po-payment/get-payment-methods`, {
-                    headers: {
-                        'secret': API_SECRET,
-                        'Author': 'bearer ' + token,
-                        'device': 'web'
-                    }
-                });
-
-                const paymentMethods = response.data.data;
-
-                // Get the payment methods list container
-                const $paymentMethodsList = $('#paymentMethodsList');
-                $paymentMethodsList.empty(); // Clear existing methods
-
-                // Create card-style options for each payment method
-                paymentMethods.forEach((method, index) => {
-                    const methodHTML = `
-                        <div class="col-12 col-md-6 mb-3">
-                            <div class="card payment-card p-3 shadow-sm">
-                                <div class="card-body">
-                                    <!-- Radio button on the left -->
-                                    <input type="radio" name="paymentMethod" id="paymentMethod${index}" value="${method.payment_code}" data-payment-type="${method.payment_type}">
-                                    
-                                    <!-- Image icon with rounded frame -->
-                                    <img src="${method.icon_url}" alt="${method.label}" class="img-fluid payment-icon">
-                                    
-                                    <!-- Payment method name in bold style -->
-                                    <label for="paymentMethod${index}" class="form-check-label ms-2">${method.label}</label>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    $('#paymentMethodsList').append(methodHTML);
-                });
-
-            } catch (error) {
-                console.error('Error fetching payment methods:', error);
-            }
-        };
-
-        $(document).ready(function() {
-            // Handle the click event for payment method cards
-            $('#paymentMethodsList').on('click', '.payment-card', function () {
-                var radioButton = $(this).find('input[type="radio"]'); // Get the radio button inside the clicked card
-                radioButton.prop('checked', true); // Check the radio button
-                
-                // Add a round-shadow effect on the clicked card
-                $(this).addClass('shadow-lg').siblings().removeClass('shadow-lg'); // Add shadow to the selected card and remove from others
-            });
-
-            // Handle submission of selected payment method
-           $('#submitPaymentMethodBtn').click(function () {
-                var selectedMethod = $('input[name="paymentMethod"]:checked').val(); // Get the selected payment method code
-                
-                // Correctly find the associated label using the 'for' attribute
-                var selectedLabel = $('input[name="paymentMethod"]:checked').closest('.card-body').find('label').text().trim();
-
-                console.log('selectedMethod', selectedMethod)
-                console.log('selectedLabel', selectedLabel)
-
-                if (selectedMethod) {
-                    $('#selectedPaymentMethod').html(`
-                    <b>Terpilih: ${selectedLabel}</b>
-                    `);
-                    $('#paymentMethodModal').modal('hide'); // Close the payment method modal
-                    $('#checkoutModal').modal('show'); // Show the checkout modal
-                } else {
-                    alert('Please select a payment method');
-                }
-            });
-
-            // When the payment method modal is shown, fetch and display the payment methods
-            $('#paymentMethodModal').on('show.bs.modal', function () {
-                getPaymentMethods();  // Fetch payment methods on modal show
-            });
-
-            $('#paymentMethodModal').on('hidden.bs.modal', function () {
-                $('#checkoutModal').modal('show');
-            });
-
-            // Handler for the confirm payment button click
-            $('#confirmPaymentBtn').on('click', function() {
-                $(this).text('Loading...')
-                $(this).attr('disabled', true)
-
-                // Get the orderId from the #orderId element
-                const orderId = $('#orderId').text();
-
-                if (!orderId) {
-                    console.log('Order ID is missing');
-                    return;
-                }
-
-                // Show the loading spinner
-                $(".loadingOverlay").attr("hidden", false);
-
-                // Perform the fetch request
-                axios.get(`${API_URL}/v1/po-payment/transaction/${orderId}`, {
-                    headers: {
-                        'secret': API_SECRET,
-                        'Author': 'bearer ' + token,
-                        'device': 'web'
-                    }
-                })
-                .then(response => {
-                    $(this).text('Saya Sudah Bayar')
-                    $(this).attr('disabled', false)
-
-                    // Hide the loading spinner once the response is received
-                    $(".loadingOverlay").attr("hidden", true);
-
-                    const poPayment = response.data
-                    const {status} = poPayment
-                    console.log('status', status)
-                    const isPaid = ['settlement', 'captured'].includes(status)
-                    const badgeColor = isPaid ? `success` : `danger`
-                    const statusLabel = isPaid ? "LUNAS" : status
-                    const statusHtml = `
-                        <b class="text-${badgeColor}">${statusLabel.toUpperCase()}</b>
-                    `
-
-                    $('#status').html(statusHtml)
-
-                    
-                    if(isPaid) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil',
-                            text: 'Pesanan sudah kami terima mohon tunggu admin kami menghubungi dan mengirimkan invoice!',
-                            timer: 4500,
-                            showConfirmButton: false,
-                            willClose: () => {
-                                // Reload the page after the Swal disappears
-                                // window.location.reload();
-                                window.location.href = `/member/pre-order/member-card`;
-                            }
-                        });
-                    }
-                    
-                    // Log the response to the console
-                    console.log('Response:', response);
-                })
-                .catch(e => {
-                    $(this).text('Saya Sudah Bayar')
-                    $(this).attr('disabled', false)
-
-                    // Hide the loading spinner in case of an error
-                    $(".loadingOverlay").attr("hidden", true);
-
-                    // Log the error
-                    console.error('Error fetching data:', error);
-                })
-            });
-        })
 
         const loadProducts = () => {
 
@@ -931,8 +714,8 @@
 
             if (metode_bayar != 1) {
                 bankInfo.classList.remove("d-none");
-                nomorRekening.value = metode_bayar.no_rekening ?? 1;
-                namaAkun.value = metode_bayar.deskripsi ?? "-";
+                nomorRekening.value = metode_bayar.no_rekening;
+                namaAkun.value = metode_bayar.deskripsi;
             } else {
                 bankInfo.classList.add("d-none");
             }
@@ -1063,34 +846,9 @@
 
             if ($('#metode_bayar').val() != 1) {
                 payload.metode_bayar = 2;
-                payload.rekening_id = JSON.parse($('#metode_bayar').val() ?? null)?.id || null;
+                payload.rekening_id = JSON.parse($('#metode_bayar').val()).id;
             } else {
-                payload.metode_bayar = parseInt($('#metode_bayar').val()) || 0;
-            }
-
-            const selectedPaymentMethod = $('input[name="paymentMethod"]:checked').val();
-            const selectedPaymentType = $('input[name="paymentMethod"]:checked').data('payment-type'); // Get the payment_type
-
-            if([null, undefined, ""].includes(selectedPaymentMethod)) {
-                alert('Harap pilih metode pembayaran!')
-                return false
-            }
-
-            payload.payment_gateway = "payment_service"; // manual_transfer || payment_service
-            payload.payment_code = selectedPaymentMethod; // Add payment_code from the selected method
-            payload.payment_type = selectedPaymentType;
-
-            if(selectedPaymentMethod === 'qris') {
-                payload.payment_type = "qris";
-                payload.payment_code = "";
-            }
-            else if(selectedPaymentMethod === 'gopay') {
-                payload.payment_type = "gopay";
-                payload.payment_code = "";
-            }
-            else if(selectedPaymentMethod === 'credit_card') {
-                payload.payment_type = "credit_card";
-                payload.payment_code = "";
+                payload.metode_bayar = parseInt($('#metode_bayar').val());
             }
 
             // console.log('payload', payload)
@@ -1109,24 +867,17 @@
                 .then(function(response) {
                     $(".loadingOverlay").attr("hidden", true);
                     localStorage.setItem('invoice', JSON.stringify(response.data))
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Pesanan sudah kami terima mohon tunggu admin kami menghubungi dan mengirimkan invoice!',
+                        timer: 4500,
+                        showConfirmButton: false
+                    });
 
-                    // Show modal with the response data
-                    // Modal setup
-                    $('#checkoutModal').modal('hide')
-                    showInvoiceModal(response.data.data_payment.paymentResponse)
-
-                    // displayInvoiceModal(response.data.data, paymentResponse.data);
-                    // Swal.fire({
-                    //     icon: 'success',
-                    //     title: 'Berhasil',
-                    //     text: 'Pesanan sudah kami terima mohon tunggu admin kami menghubungi dan mengirimkan invoice!',
-                    //     timer: 4500,
-                    //     showConfirmButton: false
-                    // });
-
-                    // setTimeout(function () {
-                    //     // window.location.href = `/member/pre-order/member-card`;
-                    // }, 5000);
+                    setTimeout(function () {
+                        window.location.href = `/member/pre-order/member-card`;
+                    }, 5000);
                 })
                 .catch(function(error) {
                     $(".loadingOverlay").attr("hidden", true);
@@ -1158,112 +909,6 @@
             } else {
                 window.location.href = "/login"
             }
-        }
-
-        // Modal function to display payment info
-        function showInvoiceModal(paymentResponse) {
-            // Update the modal content
-            $('#orderId').text(paymentResponse.order_id);
-            $('#expiry_time').text(`Batas Waktu: ${new Date(paymentResponse.expiry_time).toLocaleString('id-ID')}`);
-            $('#amount').text(`Jumlah yang Harus Dibayar: Rp ${paymentResponse.gross_amount}`);
-            
-            const status = paymentResponse.transaction_status;
-            $('#status').html(`
-                <b class="text-danger">${status.toUpperCase()}</b>
-            `);
-
-            // Change status text color based on transaction status
-            const statusElement = $('#status');
-            statusElement.removeClass('text-danger text-green-500 text-red-500'); // Remove previous status color classes
-            if (status === 'pending') {
-                statusElement.addClass('text-danger'); // Pending status
-            } else if (status === 'success') {
-                statusElement.addClass('text-success'); // Success status
-            } else if (status === 'failed') {
-                statusElement.addClass('text-danger'); // Failed status
-            }
-
-            // Show specific instructions based on payment method
-            $('#payment_instructions').empty();
-            $('#payment_instruction_header').empty();
-            if (paymentResponse.payment_type === 'bank_transfer') {
-                if(paymentResponse.permata_va_number) {
-                    
-                    const bankName = "Bank Permata";
-                    const vaNumber = paymentResponse.permata_va_number;
-                    $('#payment_instruction_header').html(`
-                        <div><strong>VA Number (${bankName}):</strong> ${vaNumber}</div>
-                    `);
-                }
-                else {
-                    // If payment method is Virtual Account (VA), display VA Number
-                    const bankName = paymentResponse.va_numbers[0]['bank'] ?? "N/A";
-                    const vaNumber = paymentResponse.va_numbers[0]['va_number'] ?? "N/A";
-                    $('#payment_instruction_header').html(`
-                        <div><strong>VA Number (${bankName}):</strong> ${vaNumber}</div>
-                    `);
-                }
-            } 
-            else if (['gopay', 'shopeepay', 'qris'].includes(paymentResponse.payment_type)) {
-                // get qris image
-                const qrcodeUrl = paymentResponse.actions.find(item => item.name == "generate-qr-code") ?? {url: ""}
-                $('#payment_instruction_header').html(`
-                    <div><strong>QR Code:</strong></div>
-                    <img src="${qrcodeUrl.url}" alt="QR Code" class="img-fluid" />
-                `);
-                
-            }
-
-
-            // Call the API to get payment instructions for other methods
-            axios.get(`${API_URL}/v1/po-payment/payment-instruction/${paymentResponse.order_id}`, {
-                headers: {
-                    'secret': API_SECRET,
-                    'Author': 'bearer ' + token,
-                    'device': 'web'
-                }
-            })
-            .then(function(instructionResponse) {
-                // Clear previous instructions
-                const instructionsContainer = $('#payment_instructions');
-                instructionsContainer.empty(); // jQuery method to clear content
-
-                let instructionsHTML = '';
-                
-                // Loop through each payment method and its associated instructions
-                $.each(instructionResponse.data.instruction, function(method, instructionList) {
-                    // Create a unique ID for each accordion item
-                    const accordionId = 'accordion_' + method.replace(/\s+/g, '_').toLowerCase();
-
-                    // Create accordion for each payment method
-                    instructionsHTML += `
-                    <div class="accordion" id="${accordionId}">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="heading_${method}">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_${method}" aria-expanded="true" aria-controls="collapse_${method}">
-                                    ${method === 'general' ? "Petunjuk" : method.toUpperCase()}
-                                </button>
-                            </h2>
-                            <div id="collapse_${method}" class="accordion-collapse collapse" aria-labelledby="heading_${method}" data-bs-parent="#${accordionId}">
-                                <div class="accordion-body">
-                                    <ul class="list-disc pl-5">
-                                        ${instructionList.map(instruction => `<li>${instruction}</li>`).join('')}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
-                });
-
-                // Set the instructions in the modal
-                instructionsContainer.html(instructionsHTML); 
-            })
-            .catch(function(error) {
-                console.log('Error fetching payment instructions:', error);
-            });
-
-            // Show the modal using Bootstrap's modal method
-            $('#invoiceModal').modal('show');
         }
 
         created()

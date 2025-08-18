@@ -45,8 +45,6 @@
             align-items: center;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.3/dist/sweetalert2.all.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.3/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -117,10 +115,10 @@
                     keranjangL = response.data.data
 
                     if (keranjangL[0]) {
-                        // document.getElementById('jmlKeranjangM').innerHTML = keranjangL.length
+                        document.getElementById('jmlKeranjangM').innerHTML = keranjangL.length
                         // document.getElementById('jmlKeranjangM').innerHTML = keranjangL.length
                     } else {
-                        // document.getElementById('jmlKeranjangM').style.display = "none";
+                        document.getElementById('jmlKeranjangM').style.display = "none";
                         // document.getElementById('jmlKeranjangM').style.display = "none";
                     }
                 })
@@ -139,10 +137,10 @@
                 .then(function(response) {
                     let dataTransaksi = response.data
                     if (dataTransaksi.length > 0) {
-                        // document.getElementById('jmlTransaksiM').innerHTML = dataTransaksi.length
+                        document.getElementById('jmlTransaksiM').innerHTML = dataTransaksi.length
                         // document.getElementById('jmlTransaksiM').innerHTML = dataTransaksi.length
                     } else {
-                        // document.getElementById('jmlTransaksiM').style.display = "none"
+                        document.getElementById('jmlTransaksiM').style.display = "none"
                         // document.getElementById('jmlTransaksiM').style.display = "none"
                     }
                 })
@@ -159,10 +157,10 @@
                 // document.getElementById('jmlTransaksiM').style.display = "none";
             }
             if (keranjang[0]) {
-                // document.getElementById('jmlKeranjangM').innerHTML = JSON.parse(keranjang).length
+                document.getElementById('jmlKeranjangM').innerHTML = JSON.parse(keranjang).length
                 // document.getElementById('jmlKeranjangM').innerHTML = JSON.parse(keranjang).length
             } else {
-                // document.getElementById('jmlKeranjangM').style.display = "none";
+                document.getElementById('jmlKeranjangM').style.display = "none";
                 // document.getElementById('jmlKeranjangM').style.display = "none";
             }
         }
