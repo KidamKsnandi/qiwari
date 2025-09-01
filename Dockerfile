@@ -31,18 +31,18 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd intl mbstring pdo pdo_pgsql pgsql xml zip \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy project files into the container
+COPY . .
+
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader
+
 # Change DocumentRoot to point to Lumen public directory
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/balanja/public|' /etc/apache2/sites-available/000-default.conf
-
-# Copy project files into the container
-COPY . .
-
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/balanja \
