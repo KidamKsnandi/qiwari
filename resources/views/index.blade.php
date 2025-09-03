@@ -66,15 +66,15 @@
             <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                    <img src="{{ asset('assets/frontend/assets/img/slide1.png') }}" alt="">
+                    <img src="{{ asset('assets/frontend/assets/img/slide4.png') }}" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                    <img src="{{ asset('assets/frontend/assets/img/slide2.png') }}" alt="">
+                    <img src="{{ asset('assets/frontend/assets/img/slide5.png') }}" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                    <img src="{{ asset('assets/frontend/assets/img/slide3.png') }}" alt="">
+                    <img src="{{ asset('assets/frontend/assets/img/slide6.png') }}" alt="">
                 </div>
 
             </div>
