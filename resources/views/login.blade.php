@@ -97,7 +97,7 @@
     <section id="contact" class="contact" style="background: rgba(245, 245, 245, 0.116);">
 
         <div class="container py-5" data-aos="fade-up" id="loginView" style="display: none">
-            <h2 class="text-center text--primary mb-4"><b>Login</b></h2>
+            <h2 class="text-center text-gold mb-4"><b>Login</b></h2>
 
             <div style="display: flex; justify-content: center;">
                 <form action="" method="post" id="php-email-form"
@@ -120,8 +120,7 @@
 
 
                             <div class="col-md-12 text-center">
-                                <button type="submit" onclick="loginWhatsapp()" class="btn btn-primary col-10 mt-3"
-                                    style="background: linear-gradient(47deg, rgb(126, 213, 149) 0%, #23ca23 68%); border-radius: 25px;">
+                                <button type="submit" onclick="loginWhatsapp()" class="btn btn-dark text-white col-10 mt-3">
                                     <div class="custom-login"> <i class="bi bi-whatsapp me-2"></i>Login via WhatsApp</div>
                                     <center>
                                         <div class="custom-loader" hidden></div>
@@ -159,8 +158,7 @@
                             </div>
 
                             <div class="col-md-12 text-center">
-                                <button type="submit" onclick="loginEmail()" class="btn btn-primary col-8 mt-3"
-                                    style="background: linear-gradient(47deg, rgb(126, 213, 149) 0%, #23ca23 68%); border-radius: 25px;">
+                                <button type="submit" onclick="loginEmail()" class="btn btn-dark text-white col-8 mt-3">
                                     {{-- <div class="custom-login"> <i class="bi bi-envelope me-2"></i>Login via Email</div> --}}
                                     <div class="custom-login">Login</div>
                                     <center>

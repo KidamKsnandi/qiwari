@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    ports:
+      - "8081:80"
+    volumes:
+      - .:/var/www/balanja
+    environment:
+      APP_ENV: local
+      APP_DEBUG: true
+      APP_URL: http://localhost:8080

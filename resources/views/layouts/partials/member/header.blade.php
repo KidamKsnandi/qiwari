@@ -22,7 +22,6 @@
         justify-content: center;
         padding: 5px 15px;
         border-radius: 5px;
-        background-color: #007bff;
         /* Warna background tombol */
         color: #fff;
         text-decoration: none;
@@ -34,7 +33,7 @@
 
         <a href="/" class="logo d-flex align-items-center">
             <img src="{{ asset('images/logo-balanja.png') }}" width="100%" alt="Logo">
-            {{-- <span class="">mybisnis</span> --}}
+
         </a>
 
 
@@ -52,7 +51,7 @@
                             <i class="bi bi-whatsapp" style="font-size: 20px;"></i></span></a></li>
                 <li><a class="nav-link scrollto " onclick="alert('Coming Soon')"> <span class="position-relative">
                             <i class="bi bi-bell" style="font-size: 20px;"></i></span></a></li>
-                <li id="loginM"><a style="height: 30px" class="getstarted scrollto" href="/login">Login</a></li>
+                <li id="loginM"><a style="height: 30px" class="getstarted bg-dark scrollto" href="/login">Login</a></li>
                 <li id="userLogins" class="dropdown">
                     <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
                         id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
@@ -85,8 +84,8 @@
                         </select> --}}
                         <input type="text" value="" id="search" class="form-control" style=" width: 500px;"
                             placeholder="Cari produk..."aria-describedby="submitButton">
-                        <button onclick="cari()" class="btn"
-                            style="background: rgb(31, 198, 16); color: white; margin-right: 10px;" type="button"
+                        <button onclick="cari()" class="btn bg-dark"
+                            style="margin-right: 10px;" type="button"
                             id="submitButton"><i class="bi bi-search text-white"></i></button>
                     </div>
                 </li>
@@ -107,8 +106,8 @@
                             <span id="jmlTransaksi"
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>
                         </span></a></li>
-                <li id="daftar"><a class="getstarted scrollto" href="/daftar">Daftar</a></li>
-                <li id="login"><a class="getstarted scrollto" href="/login">Login</a></li>
+                <li id="daftar"><a class="getstarted scrollto bg-dark" href="/daftar">Daftar</a></li>
+                <li id="login"><a class="getstarted scrollto border border-dark text-dark" href="/login">Login</a></li>
                 <li id="userLogin">
                     {{-- <a class="nav-link scrollto" href="/profile"><i class="bi bi-person"
                             style="font-size: 20px;"></i><span id="userName" class="ms-2"></span></a> --}}

@@ -289,13 +289,13 @@
     </center>
     <br>
     {{-- <div class="container">
-        <div class="card" style="background: #23ca23">
+        <div class="card" >
             <div class="row justify-content-between mt-2 me-2 ms-2 text-white">
                 <div class="col">
                     <h2>Promo</h2>
                 </div>
                 <div class="col-auto">
-                    <a class="text-white">Lihat Semua</a>
+                    <a class="text-white bg-dark">Lihat Semua</a>
                 </div>
             </div>
             <div class="row mt-2 me-2 ms-2">
@@ -402,7 +402,7 @@
                         </b></h5>
                 </div>
                 <div class="col-auto">
-                    <a href="/list-produk" class="btn btn-outline-primary btn-sm">Lihat Semua ></a>
+                    <a href="/list-produk" class="btn btn-dark btn-sm">Lihat Semua ></a>
                 </div>
             </div>
             <div style="border-bottom: 2px solid rgba(128, 128, 128, 0.541); padding-bottom: 10px;"></div>
@@ -416,9 +416,8 @@
                 </b></h5>
             @include('components.semuaProduk')
             <center>
-                <a href="/list-produk" class="mt-auto btn btn-primary"
-                    style="border-radius: 50px; background: #4294e3;
-            background: linear-gradient(47deg, rgb(126, 213, 149) 0%, #23ca23 68%)  ;">Lihat
+                <a href="/list-produk" class="mt-auto btn btn-dark"
+                    style="border-radius: 50px;">Lihat
                     Semua</a>
             </center>
         </div>

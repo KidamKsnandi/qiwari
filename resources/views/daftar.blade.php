@@ -76,7 +76,7 @@
 
         <div class="container" data-aos="fade-up">
 
-            <h2 class="text-center text--primary"><b> Form Pendaftaran Member</b></h2>
+            <h2 class="text-center text-gold"><b> Form Pendaftaran Member</b></h2>
             <br>
 
             <div style="display: flex; justify-content: center;">
@@ -160,14 +160,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 text-center">
-                            <button type="submit" onclick="daftar()"
-                                style="background: rgb(10, 115, 250);
-                            background: linear-gradient(
-                              139deg,
-                              rgba(10, 115, 250, 1) 0%,
-                              rgba(112, 68, 239, 1) 72%
-                            );"
-                                class="col-5 mt-3">
+                            <button type="submit" onclick="daftar()" class="col-5 mt-3 bg-dark text-white">
                                 <center>
                                     <div class="custom-daftar">Daftar</div>
                                     <div class="custom-loader" hidden></div>
