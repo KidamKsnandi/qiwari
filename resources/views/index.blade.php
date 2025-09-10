@@ -1149,6 +1149,11 @@
     <script>
         var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
         var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+        function formatformatRupiah(angka) {
+            let newAngka = new Intl.NumberFormat('id-ID').format(angka);
+            return newAngka;
+        }
+
         function copyPromoCode(promoCode) {
             navigator.clipboard.writeText(promoCode).then(function() {
                 alert("Kode promo berhasil disalin!");
@@ -1296,7 +1301,6 @@
                         </center>
                         `)
                     }
-                    console.log('dataCabang', dataCabang)
                 })
                 .catch(function(error) {
                     // handle error
@@ -1305,7 +1309,6 @@
         }
 
         function pilihGerai(value) {
-            console.log(value)
             if (value == "semua") {
                 localStorage.removeItem('gerai_id')
                 localStorage.removeItem('gerai')

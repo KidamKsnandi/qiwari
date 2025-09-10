@@ -293,7 +293,6 @@
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
         var member = urlParams.get('member');
-        console.log('member', member)
         if (member) {
             localStorage.setItem('member_id', member)
         } else {
@@ -417,7 +416,6 @@
                         </center>
                         `)
                     }
-                    console.log('dataCabang', dataCabang)
                 })
                 .catch(function(error) {
                     // handle error
@@ -426,7 +424,6 @@
         }
 
         function pilihGerai(value) {
-            console.log(value)
             if (value == "semua") {
                 localStorage.removeItem('gerai_id')
                 localStorage.removeItem('gerai')
@@ -449,7 +446,6 @@
                 })
                 .then(function(response) {
                     let dataKategori = response.data.data
-                    console.log(dataKategori)
                     $('#listKategori').html("");
                     if (dataKategori[0] != null) {
                         if (kategori_id == null) {
@@ -528,7 +524,6 @@
         }
 
         function pilihKategori(value) {
-            console.log(value)
             if (value == "semua") {
                 localStorage.removeItem('kategori_id')
                 localStorage.removeItem('kategori')
@@ -585,6 +580,11 @@
                     })
                 .then(function(response) {
                     let dataProduk = response.data.data
+                    dataProduk.forEach(item => {
+                        item.varian_barang.forEach(product => {
+                            delete product.barang?.deskripsi
+                        })
+                    })
                     totalPages = Math.ceil(response.data.total / itemsPerPage);
                     // $('#dataProduk').html("");
 

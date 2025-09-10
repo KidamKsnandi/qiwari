@@ -206,6 +206,11 @@
                 })
             .then(function(response) {
                 let dataProduk = response.data.data
+                dataProduk.forEach(item => {
+                    item.varian_barang.forEach(product => {
+                        delete product.barang?.deskripsi
+                    })
+                })
                 totalPages = Math.ceil(response.data.total / itemsPerPage);
                 // $('#dataProduk').html("");
 

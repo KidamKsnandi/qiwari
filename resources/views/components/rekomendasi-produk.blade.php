@@ -186,7 +186,6 @@
                 } else {
                     getGudangs()
                 }
-                console.log(response.data)
             })
             .catch(function(error) {
                 // handle error
@@ -208,6 +207,13 @@
                 })
             .then(function(response) {
                 let dataProduks = response.data.data
+
+                // remove deskripsi
+                dataProduks.forEach(item => {
+                    item.varian_barang.forEach(product => {
+                        delete product.barang?.deskripsi
+                    })
+                })
                 totalPagess = Math.ceil(response.data.total / itemsPerPages);
                 // $('#dataProduks').html("");
 
