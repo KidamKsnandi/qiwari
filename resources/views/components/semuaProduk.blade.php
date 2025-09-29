@@ -25,7 +25,7 @@
 
     /* Gaya Dasar Skeleton */
     .skeleton {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background: linear-gradient(90deg, #d1d1d1 25%, #b3b3b3 50%, #eeeeee 75%);
         background-size: 200% 100%;
         border-radius: 4px;
         display: inline-block;
@@ -113,7 +113,7 @@
             <div class="row-mobile">
                 @for ($i = 0; $i < 6; $i++)
                     <!-- resources/views/components/skeleton-card.blade.php -->
-                    <div class="post-box">
+                    <div class="post-box bg-white shadow">
                         <div>
                             <div class="skeleton skeleton-img"></div>
                             <h6 class="skeleton skeleton-text"></h6>
@@ -147,6 +147,8 @@
 <script src="{{ asset('lib/axios.min.js') }}"></script>
 
 <script>
+    var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
     var member_id = localStorage.getItem('member_id')
     var gerai_id = localStorage.getItem('gerai_id')
     var gudang_id
@@ -166,9 +168,9 @@
     }
 
     function cekMember() {
-        axios.get(`${API_URL}/v1/affiliator/member-public/${gerai_id}`, {
+        axios.get(`${API_URL}/affiliator/member-public/${gerai_id}`, {
                 headers: {
-                    'secret': API_SECRET,
+                    'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                     'device': 'web'
                 }
             })
@@ -198,44 +200,42 @@
         loadingElement.style.display = 'block';
 
         axios.get(
-                `${API_URL}/v1/toko-penyimpanan-public?harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&order=desc&show_as_product=1`, {
+                `${API_URL}/toko-penyimpanan-public?harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&order=desc&show_as_product=1`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'device': 'web'
                     }
                 })
             .then(function(response) {
                 let dataProduk = response.data.data
-                dataProduk.forEach(item => {
-                    item.varian_barang.forEach(product => {
-                        delete product.barang?.deskripsi
-                    })
-                })
                 totalPages = Math.ceil(response.data.total / itemsPerPage);
                 // $('#dataProduk').html("");
 
                 if (dataProduk[0] != null) {
                     $.each(dataProduk, function(key, value) {
                         $('#dataProduk').append(`
-                                <div class="post-box" >
+                                <div class="post-box bg-white shadow" >
                                     <div style="cursor:pointer" onclick='detailProduk(${JSON.stringify(value)})'>
-                                        <div class="post-img"><img
-                                        src="${value.photo[0] && value.photo[0].path ? value.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}"
-                                        class="img-fluid" alt=""></div>
+                                        <div class=""><img
+                                        src="${value.photo[0] && value.photo[0].path ? `https:\/\/api.balanja.kehosting.in\/barang\/photo\/${value.photo[0].photo}` : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}"
+                                        class="rounded-4" style="width: 100%; height: 180px; object-fit: cover;" alt=""></div>
 
-                                        <h6 class="text-dark"><b> ${value.nama.slice(0, 17) + (value.nama.length > 17 ? "..." : "")}  </b></h6>
+                                        <h6 class="mt-3"><b> ${value.nama.slice(0, 17) + (value.nama.length > 17 ? "..." : "")}  </b></h6>
                                         <b class="text--primary" > ${rupiah(value.harga)}</b> ${value.harga_coret > 0 ? `<s style="font-size: 13px; color: grey;">${rupiah(value.harga_coret)}</s>` : ''} <br>
-                                        <span style="color: grey; font-size:12px;">${value.varian_barang[0].gudang.alamat ? value.varian_barang[0].gudang.alamat : ''}</span>
                                         <hr>
                                     </div>
                                     <div class="text-center row">
                                         <div class="col">
                                             <i onclick="alert('Coming Soon')"
-                                                class="bi bi-heart text-center text-primary" style="cursor:pointer"></i>
+                                                class="bi bi-heart text-center" style="cursor:pointer"></i>
+                                        </div>
+                                        <div class="col">
+                                            <i onclick='masukKeranjang(${JSON.stringify(value)})'
+                                                class="bi bi-cart text-center" style="cursor:pointer"></i>
                                         </div>
                                         <div class="col">
                                             <a onclick='share(${JSON.stringify(value)})' data-bs-toggle="modal" style="cursor: pointer;"
-                                                data-bs-target="#modalLink"> <i class="bi bi-share text-center text-primary"></i>
+                                                data-bs-target="#modalLink"> <i class="bi bi-share text-center"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -284,9 +284,9 @@
 
 
     function getGudang() {
-        axios.get(`${API_URL}/v1/gudang-public?member_id=${gerai_id}`, {
+        axios.get(`${API_URL}/gudang-public?member_id=${gerai_id}`, {
                 headers: {
-                    'secret': API_SECRET,
+                    'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                     'device': 'web'
                 }
             })
@@ -313,9 +313,9 @@
         isLoading = true;
         loadingElement.style.display = 'block';
         axios.get(
-                `${API_URL}/v1/toko-penyimpanan-public?harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&show_as_product=1`, {
+                `${API_URL}/toko-penyimpanan-public?harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=${gudang_id}&show_as_product=1`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'device': 'web'
                     }
                 })
@@ -327,25 +327,28 @@
                 if (dataProduk[0] != null) {
                     $.each(dataProduk, function(key, value) {
                         $('#dataProduk').append(`
-                                <div class="post-box" >
+                                <div class="post-box bg-white shadow" >
                                     <div style="cursor:pointer" onclick='detailProduk(${JSON.stringify(value)})'>
-                                        <div class="post-img"><img
-                                        src="${value.photo[0] && value.photo[0].path ? value.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}"
-                                        class="img-fluid" alt=""></div>
+                                        <div class=""><img
+                                        src="${value.photo[0] && value.photo[0].path ? `https:\/\/api.balanja.kehosting.in\/barang\/photo\/${value.photo[0].photo}` : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}"
+                                        class="rounded-4" style="width: 100%; height: 180px; object-fit: cover;" alt=""></div>
 
-                                        <h6 class="text-dark"><b> ${value.nama.slice(0, 17) + (value.nama.length > 17 ? "..." : "")}  </b></h6>
+                                        <h6 class="mt-3"><b> ${value.nama.slice(0, 17) + (value.nama.length > 17 ? "..." : "")}  </b></h6>
                                         <b class="text--primary" > ${rupiah(value.harga)}</b> ${value.harga_coret > 0 ? `<s style="font-size: 13px; color: grey;">${rupiah(value.harga_coret)}</s>` : ''} <br>
-                                        <span style="color: grey; font-size:12px;">${value.varian_barang[0].gudang.alamat ? value.varian_barang[0].gudang.alamat : ''}</span>
                                         <hr>
                                     </div>
                                     <div class="text-center row">
                                         <div class="col">
                                             <i onclick="alert('Coming Soon')"
-                                                class="bi bi-heart text-center text-primary" style="cursor:pointer"></i>
+                                                class="bi bi-heart text-center" style="cursor:pointer"></i>
+                                        </div>
+                                        <div class="col">
+                                            <i onclick='masukKeranjang(${JSON.stringify(value)})'
+                                                class="bi bi-cart text-center" style="cursor:pointer"></i>
                                         </div>
                                         <div class="col">
                                             <a onclick='share(${JSON.stringify(value)})' data-bs-toggle="modal" style="cursor: pointer;"
-                                                data-bs-target="#modalLink"> <i class="bi bi-share text-center text-primary"></i>
+                                                data-bs-target="#modalLink"> <i class="bi bi-share text-center"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -398,9 +401,9 @@
                     member_id: JSON.parse(user).karyawan.id,
                 }
                 var token = localStorage.getItem('token')
-                axios.post(`${API_URL}/v1/input/cart`, [payload], {
+                axios.post(`${API_URL}/input/cart`, [payload], {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }

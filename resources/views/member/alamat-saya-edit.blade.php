@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Balanja.id</title>
+    <title>Terapis</title>
     <meta content="" name="description">
 
     <meta content="" name="keywords">
@@ -200,7 +200,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
-        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         $(".theSelect").select2();
         var id_provinsi;
         var id_kab_kota;
@@ -280,9 +280,9 @@
 
         function getProvinsi() {
             // Provinsi
-            axios.get(`${API_URL}/v1/wilayah/provinsi`, {
+            axios.get(`${API_URL}/wilayah/provinsi`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'device': 'web'
                     }
                 })
@@ -302,9 +302,9 @@
 
             // Kab Kota
             axios.get(
-                    `${API_URL}/v1/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
+                    `${API_URL}/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'device': 'web'
                         }
                     })
@@ -324,9 +324,9 @@
 
             // Kecamatan
             axios.get(
-                    `${API_URL}/v1/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
+                    `${API_URL}/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'device': 'web'
                         }
                     })
@@ -346,9 +346,9 @@
 
             // Kelurahan
             axios.get(
-                    `${API_URL}/v1/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
+                    `${API_URL}/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'device': 'web'
                         }
                     })
@@ -375,9 +375,9 @@
             $('#provinsi_id').on('change', function() {
                 var id_provinsi = this.value;
                 axios.get(
-                        `${API_URL}/v1/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
+                        `${API_URL}/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'device': 'web'
                             }
                         })
@@ -400,9 +400,9 @@
             $('#kab_kota_id').on('change', function() {
                 var id_kab_kota = this.value;
                 axios.get(
-                        `${API_URL}/v1/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
+                        `${API_URL}/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'device': 'web'
                             }
                         })
@@ -424,9 +424,9 @@
             $('#kecamatan_id').on('change', function() {
                 var id_kecamatan = this.value;
                 axios.get(
-                        `${API_URL}/v1/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
+                        `${API_URL}/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'device': 'web'
                             }
                         })
@@ -458,9 +458,9 @@
         function getAlamat() {
             var id = '{{ $id }}'
             var token = localStorage.getItem('token')
-            axios.get(`${API_URL}/v1/member/index-alamat/detail/${id}`, {
+            axios.get(`${API_URL}/member/index-alamat/detail/${id}`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }
@@ -521,9 +521,9 @@
                 alert('Harap isi semua form!')
 
             } else {
-                axios.post(`${API_URL}/v1/member/input-alamat`, payload, {
+                axios.post(`${API_URL}/member/input-alamat`, payload, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }

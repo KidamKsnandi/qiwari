@@ -27,10 +27,6 @@ Route::get('/clear', function () {
 
     return view('clear');
 });
-
-Route::get('/sso-login', function () {
-    return view('ssoLogin');
-});
 Route::get('/logout', function () {
 
     return view('logout');
@@ -42,11 +38,25 @@ Route::get('/profile-dashboard', function () {
     return view('member.profil');
 });
 Route::get('/detail/{slug}', [MainController::class, 'detailProduk']);
-Route::get('/daftar', function () {
-    return view('daftar');
-});
+
 Route::get('/login', function () {
     return view('login');
+});
+Route::get('/login-user', function () {
+    return view('login-user');
+});
+Route::get('/login/verifikasi', function () {
+    return view('login-verifikasi');
+});
+Route::get('/daftar', function () {
+    // return view('register-nohp');
+    return view('registrasi');
+});
+Route::get('/daftar/verifikasi', function () {
+    return view('daftar-verifikasi');
+});
+Route::get('/registrasi', function () {
+    return view('registrasi');
 });
 Route::get('/produk', function () {
     return view('member.produk.index');
@@ -54,6 +64,26 @@ Route::get('/produk', function () {
 
 Route::get('/list-produk', function () {
     return view('member.gerai.produk');
+});
+
+Route::get('/detail-terapis/{slug}', function () {
+    return view('member.terapis.detail');
+});
+
+Route::get('/jasa', function () {
+    return view('member.terapis.all');
+});
+
+Route::get('/griya-sehat', function () {
+    return view('member.griya-sehat.all');
+});
+
+Route::get('/pelatihan', function () {
+    return view('member.pelatihan.all');
+});
+
+Route::get('/detail-pelatihan/{slug}', function () {
+    return view('member.pelatihan.detail');
 });
 
 Route::get('/detail-produk/{slug}', [MainController::class, 'detailProdukGerai']);
@@ -74,8 +104,11 @@ Route::get('/keranjang', function () {
     return view('member.keranjang.index');
 });
 
-Route::get('/list-transaksi', function () {
-    return view('member.transaksi.list');
+Route::get('/transaksi/jasa', function () {
+    return view('member.transaksi.transaksi-jasa');
+});
+Route::get('/transaksi/produk', function () {
+    return view('member.transaksi.transaksi-produk');
 });
 
 Route::get('/artikel', function () {
@@ -106,8 +139,3 @@ Route::get('/rcv-ord/{slug}', [MainController::class, 'selesaiPesanan']);
 
 // Download PDF Katalog
 Route::get('/katalog-produk/{gudang_id}', [MainController::class, 'katalogProduk']);
-
-// Pre Order
-Route::get('/member/pre-order/produk', [MainController::class, 'preOrder']);
-Route::get('/member/pre-order/produk/ubah', [MainController::class, 'preOrderUbah']);
-Route::get('/member/pre-order/member-card', [MainController::class, 'preOrderMemberCard']);

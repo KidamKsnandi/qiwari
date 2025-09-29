@@ -5,16 +5,17 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Balanja.id</title>
+    <title>Balanja</title>
     <meta content="" name="description">
 
     <meta content="" name="keywords">
     <meta name="api-url" content="{{ config('api.url') }}">
+    <meta name="api-url-only" content="{{ config('api.url-only') }}">
     <meta name="api-secret" content="{{ config('api.secret') }}">
 
     <!-- Favicons -->
-    <link href="{{ asset('images/logo-balanja.png') }}" rel="icon">
-    <link href="{{ asset('images/logo-balanja.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('images/icon-balanja.png') }}" rel="icon">
+    <link href="{{ asset('images/icon-balanja.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link
@@ -36,7 +37,7 @@
     @yield('css')
     <style>
         .atasButton {
-            margin-bottom: 65px;
+            margin-bottom: 50px;
         }
 
         #menuBottom a {
@@ -59,8 +60,8 @@
                 <div><a href="/" class="{{ Request::is('/') ? 'text--primary' : 'text--secondary' }}"> <i
                             class="bi bi-house me-1"></i> Home</a>
                 </div>
-                <div><a href="/list-transaksi"
-                        class="{{ Request::is('list-transaksi') ? 'text--primary' : 'text--secondary' }} position-relative">
+                <div><a href="/transaksi/jasa"
+                        class="{{ Request::is('transaksi/jasa') ? 'text--primary' : 'text--secondary' }} position-relative">
                         <span class="position-relative">
                             <i class="bi bi-bag me-1"></i> <span id="jmlTransaksiM"
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>
@@ -83,8 +84,8 @@
     @include('layouts.partials.member.footer')
 
 
-    <a href="#" class="back-to-top d-flex align-items-center atasButton justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    {{-- <a href="#" class="back-to-top d-flex align-items-center atasButton justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a> --}}
 
     <!-- Vendor JS Files -->
     @yield('js')
@@ -99,14 +100,14 @@
 
     <script>
         var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
-        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
-        var transaksi = localStorage.getItem('dataTransaksi') || []
-        var keranjang = localStorage.getItem('listKeranjang') || []
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+        var transaksi = localStorage.getItem('dataTransaksi')
+        var keranjang = localStorage.getItem('listKeranjang')
         if (user) {
             var token = localStorage.getItem('token')
-            axios.get(`${API_URL}/v1/cart?member_id=${JSON.parse(user).karyawan.id}`, {
+            axios.get(`${API_URL}/cart?member_id=${JSON.parse(user).karyawan.id}`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }
@@ -127,16 +128,16 @@
                     console.log(error);
                 });
             axios.get(
-                    `${API_URL}/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=pending&view_as_invoice=1&start=0&length=20`, {
+                    `${API_URL}/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=pending&view_as_invoice=1&start=0&length=20`, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
                     })
                 .then(function(response) {
                     let dataTransaksi = response.data
-                    if (dataTransaksi.length > 0) {
+                    if (dataTransaksi[0]) {
                         document.getElementById('jmlTransaksiM').innerHTML = dataTransaksi.length
                         // document.getElementById('jmlTransaksiM').innerHTML = dataTransaksi.length
                     } else {
@@ -149,7 +150,7 @@
                     console.log(error);
                 });
         } else {
-            if (transaksi.length > 0) {
+            if (transaksi[0]) {
                 document.getElementById('jmlTransaksiM').innerHTML = JSON.parse(transaksi).length
                 // document.getElementById('jmlTransaksiM').innerHTML = JSON.parse(transaksi).length
             } else {

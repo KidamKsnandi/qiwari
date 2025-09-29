@@ -2,6 +2,8 @@
 
 @section('css')
     <style>
+        body {
+        }
         .radio-button {
             display: inline-block;
             position: relative;
@@ -40,20 +42,20 @@
         }
 
         .radio-button__input:checked+.radio-button__label .radio-button__custom {
-            background-color: #7044ef;
+            background-color: #39A74A;
             border-color: transparent;
             transform: scale(0.8);
-            box-shadow: 0 0 20px #4c8bf580;
+            box-shadow: 0 0 20px rgba(15, 128, 0, 0.323);
         }
 
         .radio-button__input:checked+.radio-button__label {
-            color: #7044ef;
+            color: #39A74A;
         }
 
         .radio-button__label:hover .radio-button__custom {
             transform: scale(1.2);
-            border-color: #7044ef;
-            box-shadow: 0 0 20px #4c8bf580;
+            border-color: #39A74A;
+            box-shadow: 0 0 20px #39A74A;
         }
 
         #map {
@@ -88,40 +90,40 @@
     <div class="container mt-3 py-5 ">
         <div class="row mt-5">
             <div class="col-md-8 mb-3">
-                <div class="card">
+                <div class="shadow bg-white p-3" style="border-radius: 15px;">
                     <div class="" id="alamatKonsumen">
 
                     </div>
                 </div>
-                <div class="card mt-4">
+                <div class="bg-white shadow p-3 mt-2" style="border-radius: 15px;">
                     <div>
                         <div class="card-body">
-                            <h6>Barang Yang di Beli</h6>
-                            <div class="row mb-2" id="checkoutView">
+                            <div class="row " id="checkoutView">
 
                             </div>
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h6 style="font-size: 13px;" class="mt-3">Pesan Untuk Penjual</h6>
-                                    <textarea class="form-control mb-2" name="pesan_penjual" id="pesan_penjual" rows="3" placeholder="" required></textarea>
+                                    <h6 style="font-size: 13px;" class="mt-3">Keterangan/Keluhan (Opsional)</h6>
+                                    <textarea class="form-control mb-2" name="pesan_penjual" id="keterangan" rows="3" placeholder="" required></textarea>
                                 </div>
                             </div>
-                            <div class="" id="pengirimanView">
+                            <div id="pengirimanView">
                                 <div class="d-flex justify-content-between mb-3">
-                                    <div class="">
-                                        Opsi Pengiriman
-                                    </div>
-                                    <div class="" style="color: grey; text-align: right" id="keteranganpengiriman">
-                                        Pilih
-                                    </div>
+                                  <div>Opsi Pengiriman</div>
+                                  <div style="color: grey; text-align: right" id="keteranganpengiriman">
+                                    Pilih
+                                  </div>
                                 </div>
-                                <div class="" id="buttonPengiriman">
-                                    <div class="alert alert-warning" role="alert" id="alertPengiriman">
-                                        <i class="bi bi-exclamation-circle-fill"></i> Harap tentukan lokasi terlebih dahulu!
-                                    </div>
+                              
+                                <!-- cukup tambah class d-flex justify-content-end -->
+                                <div id="buttonPengiriman" class="d-flex justify-content-end">
+                                  <div class="alert alert-warning w-100" style="border-radius: 15px;" role="alert" id="alertPengiriman">
+                                    <i class="bi bi-exclamation-circle-fill"></i> Harap tentukan lokasi terlebih dahulu!
+                                  </div>
                                 </div>
-                            </div>
+                              </div>
+                              
                             <div class="" id="kurirView">
                             </div>
                             {{-- <label for="">Pilih pengiriman</label>
@@ -133,7 +135,7 @@
 
                 </div>
 
-                {{-- <div class="card mt-2">
+                {{-- <div class="card bg-white mt-2">
                     <div class="card-body p-2">
                         <div class="d-flex justify-content-between">
                             <span><input type="checkbox" id="uangMukaKlik" value="2500"> Uang Muka </span> <b>Minimal Rp.
@@ -142,8 +144,8 @@
                     </div>
                 </div> --}}
 
-                <div class="card mt-2">
-                    <div class="card-body">
+                <div class="shadow bg-white mt-2" style="border-radius: 15px;">
+                    <div class="p-3">
                         <div class="d-flex justify-content-between mb-3">
                             <div class="">
                                 Metode Pembayaran
@@ -151,45 +153,46 @@
                             <div class="" style="color: grey; text-align: right" id="keteranganPMethod">Pilih
                             </div>
                         </div>
-                        <button class="btn  text-dark form-control btn-lg" data-bs-toggle="modal" data-bs-target="#pMethod"
-                            style="background: white; box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.266)">
-                            <div class="d-flex justify-content-between">
-                                <div class="" id="keteranganPayment">
-                                    Pilih Metode Pembayaran
-                                    l
-                                </div>
-                                <div class="">
-                                    <i class="bi bi-caret-right-fill "></i>
-                                </div>
-                            </div>
-                        </button>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#pMethod">
+                              <div class="d-flex justify-content-between align-items-center">
+                                <div>Pilih Metode Pembayaran</div>
+                                <div><i class="bi bi-caret-right-fill ms-1"></i></div>
+                              </div>
+                            </button>
+                          </div>
+                          
                     </div>
                 </div>
                 <br>
 
             </div>
             <div class="col">
-                <a href="" class="btn mb-2  form-control" type="button" data-bs-toggle="modal"
-                    data-bs-target="#pilihVoucher" style="border: 1px solid green">
-                    Pilih Voucher</a>
+                <a href="" class="btn btn-outline-primary mb-2 w-100" type="button" data-bs-toggle="modal"
+                    data-bs-target="#pilihVoucher" >
+                    Pilih Voucher <i class="bi bi-ticket-fill"></i></a>
 
-                <div class="card">
-                    <div class="card-body p-1">
-                        <div class="d-flex justify-content-between">
-                            <span><input type="checkbox" id="donasiKlik" value="1000"> Donasi </span> <b
-                                id="donasiLabel">Rp. 1000</b>
+                    <div class="shadow" style="border-radius: 15px;">
+                        <div class="p-3">
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="form-check m-0">
+                              <input class="form-check-input big-checkbox" type="checkbox" id="donasiKlik" value="1000">
+                              <label class="form-check-label fw-semibold" for="donasiKlik">
+                                Donasi
+                              </label>
+                            </div>
+                            <b id="donasiLabel">Rp. 0</b>
+                          </div>
                         </div>
-                    </div>
-                </div>
+                      </div>
+                      
 
-                <div class="card rounded mt-1 ">
-                    <div class="card-body">
+                <div class="shadow bg-white mt-2" style="border-radius: 15px;">
+                    <div class="p-3">
                         <center>
                             <b>Ringkasan Belanja</b>
                         </center>
-                    </div>
-                    <div style="background: silver; width: 100%; height: 1px;"></div>
-                    <div class="card-body">
+                        <hr>
                         {{-- <div class="mb-2"> <b style="" class="mb-3">Total Belanja</b><br></div> --}}
                         {{-- <div class="row mb-2">
                             <div class="col">
@@ -260,11 +263,9 @@
                         </div>
                         <form>
                             <button id="buttonBeliSekarang" type="button" onclick="beliSekarang()"
-                                style="background: #4294e3;
-                            background: linear-gradient(47deg, rgb(126, 213, 149) 0%, #23ca23 68%)  ;"
-                                class="mt-3 lanjut col-sm-12">
+                                class="mt-2 btn btn-primary w-100">
                                 <span class="custom-beli">Beli Sekarang</span>
-                                <b class="custom-loader" hidden>transaksi diproses</b>
+                                <b class="custom-loader" hidden>Transaksi Diproses</b>
                             </button>
                         </form>
                     </div>
@@ -347,7 +348,7 @@
                     <button type="button" class=" btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="card border-0 shadow mb-3 mt-1">
+                    <div class="card bg-white border-0 bg-white shadow mb-3 mt-1">
                         <div class="card-body" id="listPayment">
 
                             {{-- <div class="accordion accordion-flush" id="faqlist4 ">
@@ -451,9 +452,7 @@
 
                         </div>
                         <button type="button" onclick="pilihPaymentMethod()"
-                            style="background: #4294e3;
-                        background: linear-gradient(47deg, rgb(126, 213, 149) 0%, #23ca23 68%)  ;"
-                            class="mt-3 lanjut col-sm-12 btn-block w-100">
+                            class="mt-2 btn btn-primary w-100">
                             <span> Pilih </span>
                         </button>
                     </div>
@@ -464,7 +463,7 @@
 
     <div class="modal fade" id="pilihVoucher" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md modal-dialog-centered">
-            <div class="modal-content ">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Pilih Promo Voucher
                     </h5>
@@ -479,14 +478,14 @@
 
     <div class="modal fade" id="pilihAlamat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content ">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Pilih Alamat Pengiriman
                     </h5>
                     <button type="button" class=" btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <a id="tambahAlamatURL" href="/tambah-alamat-saya" class="btn btn-primary text-white w-100 btn-lg">+
+                    <a id="tambahAlamatURL" href="/tambah-alamat-saya" class="btn btn-primary text-white">+
                         Tambah Alamat Baru</a><br><br>
                     <div id="listAlamatSaya">
 
@@ -521,7 +520,10 @@
 
     <script>
         var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
-        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+        let dataPreOrder = JSON.parse(localStorage.getItem('dataPreOrder'))
+        document.getElementById('keterangan').value += dataPreOrder.keterangan;
+
         const rp = (number, prefix = undefined) => {
             // return new Intl.NumberFormat("id-ID", {
             //     style: "currency",
@@ -607,7 +609,7 @@
             } else {
                 if (is_cart == 'y' && listCheckout[0].barang.product_type == "jasa") {
                     $('#alamatKonsumen').html(`
-                        <div class="card-header bg-white">
+                        <div class="">
                             <h6>Dikirim ke</h6>
                             <div class="row">
                                 <div class="col-md-12">
@@ -707,7 +709,7 @@
                     renderMap()
                 } else if (is_cart == 'n' && produkItem[0].barang.product_type == "jasa") {
                     $('#alamatKonsumen').html(`
-                        <div class="card-header bg-white">
+                        <div class="">
                             <h6>Dikirim ke</h6>
                             <div class="row">
                                 <div class="col-md-12">
@@ -805,7 +807,7 @@
                     renderMap()
                 } else {
                     $('#alamatKonsumen').html(`
-                        <div class="card-header bg-white">
+                        <div class="">
                             <h6>Dikirim ke</h6>
                             <div class="row">
                                 <div class="col-md-12">
@@ -995,28 +997,27 @@
                     $("#checkoutView").html(`
                 <div class="row">
                     <div class="col-md-2">
-                        <img src="${listCheckout[0].barang.photo[0] != null && listCheckout[0].barang.photo[0].path != null ? listCheckout[0].barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}" data-aos="fade-right"
-                            class="rounded mb-2" style="height: 80px; width: 110px; object-fit: cover;" alt="">
+                        <img src="${listCheckout[0].barang.photo[0] != null && listCheckout[0].barang.photo[0].path != null ? listCheckout[0].barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}"
+                            class="rounded mb-2" style="height: 70px; width: 100px; object-fit: cover;" alt="">
                     </div>
                     <div class="col-md-6">
-                        <h5><b class="mb-3">${listCheckout[0].barang.nama} - ${listCheckout[0].barang.varian}</b>
-                        </h5>
-                        <h5><b> <span>${rp(listCheckout[0].harga)} (${listCheckout[0].qty})</span> </b></h5>
+                        <h6><b class="mb-3">${listCheckout[0].barang.nama} - ${listCheckout[0].barang.varian}</b>
+                        </h6>
+                        <h6><b> <span>${rp(listCheckout[0].harga)} (${listCheckout[0].qty})</span> </b></h6>
                     </div>
-                    <div class="konten4"
+                    <div class="konten4 mb-2"
                         style="display: flex; justify-content: flex-end;">
                         ${listCheckout[0].barang.product_type === 'jasa' ? '' : `<div><span>Berat: <b>${Math.round(listCheckout[0].barang.berat)} gram</b> </span></div>`}
                     </div>
-                    <div style="background: rgb(228, 228, 228) ; height: 3px;">
+                    <div style="background: #e9e9e9; height: 4px;">
                     </div>
-                    <br>
                 </div>
                 `)
                     if (listCheckout.length > 1) {
                         $("#checkoutView").append(`
                             <div class="collapse row" id="collapseProduk">
                             </div>
-                            <a class="text-center" style="color: black; cursor: pointer" data-bs-toggle="collapse" data-bs-target="#collapseProduk" aria-expanded="false" aria-controls="collapseProduk">
+                            <a class="text-center" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#collapseProduk" aria-expanded="false" aria-controls="collapseProduk">
                             <span id="toggleText">Tampilkan</span> ${listCheckout.length - 1}+ Produk <i id="toggleIcon" class="bi bi-caret-down-fill"></i>
                             </a>
                             <br><br>
@@ -1041,20 +1042,20 @@
                             if (key > 0) {
                                 $('#collapseProduk').append(`
                                         <div class="col-md-2">
-                                            <img src="${value.barang.photo[0] != null && value.barang.photo[0].path != null ? value.barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}" data-aos="fade-right"
-                                                class="rounded mb-2" style="height: 80px; width: 110px; object-fit: cover;" alt="">
+                                            <img src="${value.barang.photo[0] != null && value.barang.photo[0].path != null ? value.barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}"
+                                                class="rounded mb-2" style="height: 70px; width: 100px; object-fit: cover;" alt="">
                                         </div>
                                         <div class="col-md-6">
-                                            <h5><b class="mb-3">${value.barang.nama} - ${value.barang.varian}</b>
-                                            </h5>
-                                            <h5><b> <span>${rp(value.harga)} (${value.qty})</span> </b></h5>
+                                            <h6><b class="mb-3">${value.barang.nama} - ${value.barang.varian}</b>
+                                            </h6>
+                                            <h6><b> <span>${rp(value.harga)} (${value.qty})</span> </b></h6>
                                         </div>
-                                    <div class="konten4"
+                                    <div class="konten4 mb-2"
                                     style="display: flex; justify-content: flex-end;">
                                     ${value.barang.product_type === 'jasa' ? '' : `<div><span>Berat: <b>${Math.round(value.barang.berat)} gram</b> </span></div>`}
                                 </div>
-                                        <div style="background: rgb(228, 228, 228) ; height: 3px;">
-                                        </div> <br>
+                                        <div style="background: #e9e9e9; height: 4px;">
+                                        </div>
                             `)
                             }
                         })
@@ -1147,22 +1148,22 @@
                     $.each(produkItem, function(key, value) {
                         $('#checkoutView').append(`
                     <div class="col-md-2">
-                            <img src="${value.barang.photo[0] != null ? value.barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}" data-aos="fade-right"
-                                class="rounded mb-2" style="height: 80px; width: 110px; object-fit: cover;" alt="">
+                            <img src="${value.barang.photo[0] != null ? value.barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}"
+                                class="rounded mb-2" style="height: 70px; width: 100px; object-fit: cover;" alt="">
                             {{-- <b> Stok  :  <span id="stockbarang"></span></b> --}}
                         </div>
                         <div class="col-md-6">
-                            <h5><b class="mb-3">${value.barang.nama} - ${value.barang.varian}</b>
-                            </h5>
-                            <h5><b> <span>${rp(value.harga)} (${value.qty})</span> </b></h5>
+                            <h6><b class="mb-3">${value.barang.nama} - ${value.barang.varian}</b>
+                            </h6>
+                            <h6><b> <span>${rp(value.harga)} (${value.qty})</span> </b></h6>
                         </div>
-                   <div class="konten4"
+                   <div class="konten4 mb-2"
                         style="display: flex; justify-content: flex-end;">
                         ${value.barang.product_type === 'jasa' ? '' : `<div><span>Berat: <b>${Math.round(value.barang.berat)} gram</b> </span></div>`}
                     </div>
-                        <div style="background: rgb(228, 228, 228) ; height: 3px;">
+                        <div style="background: #e9e9e9; height: 4px;">
                         </div>
-                        ${produkItem[0].barang.product_type != 'jasa' ? '<br>' : ''}
+                        ${produkItem[0].barang.product_type != 'jasa' ? '' : ''}
 
                     `)
                     })
@@ -1176,9 +1177,9 @@
 
         function getBiaya() {
             return new Promise((resolve, reject) => {
-                axios.get(`${API_URL}/v1/get-transaction-fee?member_id=${toko_id}`, {
+                axios.get(`${API_URL}/get-transaction-fee?member_id=${toko_id}`, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'device': 'web'
                         }
                     })
@@ -1273,9 +1274,9 @@
         }
 
         function getAlamatToko() {
-            axios.get(`${API_URL}/v1/member/get-alamat-toko?member_id=${toko_id}`, {
+            axios.get(`${API_URL}/member/get-alamat-toko?member_id=${toko_id}`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'device': 'web'
                     }
                 })
@@ -1283,15 +1284,15 @@
                     alamatToko = response.data
                     if (user != null && alamatKu[0] != null) {
                         $('#buttonPengiriman').html(`
-                          <button class="btn  text-dark form-control btn-lg" data-bs-toggle="modal"
+                          <button class="btn btn-outline-primary" data-bs-toggle="modal"
                                 data-bs-target="#pengiriman"
-                                style="background: white; box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.266)">
-                                <div class="d-flex justify-content-between">
+                                style="">
+                                <div class="d-flex justify-content-between align-items-center">
                                     <div class="" id="keteranganPengiriman">
                                         Pilih Pengiriman
                                     </div>
                                     <div class="">
-                                        <i class="bi bi-caret-right-fill "></i>
+                                        <i class="bi bi-caret-right-fill ms-1"></i>
                                     </div>
                                 </div>
                             </button>
@@ -1311,10 +1312,31 @@
 
 
         function renderAlamat() {
+            // tampilkan skeleton dulu
+            $('#alamatKonsumen').html(`
+                <div class="card-header bg-white">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <div class="placeholder-glow mb-2">
+                                    <span class="placeholder col-3" style="border-radius: 5px;"></span>
+                                </div>
+                                <div class="placeholder-glow mb-2">
+                                    <span class="placeholder col-6" style="border-radius: 5px;"></span>
+                                </div>
+                                <div class="placeholder-glow mb-2">
+                                    <span class="placeholder col-10" style="border-radius: 5px;"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `);
+
             var token = localStorage.getItem('token')
-            axios.get(`${API_URL}/v1/member/index-alamat?member_id=${JSON.parse(user).karyawan.id}`, {
+            axios.get(`${API_URL}/member/index-alamat?member_id=${JSON.parse(user).karyawan.id}`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }
@@ -1335,7 +1357,7 @@
                         $('#alamatKonsumen').html(`
                             <div class="card-header bg-white">
                                 <h6> Dikirim Ke </h6>
-                                <a href="" style="" class="text-black col-sm-3" data-bs-toggle="modal"
+                                <a href="" style="" class="text-dark col-sm-3" data-bs-toggle="modal"
                                     data-bs-target="#pilihAlamat">
                                     <div class="card-body">
                                         <div class="row">
@@ -1356,7 +1378,7 @@
                                     </div>
                                 </a>
                             </div>
-                            `)
+                        `)
                     } else {
                         $('#alamatKonsumen').html(`
                         <div class="card-header bg-white">
@@ -1367,20 +1389,18 @@
                     }
                 })
                 .catch(function(error) {
-                    // handle error
                     console.log(error);
                 });
-
-
         }
+
 
         function renderListAlamat(alamatSaya) {
             $('#listAlamatSaya').html('')
             $.each(alamatSaya, function(key, value) {
                 if (value.id == alamat_id) {
                     $('#listAlamatSaya').append(`
-                    <div class="card  mb-3"
-                        style="background: rgba(26, 216, 26, 0.127); border: 1px solid rgb(27, 170, 27);">
+                    <div class="card bg-white  mb-2"
+                        style="background: rgba(26, 216, 26, 0.127); border: 1px solid rgb(27, 170, 27); border-radius: 15px;">
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="">
@@ -1400,7 +1420,7 @@
 
                 } else {
                     $('#listAlamatSaya').append(`
-                        <div class="card mb-3">
+                        <div class="card bg-white mb-2" style="border-radius: 15px;">
                             <div class="card-body">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="">
@@ -1413,11 +1433,11 @@
                                         </span>
                                     </div>
                                     <div>
-                                        <button type="button" onclick='pilihAlamatSaya(${JSON.stringify(value)}, ${JSON.stringify(alamatSaya)})' class="btn mt-2 float-end"
-                                            style="background: rgb(22, 179, 22); color: white;">Pilih</button>
-                                        <a class="btn mt-2 me-2 float-end" style="background: rgb(225, 225, 0); color: white;" href="/edit-alamat-saya/${value.id}?pass_cart=${params.pass_cart}">Edit</a>
+                                        <button type="button" onclick='pilihAlamatSaya(${JSON.stringify(value)}, ${JSON.stringify(alamatSaya)})' class="btn btn-primary mt-2 float-end"
+                                            ">Pilih</button>
+                                        <a class="btn btn-outline-primary mt-2 me-2 float-end"href="/edit-alamat-saya/${value.id}?pass_cart=${params.pass_cart}">Edit</a>
                                         <button type="button" class="btn mt-2 me-2 float-end" onclick='hapusAlamat(${value.id}, ${JSON.stringify(value)}, ${JSON.stringify(alamatSaya)})'
-                                            style="background: rgb(255, 0, 0); color: white;">Hapus</button>
+                                            >Hapus</button>
                                     </div>
                                 </div>
                             </div>
@@ -1463,15 +1483,14 @@
                 }))
                 Swal.fire('Berhasil!', 'Koordinat berhasil diterapkan', 'success');
                 $('#buttonPengiriman').html(`
-                      <button class="btn  text-dark form-control btn-lg" data-bs-toggle="modal"
-                        data-bs-target="#pengiriman"
-                        style="background: white; box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.266)">
-                        <div class="d-flex justify-content-between">
+                      <button class="btn btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#pengiriman">
+                        <div class="d-flex justify-content-between align-items-center">
                             <div class="" id="keteranganPengiriman">
                                 Pilih Pengiriman
                             </div>
                             <div class="">
-                                <i class="bi bi-caret-right-fill "></i>
+                                <i class="bi bi-caret-right-fill ms-1"></i>
                             </div>
                         </div>
                     </button>
@@ -1490,7 +1509,7 @@
             renderListAlamat(alamatSaya)
             $('#alamatKonsumen').html(`
                 <div class="card-header bg-white">
-                    <a href="" style="" class="text-black col-sm-3" data-bs-toggle="modal"
+                    <a href="" style="" class="text-light col-sm-3" data-bs-toggle="modal"
                         data-bs-target="#pilihAlamat">
                         <div class="card-body">
                             <div class="row">
@@ -1530,9 +1549,9 @@
                         id: idAlamat
                     }
 
-                    axios.post(API_URL + '/v1/member/delete-alamat', payload, {
+                    axios.post(`${API_URL}/member/delete-alamat`, payload, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'Author': 'bearer ' + token,
                                 'device': 'web',
 
@@ -1587,9 +1606,9 @@
 
         function getJasaKirim() {
             axios.get(
-                    `${API_URL}/v1/p-jasa-kirim?view_all=1`, {
+                    `${API_URL}/p-jasa-kirim?view_all=1`, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'device': 'web'
                         }
                     })
@@ -1692,9 +1711,9 @@
             async function fetchRates() {
                 try {
                     const response = await axios.post(
-                        `${API_URL}/v1/p-jasa-kirim-rates`, payload, {
+                        `${API_URL}/p-jasa-kirim-rates`, payload, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'Author': 'bearer ' + token,
                                 'device': 'web'
                             }
@@ -1741,9 +1760,10 @@
                 }
                 try {
                     const response = await axios.post(
-                        `https://express-api-bal.zuppaqu.com/v2/shipping-prices/calculate`, payloadExpress, {
+                        `https://express-api.notive.my.id/v2/shipping-prices/calculate`, payloadExpress, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                                'Author': 'bearer ' + token,
                                 'device': 'web'
                             }
                         }
@@ -1786,7 +1806,7 @@
                 $('#ongkosKirimView').attr('hidden', true)
                 $('#ongkosKirim').html('')
                 $("#kurirView").html(`
-                    <div class="d-flex justify-content-between mt-4 mb-3">
+                    <div class="d-flex justify-content-between mt-3 mb-1">
                         <div class="">
                             Opsi Kurir
                         </div>
@@ -1794,16 +1814,14 @@
                             Pilih
                         </div>
                     </div>
-                    <button class="btn  text-dark form-control btn-lg" data-bs-toggle="modal"
-                        data-bs-target="#kurir"
-                        style="background: white; box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.266)">
-                        <div class="d-flex justify-content-between">
+                    <button class="btn btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#kurir">
+                        <div class="d-flex justify-content-between align-items-center">
                             <div class="" id="keteranganKurir">
                                 Pilih Kurir
-
                             </div>
                             <div class="">
-                                <i class="bi bi-caret-right-fill "></i>
+                                <i class="bi bi-caret-right-fill ms-1"></i>
                             </div>
                         </div>
                     </button>
@@ -1829,7 +1847,7 @@
 
 
             $("#keteranganpengiriman").html(`
-                <span class="text-dark mb-3"">
+                <span class=" mb-3"">
                     <b> ${data.name} </b> <br>
                 </span>
                 `)
@@ -1899,7 +1917,7 @@
                 `)
 
             $("#keterangankurir").html(`
-                <span class="text-dark mb-3"">
+                <span class=" mb-3"">
                     <b> ${data.courier_name} (${data.courier_service_name}) </b> <br>
                 </span>
                 `)
@@ -1925,9 +1943,9 @@
             //     },
             // ];
             axios.get(
-                    `${API_URL}/v1/get-available-discounts`, {
+                    `${API_URL}/get-available-discounts`, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'device': 'web'
                         }
                     })
@@ -1952,7 +1970,7 @@
                                 $.each(dataVoucher, function(key, value) {
                                     if (value.id == voucher_id) {
                                         $('#listVoucher').append(`
-                                            <div class="card  mb-3"
+                                            <div class="card bg-white  mb-3"
                                                 style="background: rgba(26, 216, 26, 0.127); border: 1px solid rgb(27, 170, 27);">
                                                 <div class="card-body">
                                                     <div class="d-flex align-items-center justify-content-between">
@@ -1967,7 +1985,7 @@
                                         `)
                                     } else {
                                         $('#listVoucher').append(`
-                                            <div class="card mb-3">
+                                            <div class="card bg-white mb-3">
                                                 <div class="card-body">
                                                     <div class="d-flex align-items-center justify-content-between">
                                                         <div class="">
@@ -2069,9 +2087,9 @@
 
         function getPaymentMethod() {
             axios.get(
-                    `${API_URL}/v1/p-method?member_id=${toko_id}`, {
+                    `${API_URL}/p-method?member_id=${toko_id}`, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'device': 'web'
                         }
                     })
@@ -2154,12 +2172,12 @@
                                                 </div>
                                             </div>
                                         `)
-                                    } else if (value.group == "COD") {
+                                    } else if (value.group == "QRIS") {
                                         $(`#listPaymentMethod${key}`).append(`
                                             <br>
                                             <div class="row">
                                                 <div class="col">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/6192/6192245.png"
+                                                    <img src="${data.image ?  data.image : 'https://e7.pngegg.com/pngimages/482/107/png-clipart-house-building-computer-icons-logo-house-angle-building.png'}"
                                                         class="img-fluid">
                                                 </div>
                                                 <div class="col-8 text-start "
@@ -2182,6 +2200,34 @@
                                             </div>
                                         `)
                                     }
+                                    // } else if (value.group == "COD") {
+                                    //     $(`#listPaymentMethod${key}`).append(`
+                                    //         <br>
+                                    //         <div class="row">
+                                    //             <div class="col">
+                                    //                 <img src="https://cdn-icons-png.flaticon.com/512/6192/6192245.png"
+                                    //                     class="img-fluid">
+                                    //             </div>
+                                    //             <div class="col-8 text-start "
+                                    //                 style="align-items: center; display: flex;">
+                                    //                 <b style="color: rgb(100, 100, 100); ">
+                                    //                     ${data.name}</b>
+                                    //             </div>
+                                    //             <div class="col">
+                                    //                 <div class="radio-button-container">
+                                    //                     <div class="radio-button">
+                                    //                         <input type="radio"
+                                    //                             class="radio-button__input" value="${value.group}" data='${JSON.stringify(data)}' id="cod"
+                                    //                             name="payment_method">
+                                    //                         <label class="radio-button__label" for="cod">
+                                    //                             <span class="radio-button__custom"></span>
+                                    //                         </label>
+                                    //                     </div>
+                                    //                 </div>
+                                    //             </div>
+                                    //         </div>
+                                    //     `)
+                                    // }
                                 })
                             }
                         });
@@ -2214,9 +2260,10 @@
                     $('#donasiKlik').click()
                 }
                 $("#keteranganPMethod").html(`
-                <span class="text-dark mb-3"">
-                        Manual Transfer <br> <b> ${dataAttribute.name} (${dataAttribute.description}) </b><br>
-                </span>
+                <img src="${dataAttribute.image_url}" style="width: 150px;"> <br>
+                <div class=" mb-3 mt-2"">
+                        Manual Transfer <br> <h5><b> ${dataAttribute.name} (${dataAttribute.description}) </b></h5>
+                </div>
                 `)
                 $("#keteranganPayment").html(`
                         Manual Transfer  <b> ${dataAttribute.name} (${dataAttribute.description}) </b>
@@ -2233,12 +2280,13 @@
                     $('#donasiKlik').click()
                 }
                 $("#keteranganPMethod").html(`
-                <span class="text-dark mb-3"">
-                        Virtual Account <br> <b>${dataAttribute.name} </b><br>
-                </span>
+                <img src="${dataAttribute.image}" style="width: 150px;"> <br>
+                <div class=" mb-3 mt-2"">
+                        Virtual Account <br> <h5> <b>${dataAttribute.name} </b> </h5>
+                </div>
                 `)
                 $("#keteranganPayment").html(`
-                        Virtual Account  <b>${dataAttribute.name} </b>
+                        Virtual Account <b>${dataAttribute.name} </b>
                 `)
                 $("#biaya_transaksi").html(`
                     <div class="col">
@@ -2256,6 +2304,27 @@
                     alert('belum')
                 }
                 // Jika COD
+            } else if (selectedValue == "QRIS") {
+                metode_bayar = 'qris'
+                kodeBayar = dataAttribute.code
+                if ($('#donasiKlik').is(':checked')) {
+                    $('#donasiKlik').click()
+                }
+                $("#keteranganPMethod").html(`
+                <img src="${dataAttribute.image}" style="width: 150px;"> <br>
+                <div class=" mb-3 mt-2"">
+                        <h5><b> ${dataAttribute.name} </b></h5>
+                </div>
+                `)
+                $("#keteranganPayment").html(`
+                        <b> ${dataAttribute.name} </b>
+                `)
+                if (biayaPG > 0) {
+                    totalBayar = parseInt(totalBayar) - parseInt(biayaPG)
+                    $('#biaya_transaksi').html('')
+                    $('#total_bayar').html(rp(totalBayar))
+                }
+                // Jika Virtual Account
             } else if (selectedValue == "COD") {
                 alert('COMING SOON')
                 metode_bayar == null
@@ -2276,6 +2345,7 @@
         function beliSekarang() {
             let listCheckout = localStorage.getItem('listCheckout') ? JSON.parse(localStorage.getItem('listCheckout')) : []
             let produkItem = localStorage.getItem('produkItem') ? JSON.parse(localStorage.getItem('produkItem')) : []
+            var userLocal = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {}
             var nama = $('#nama').val()
             var email = $('#email').val()
             var no_hp = $('#no_hp').val()
@@ -2565,25 +2635,48 @@
 
                 var data = JSON.parse(checkouts)
 
+
+                // var payload = {
+                //     nama: alamatPengiriman.member_name,
+                //     email: JSON.parse(user).email,
+                //     no_hp: alamatPengiriman.nomor_kontak,
+                //     jenis_kelamin: JSON.parse(user).jenis_kelamin,
+                //     transfer: data.totalHarga,
+                //     biaya_layanan: biayaLayananValue,
+                //     biaya_aplikasi: biayaAplikasiValue,
+                //     pengiriman_id: data.pengiriman_id,
+                //     shipment_option: shipment_option,
+                //     item: data.item,
+                //     alamat_pengiriman: alamatPengiriman.alamat,
+                //     provinsi: alamatPengiriman.provinsi_id,
+                //     kab_kota: alamatPengiriman.kab_kota_id,
+                //     kecamatan: alamatPengiriman.kecamatan_id,
+                //     desa: alamatPengiriman.desa_id,
+                //     latitude: alamatPengiriman.latitude,
+                //     longitude: alamatPengiriman.longitude,
+                // }
+
+
                 var payload = {
-                    nama: alamatPengiriman.member_name,
-                    email: JSON.parse(user).email,
-                    no_hp: alamatPengiriman.nomor_kontak,
-                    jenis_kelamin: JSON.parse(user).jenis_kelamin,
-                    transfer: data.totalHarga,
+                    terapis_id: produkItem[0].member_id, // member id terapis
+                    konsumen_member_id: userLocal.member_id, // member id konsumen
+                    konsumen_member_alamat_id: alamatPengiriman.id, // id dari alamat member
+                    // metode_bayar: "manual_transfer",
+                    uang_masuk: data.totalHarga,
+                    ongkir: 0,
                     biaya_layanan: biayaLayananValue,
                     biaya_aplikasi: biayaAplikasiValue,
-                    pengiriman_id: data.pengiriman_id,
-                    shipment_option: shipment_option,
-                    item: data.item,
-                    alamat_pengiriman: alamatPengiriman.alamat,
-                    provinsi: alamatPengiriman.provinsi_id,
-                    kab_kota: alamatPengiriman.kab_kota_id,
-                    kecamatan: alamatPengiriman.kecamatan_id,
-                    desa: alamatPengiriman.desa_id,
-                    latitude: alamatPengiriman.latitude,
-                    longitude: alamatPengiriman.longitude,
+                    // kode_bayar: 2, // rekening id dari code property
+                    // transaction_type: "jasa",
+                    items: data.item.map(r => ({
+                        barang_id: r.barang.id,
+                        qty: r.qty,
+                        harga: r.harga_satuan
+                    })),
+                    
                 }
+                console.log(payload);
+
             }
 
             // Cek jika ada member_id
@@ -2598,11 +2691,22 @@
                 payload.kode_bayar = kodeBayar
             } else if (metode_pembayaran == "Virtual Account") {
                 payload.metode_bayar = metode_bayar
-                payload.biaya_pg = biayaPG
-                payload.payment_channel = {
-                    type: 'bank_transfer',
-                    code: metode_pembayaran_data.code
-                }
+                payload.payment_code = metode_pembayaran_data.code
+                payload.payment_type = 'bank_transfer'
+                // payload.biaya_pg = biayaPG
+                // payload.payment_channel = {
+                //     type: 'bank_transfer',
+                //     code: metode_pembayaran_data.code
+                // }
+            } else if (metode_pembayaran == "QRIS") {
+                payload.metode_bayar = 'payment_gateway'
+                payload.payment_code = metode_pembayaran_data.code
+                payload.payment_type = 'qris'
+                // payload.biaya_pg = biayaPG
+                // payload.payment_channel = {
+                //     type: 'bank_transfer',
+                //     code: metode_pembayaran_data.code
+                // }
             }
 
             // Kondisi Lewat keranjang dan tipe barang setting pengiriman
@@ -2631,9 +2735,14 @@
                     }
                     let dataPreOrder = JSON.parse(localStorage.getItem('dataPreOrder'))
                     if (dataPreOrder) {
+                        payload.reservation_info = {
+                            tanggal_reservasi: dataPreOrder.tanggal_reservasi,
+                            // alamat: dataPreOrder.alamat,
+                            keluhan: document.getElementById('keterangan').value // OPTIONAL
+                        }
                         payload.transaction_type = "jasa"
-                        payload.tanggal_reservasi = dataPreOrder.tanggal_reservasi
-                        payload.keluhan = dataPreOrder.keterangan
+                        // payload.tanggal_reservasi = dataPreOrder.tanggal_reservasi
+                        // payload.keluhan = dataPreOrder.keterangan
                     } else {
                         payload.transaction_type = "barang"
                     }
@@ -2668,18 +2777,28 @@
                     }
                     let dataPreOrder = JSON.parse(localStorage.getItem('dataPreOrder'))
                     if (dataPreOrder) {
+                        payload.reservation_info = {
+                            tanggal_reservasi: dataPreOrder.tanggal_reservasi,
+                            // alamat: dataPreOrder.alamat,
+                            keluhan: document.getElementById('keterangan').value // OPTIONAL
+                        }
                         payload.transaction_type = "jasa"
-                        payload.tanggal_reservasi = dataPreOrder.tanggal_reservasi
-                        payload.keluhan = dataPreOrder.keterangan
+                        // payload.tanggal_reservasi = dataPreOrder.tanggal_reservasi
+                        // payload.keluhan = dataPreOrder.keterangan
                     } else {
                         payload.transaction_type = "barang"
                     }
                 } else {
                     let dataPreOrder = JSON.parse(localStorage.getItem('dataPreOrder'))
                     if (dataPreOrder) {
+                        payload.reservation_info = {
+                            tanggal_reservasi: dataPreOrder.tanggal_reservasi,
+                            // alamat: dataPreOrder.alamat,
+                            keluhan: document.getElementById('keterangan').value // OPTIONAL
+                        }
                         payload.transaction_type = "jasa"
-                        payload.tanggal_reservasi = dataPreOrder.tanggal_reservasi
-                        payload.keluhan = dataPreOrder.keterangan
+                        // payload.tanggal_reservasi = dataPreOrder.tanggal_reservasi
+                        // payload.keluhan = dataPreOrder.keterangan
                     } else {
                         payload.transaction_type = "barang"
                     }
@@ -2715,9 +2834,9 @@
                 $(".custom-loader").attr("hidden", false);
                 $(".loadingOverlay").attr("hidden", false);
                 var token = localStorage.getItem('token')
-                axios.post(API_URL + '/v1/checkout', payload, {
+                axios.post(`${API_URL}/checkout`, payload, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -2737,15 +2856,15 @@
                         });
                         let noInvoice = response.data.no_invoice.replace(/\//g, '-');
                         window.location.href = `/pay/${noInvoice}`
-
                     })
                     .catch(function(error) {
                         // handle error
-                        alert(error)
+                        // alert(error)
+                        console.log(payload);
                         console.log(error);
                         $("#buttonBeliSekarang").attr("disabled", false);
                         $("#buttonBeliSekarang").css("background",
-                            "linear-gradient(47deg, rgb(126, 213, 149) 0%, #23ca23 68%)  ;");
+                            "linear-gradient(47deg, rgb(126, 213, 149) 0%, #35a949 68%)  ;");
                         $(".custom-beli").attr("hidden", false);
                         $(".custom-loader").attr("hidden", true);
                         $(".loadingOverlay").attr("hidden", true);
@@ -2757,9 +2876,9 @@
                 $(".custom-beli").attr("hidden", true);
                 $(".custom-loader").attr("hidden", false);
                 $(".loadingOverlay").attr("hidden", false);
-                axios.post(API_URL + '/v1/checkout', payload, {
+                axios.post(`${API_URL}/checkout`, payload, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'device': 'web'
                         }
                     })
@@ -2782,7 +2901,7 @@
                     .catch(function(error) {
                         $("#buttonBeliSekarang").attr("disabled", false);
                         $("#buttonBeliSekarang").css("background",
-                            "linear-gradient(47deg, rgb(126, 213, 149) 0%, #23ca23 68%)  ;");
+                            "linear-gradient(47deg, rgb(126, 213, 149) 0%, #35a949 68%)  ;");
                         $(".custom-beli").attr("hidden", false);
                         $(".custom-loader").attr("hidden", true);
                         $(".loadingOverlay").attr("hidden", true);
@@ -2791,6 +2910,7 @@
                         alert(error.response.data.error)
                     });
             }
+            
         }
 
 
@@ -2800,9 +2920,9 @@
         // Get Provinsi
         async function getProvinsi() {
             try {
-                const response = await axios.get(API_URL + '/v1/wilayah/provinsi', {
+                const response = await axios.get(`${API_URL}/wilayah/provinsi`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'device': 'web'
                     }
                 });
@@ -2839,9 +2959,9 @@
                 var id_provinsi = this.value;
                 try {
                     const response = await axios.get(
-                        `${API_URL}/v1/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
+                        `${API_URL}/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'device': 'web'
                             }
                         }
@@ -2864,9 +2984,9 @@
                 var id_kab_kota = this.value;
                 try {
                     const response = await axios.get(
-                        `${API_URL}/v1/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
+                        `${API_URL}/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'device': 'web'
                             }
                         }
@@ -2888,9 +3008,9 @@
                 var id_kecamatan = this.value;
                 try {
                     const response = await axios.get(
-                        `${API_URL}/v1/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
+                        `${API_URL}/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'device': 'web'
                             }
                         }
@@ -2935,9 +3055,9 @@
                 catatan: $('#catatan').val(),
             }
             var token = localStorage.getItem('token')
-            axios.post(API_URL + '/v1/member/input-alamat', payload, {
+            axios.post(`${API_URL}/member/input-alamat`, payload, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }

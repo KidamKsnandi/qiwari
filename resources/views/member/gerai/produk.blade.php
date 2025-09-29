@@ -131,18 +131,13 @@
         <div class="container" style="margin-top: 90px" data-aos="fade-up">
             <div class="d-flex">
 
-                <div class="card me-2 ">
-                    <div class="card-header bg-white">
-                        <a href="" style="" class="text-black " data-bs-toggle="modal"
+                        <a href="" style="" class="btn btn-outline-primary" data-bs-toggle="modal"
                             data-bs-target="#pilihFilter">
-
                             <div class="">
                                 <i class="bi bi-filter"></i>
                                 <b id="namaKategori">Filter</b>
                             </div>
                         </a>
-                    </div>
-                </div>
                 {{-- <div class="card  ">
                     <div class="card-header bg-white">
                         <a href="" style="" class="text-black " data-bs-toggle="modal"
@@ -171,7 +166,7 @@
                         <div class="row-mobile">
                             @for ($i = 0; $i < 6; $i++)
                                 <!-- resources/views/components/skeleton-card.blade.php -->
-                                <div class="post-box">
+                                <div class="post-box shadow">
                                     <div>
                                         <div class="skeleton skeleton-img"></div>
                                         <h6 class="skeleton skeleton-text"></h6>
@@ -328,7 +323,7 @@
         getGerai()
 
         function getGerai() {
-            axios.get(`${API_URL}/v1/affiliator/cabang`, {
+            axios.get(`${API_URL}/affiliator/cabang`, {
                     headers: {
                         'secret': API_SECRET,
                         'device': 'web'
@@ -358,8 +353,8 @@
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <h5> <span class="text-bold"
                                                         style="color: gray;">Semua Gerai</span> </h5>
-                                                <button type="button" onclick='pilihGerai("semua")' class="btn  mt-2 float-end"
-                                                    style="background: rgb(22, 179, 22); color: white;">Pilih</button>
+                                                <button type="button" onclick='pilihGerai("semua")' class="btn btn-outline-primary mt-2 float-end"
+                                                    >Pilih</button>
                                             </div>
                                         </div>
                                     </div>
@@ -397,8 +392,8 @@
                                                         ${value.nama_teritori}
                                                     </h5>
                                                 </div>
-                                                <button type="button" onclick='pilihGerai(${JSON.stringify(value)})' class="btn  mt-2 float-end"
-                                                            style="background: rgb(22, 179, 22); color: white;">Pilih</button>
+                                                <button type="button" onclick='pilihGerai(${JSON.stringify(value)})' class="btn btn-outline-primary mt-2 float-end"
+                                                            >Pilih</button>
                                             </div>
                                         </div>
                                     </div>
@@ -438,7 +433,7 @@
         getKategori()
 
         function getKategori() {
-            axios.get(`${API_URL}/v1/kategori-public`, {
+            axios.get(`${API_URL}/kategori-public`, {
                     headers: {
                         'secret': API_SECRET,
                         'device': 'web'
@@ -468,8 +463,8 @@
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <span class="text-bold"
                                                         style="color: gray;">Semua Kategori</span>
-                                                <button type="button" onclick='pilihKategori("semua")' class="btn  mt-2 float-end"
-                                                    style="background: rgb(22, 179, 22); color: white;">Pilih</button>
+                                                <button type="button" onclick='pilihKategori("semua")' class="btn btn-outline-primary mt-2 float-end"
+                                                    >Pilih</button>
                                             </div>
                                         </div>
                                     </div>
@@ -497,8 +492,8 @@
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <span class="text-bold"
                                                         style="color: gray;">${value.kategori}</span>
-                                                <button type="button" onclick='pilihKategori(${JSON.stringify(value)})' class="btn  mt-2 float-end"
-                                                    style="background: rgb(22, 179, 22); color: white;">Pilih</button>
+                                                <button type="button" onclick='pilihKategori(${JSON.stringify(value)})' class="btn btn-outline-primary mt-2 float-end"
+                                                    >Pilih</button>
                                             </div>
                                         </div>
                                     </div>
@@ -538,7 +533,7 @@
 
 
         function cekMember() {
-            axios.get(`${API_URL}/v1/affiliator/member-public/${gerai_id}`, {
+            axios.get(`${API_URL}/affiliator/member-public/${gerai_id}`, {
                     headers: {
                         'secret': API_SECRET,
                         'device': 'web'
@@ -572,7 +567,7 @@
             loadingElement.style.display = 'block';
 
             axios.get(
-                    `${API_URL}/v1/toko-penyimpanan-public?search=${search}${kategori_id ? `&kategori_id=${kategori_id}&` : `&`}harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&order=desc&show_as_product=1`, {
+                    `${API_URL}/toko-penyimpanan-public?search=${search}${kategori_id ? `&kategori_id=${kategori_id}&` : `&`}harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&order=desc&show_as_product=1`, {
                         headers: {
                             'secret': API_SECRET,
                             'device': 'web'
@@ -592,15 +587,14 @@
                         isProduk = 1;
                         $.each(dataProduk, function(key, value) {
                             $('#dataProduk').append(`
-                                <div class="post-box" >
+                                <div class="post-box shadow" >
                                     <div style="cursor:pointer" onclick='detailProduk(${JSON.stringify(value)})'>
-                                        <div class="post-img"><img
-                                        src="${value.photo[0] && value.photo[0].path ? value.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}"
-                                        class="img-fluid" alt=""></div>
+                                        <div class=""><img
+                                        src="${value.photo[0] && value.photo[0].path ? `https:\/\/api.balanja.kehosting.in\/barang\/photo\/${value.photo[0].photo}` : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}"
+                                        class="rounded-4" style="width: 100%; height: 180px; object-fit: cover;" alt=""></div>
 
-                                        <h6 class="text-dark"><b> ${value.nama.slice(0, 17) + (value.nama.length > 17 ? "..." : "")}  </b></h6>
+                                        <h6 class="mt-2"><b> ${value.nama.slice(0, 17) + (value.nama.length > 17 ? "..." : "")}  </b></h6>
                                         <b class="text--primary" > ${rupiah(value.harga)}</b> ${value.harga_coret > 0 ? `<s style="font-size: 13px; color: grey;">${rupiah(value.harga_coret)}</s>` : ''} <br>
-                                        <span style="color: grey; font-size:12px;">${value.varian_barang[0].gudang.alamat ? value.varian_barang[0].gudang.alamat : ''}</span>
                                         <hr>
                                     </div>
                                     <div class="text-center row">
@@ -660,7 +654,7 @@
 
 
         function getGudang() {
-            axios.get(`${API_URL}/v1/gudang-public?member_id=${gerai_id}`, {
+            axios.get(`${API_URL}/gudang-public?member_id=${gerai_id}`, {
                     headers: {
                         'secret': API_SECRET,
                         'device': 'web'
@@ -689,7 +683,7 @@
             isLoading = true;
             loadingElement.style.display = 'block';
             axios.get(
-                    `${API_URL}/v1/toko-penyimpanan-public?&search=${search}${kategori_id ? `&kategori_id=${kategori_id}&` : `&`}harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&show_as_product=1`, {
+                    `${API_URL}/toko-penyimpanan-public?&search=${search}${kategori_id ? `&kategori_id=${kategori_id}&` : `&`}harga=retail&start=${(page - 1) * itemsPerPage}&length=${itemsPerPage}&gudang_id=83&show_as_product=1`, {
                         headers: {
                             'secret': API_SECRET,
                             'device': 'web'
@@ -704,15 +698,14 @@
                         isProduk = 1;
                         $.each(dataProduk, function(key, value) {
                             $('#dataProduk').append(`
-                                <div class="post-box" >
+                                <div class="post-box bg-dark" >
                                     <div style="cursor:pointer" onclick='detailProduk(${JSON.stringify(value)})'>
-                                        <div class="post-img"><img
-                                        src="${value.photo[0] && value.photo[0].path ? value.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}"
-                                        class="img-fluid" alt=""></div>
+                                        <div class=""><img
+                                        src="${value.photo[0] && value.photo[0].path ? `https:\/\/api.balanja.kehosting.in\/barang\/photo\/${value.photo[0].photo}` : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}"
+                                        class="rounded-4" style="width: 100%; height: 180px; object-fit: cover;" alt=""></div>
 
-                                        <h6 class="text-dark"><b> ${value.nama.slice(0, 17) + (value.nama.length > 17 ? "..." : "")}  </b></h6>
+                                        <h6 class="mt-2"><b> ${value.nama.slice(0, 17) + (value.nama.length > 17 ? "..." : "")}  </b></h6>
                                         <b class="text--primary" > ${rupiah(value.harga)}</b> ${value.harga_coret > 0 ? `<s style="font-size: 13px; color: grey;">${rupiah(value.harga_coret)}</s>` : ''} <br>
-                                        <span style="color: grey; font-size:12px;">${value.varian_barang[0].gudang.alamat ? value.varian_barang[0].gudang.alamat : ''}</span>
                                         <hr>
                                     </div>
                                     <div class="text-center row">
@@ -778,7 +771,7 @@
                         member_id: JSON.parse(user).karyawan.id,
                     }
                     var token = localStorage.getItem('token')
-                    axios.post(`${API_URL}/v1/input/cart`, [payload], {
+                    axios.post(`${API_URL}/input/cart`, [payload], {
                             headers: {
                                 'secret': API_SECRET,
                                 'Author': 'bearer ' + token,

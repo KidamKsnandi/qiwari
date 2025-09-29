@@ -44,7 +44,7 @@
                 {{--
                 <div class="col-sm-6">
                     <a href="">
-                        <div class="card border-0 shadow mb-4" style="border-radius: 10px;">
+                        <div class="card border-0 bg-white shadow mb-4" style="border-radius: 10px;">
                             <div class="card-body">
                                 <h5 class="text-uppercase text-dark"><b>WANDINI YUSLINDAWATI</b></h5>
                                 <div style="font-size: 13px;">
@@ -86,13 +86,15 @@
     <script src="{{ asset('lib/axios.min.js') }}"></script>
 
     <script>
-        getProduk()
         var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
-        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+        getProduk()
+
+
         function getProduk() {
-            axios.get(`${API_URL}/v1/affiliator/cabang`, {
+            axios.get(`${API_URL}/affiliator/cabang`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'device': 'web'
                     }
                 })
@@ -103,7 +105,7 @@
                         $.each(dataCabang, function(key, value) {
                             $('#dataCabang').append(`<div class="col-sm-6">
                         <div>
-                            <div class="card border-0 shadow mb-4" style="border-radius: 10px;">
+                            <div class="card border-0 bg-white shadow mb-4" style="border-radius: 10px;">
                                 <div class="card-body">
                                     <h5 class="text-uppercase text-dark"><b>${value.nama_cabang}</b></h5>
                                     <div style="font-size: 13px;">

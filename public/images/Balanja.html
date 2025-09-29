@@ -6,33 +6,33 @@
 
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-        <title>Qiwari</title>
+        <title>Terapis</title>
         <meta content="" name="description" />
 
         <meta content="" name="keywords" />
 
         <!-- Favicons -->
-        <link href="http://localhost:8000/images/logo-balanja.png" rel="icon" />
+        <link href="http://localhost:8000/images/logo-matrial.png" rel="icon" />
         <link
-            href="http://localhost:8000/images/logo-balanja.png"
+            href="http://localhost:8000/images/logo-matrial.png"
             rel="apple-touch-icon"
         />
 
         <!-- Google Fonts -->
-        <link href="./Qiwari_files/css" rel="stylesheet" />
+        <link href="./Balanja_files/css" rel="stylesheet" />
 
         <!-- Vendor CSS Files -->
-        <link href="./Qiwari_files/aos.css" rel="stylesheet" />
-        <link href="./Qiwari_files/bootstrap.min.css" rel="stylesheet" />
-        <link href="./Qiwari_files/bootstrap-icons.css" rel="stylesheet" />
-        <link href="./Qiwari_files/glightbox.min.css" rel="stylesheet" />
-        <link href="./Qiwari_files/remixicon.css" rel="stylesheet" />
-        <link href="./Qiwari_files/swiper-bundle.min.css" rel="stylesheet" />
+        <link href="./Balanja_files/aos.css" rel="stylesheet" />
+        <link href="./Balanja_files/bootstrap.min.css" rel="stylesheet" />
+        <link href="./Balanja_files/bootstrap-icons.css" rel="stylesheet" />
+        <link href="./Balanja_files/glightbox.min.css" rel="stylesheet" />
+        <link href="./Balanja_files/remixicon.css" rel="stylesheet" />
+        <link href="./Balanja_files/swiper-bundle.min.css" rel="stylesheet" />
 
-        <link href="./Qiwari_files/splide.css" rel="stylesheet" />
+        <link href="./Balanja_files/splide.css" rel="stylesheet" />
 
         <!-- Template Main CSS File -->
-        <link href="./Qiwari_files/style.css" rel="stylesheet" />
+        <link href="./Balanja_files/style.css" rel="stylesheet" />
         <style>
             .atasButton {
                 margin-bottom: 50px;
@@ -62,7 +62,7 @@
                     class="logo d-flex align-items-center"
                 >
                     <img
-                        src="./Qiwari_files/logo-balanja.png"
+                        src="./Balanja_files/logo-Matrial.png"
                         width="100%"
                         alt="Logo"
                     />
@@ -73,7 +73,7 @@
                         <li>
                             <a
                                 class="nav-link scrollto"
-                                href="https://wa.me/6285861345339?text=Hai,%20Qiwari.id%20Saya%20Butuh%20Bantuan!!"
+                                href="https://wa.me/6285861345339?text=Hai,%20Balanja.id%20Saya%20Butuh%20Bantuan!!"
                             >
                                 <span class="position-relative">
                                     <i
@@ -132,7 +132,7 @@
                                     onclick="cari()"
                                     class="btn"
                                     style="
-                                        background: rgb(31, 198, 16);
+                                        background: #35a949;
                                         color: white;
                                         margin-right: 10px;
                                     "
@@ -148,7 +148,7 @@
                         <li>
                             <a
                                 class="nav-link scrollto mt-2"
-                                href="https://wa.me/6285861345339?text=Hai,%20Qiwari.id%20Saya%20Butuh%20Bantuan!!"
+                                href="https://wa.me/6285861345339?text=Hai,%20Balanja.id%20Saya%20Butuh%20Bantuan!!"
                             >
                                 <span class="position-relative">
                                     <i
@@ -236,7 +236,7 @@
                             onclick="cariM()"
                             class="btn"
                             style="
-                                background: rgb(31, 198, 16);
+                                background: #35a949;
                                 color: white;
                                 margin-right: 10px;
                             "
@@ -250,8 +250,8 @@
             </div>
         </header>
         <!-- End Header -->
-        <script src="./Qiwari_files/jquery.min.js.download"></script>
-        <script src="./Qiwari_files/axios.min.js.download"></script>
+        <script src="./Balanja_files/jquery.min.js.download"></script>
+        <script src="./Balanja_files/axios.min.js.download"></script>
         <script>
             var queryString = window.location.search;
             var urlParams = new URLSearchParams(queryString);
@@ -290,7 +290,7 @@
                 var token = localStorage.getItem("token");
                 axios
                     .get(
-                        `https://api-bal.zuppaqu.com/v1/cart?member_id=${
+                        `${API_URL}/cart?member_id=${
                             JSON.parse(user).karyawan.id
                         }`,
                         {
@@ -321,7 +321,7 @@
                     });
                 axios
                     .get(
-                        `https://api-bal.zuppaqu.com/v1/transaksi-online?konsumen_member_id=${
+                        `${API_URL}/transaksi-online?konsumen_member_id=${
                             JSON.parse(user).karyawan.id
                         }&show_bukti_tf=1&status=pending&view_as_invoice=1&start=0&length=20`,
                         {
@@ -413,14 +413,14 @@
                 name="csrf-token"
                 content="1R4UDUejNfGAFJhfYjoRYvigluaPSAk80uQ6UGnC"
             />
-            <link rel="stylesheet" href="./Qiwari_files/all.min.css" />
+            <link rel="stylesheet" href="./Balanja_files/all.min.css" />
             <link
                 rel="stylesheet"
-                href="./Qiwari_files/bootstrap-icons(1).css"
+                href="./Balanja_files/bootstrap-icons(1).css"
             />
 
-            <link href="./Qiwari_files/select2.min.css" rel="stylesheet" />
-            <script src="./Qiwari_files/feather-icons"></script>
+            <link href="./Balanja_files/select2.min.css" rel="stylesheet" />
+            <script src="./Balanja_files/feather-icons"></script>
             <style>
                 label {
                     float: left;
@@ -533,7 +533,7 @@
                         <form
                             action="http://localhost:8000/login"
                             method="post"
-                            class="col-lg-7 php-email-form bg-white card border-0"
+                            class="col-lg-7 php-email-form bg-white card border-0 bg-dark"
                             style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.13)"
                         >
                             <div class="row gy-4">
@@ -608,10 +608,10 @@
                 </div>
             </section>
 
-            <script src="./Qiwari_files/jquery.min.js.download"></script>
-            <script src="./Qiwari_files/jquery.validate.min.js.download"></script>
-            <script src="./Qiwari_files/axios.min.js.download"></script>
-            <script src="./Qiwari_files/select2.min.js.download"></script>
+            <script src="./Balanja_files/jquery.min.js.download"></script>
+            <script src="./Balanja_files/jquery.validate.min.js.download"></script>
+            <script src="./Balanja_files/axios.min.js.download"></script>
+            <script src="./Balanja_files/select2.min.js.download"></script>
 
             <script>
                 $(".theSelect").select2();
@@ -650,7 +650,7 @@
 
                     axios
                         .post(
-                            "https://api-bal.zuppaqu.com/v1/auth/user-login",
+                            `${API_URL}/auth/user-login",
                             data,
                             {
                                 headers: headers,
@@ -763,7 +763,7 @@
                                 class="logo d-flex align-items-center"
                             >
                                 <img
-                                    src="./Qiwari_files/logo-balanja.png"
+                                    src="./Balanja_files/logo-Matrial.png"
                                     alt="Logo"
                                 />
                             </a>
@@ -793,7 +793,7 @@
                         </div>
 
                         <div class="col-lg-2 col-6 footer-links">
-                            <h4>Tentang Qiwari</h4>
+                            <h4>Tentang Terapis</h4>
                             <ul>
                                 <li>
                                     <i class="bi bi-chevron-right"></i>
@@ -841,7 +841,7 @@
                                 <li>
                                     <i class="bi bi-chevron-right"></i>
                                     <a href="http://localhost:8000/login#"
-                                        >Jual Di Qiwari</a
+                                        >Jual Di Terapis</a
                                     >
                                 </li>
                                 <li>
@@ -870,7 +870,7 @@
 
             <div class="container">
                 <div class="copyright">
-                    © Copyright <strong><span>Qiwari 2023</span></strong
+                    © Copyright <strong><span>Terapis 2023</span></strong
                     >. All Rights Reserved
                 </div>
             </div>
@@ -884,14 +884,14 @@
         ></a>
 
         <!-- Vendor JS Files -->
-        <script src="./Qiwari_files/mixin.js.download"></script>
-        <script src="./Qiwari_files/purecounter_vanilla.js.download"></script>
-        <script src="./Qiwari_files/aos.js.download"></script>
-        <script src="./Qiwari_files/bootstrap.bundle.min.js.download"></script>
-        <script src="./Qiwari_files/glightbox.min.js.download"></script>
-        <script src="./Qiwari_files/isotope.pkgd.min.js.download"></script>
-        <script src="./Qiwari_files/swiper-bundle.min.js.download"></script>
-        <script src="./Qiwari_files/validate.js.download"></script>
+        <script src="./Balanja_files/mixin.js.download"></script>
+        <script src="./Balanja_files/purecounter_vanilla.js.download"></script>
+        <script src="./Balanja_files/aos.js.download"></script>
+        <script src="./Balanja_files/bootstrap.bundle.min.js.download"></script>
+        <script src="./Balanja_files/glightbox.min.js.download"></script>
+        <script src="./Balanja_files/isotope.pkgd.min.js.download"></script>
+        <script src="./Balanja_files/swiper-bundle.min.js.download"></script>
+        <script src="./Balanja_files/validate.js.download"></script>
 
         <script>
             var transaksi = localStorage.getItem("dataTransaksi");
@@ -900,7 +900,7 @@
                 var token = localStorage.getItem("token");
                 axios
                     .get(
-                        `https://api-bal.zuppaqu.com/v1/cart?member_id=${
+                        `${API_URL}/cart?member_id=${
                             JSON.parse(user).karyawan.id
                         }`,
                         {
@@ -931,7 +931,7 @@
                     });
                 axios
                     .get(
-                        `https://api-bal.zuppaqu.com/v1/transaksi-online?konsumen_member_id=${
+                        `${API_URL}/transaksi-online?konsumen_member_id=${
                             JSON.parse(user).karyawan.id
                         }&show_bukti_tf=1&status=pending&view_as_invoice=1&start=0&length=20`,
                         {
@@ -989,7 +989,7 @@
         </script>
 
         <!-- Template Main JS File -->
-        <script src="./Qiwari_files/main.js.download"></script>
+        <script src="./Balanja_files/main.js.download"></script>
 
         <span id="PING_IFRAME_FORM_DETECTION" style="display: none"></span>
     </body>

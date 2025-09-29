@@ -73,7 +73,7 @@
             <div class="row">
                 <center>
                     <div class="col-lg-7">
-                        <div class="card border-0 shadow mb-5">
+                        <div class="card border-0 bg-white shadow mb-5">
                             <div class="card-body">
                                 <div class="row dataProduk" id="dataProduk">
 
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <h6 style="color: rgb(66, 66, 66);"><b>Pilih Metode Pembayaran</b></h6>
-                        <div class="card border-0 shadow mb-3 mt-1">
+                        <div class="card border-0 bg-white shadow mb-3 mt-1">
                             <div class="card-body">
                                 <div class="accordion accordion-flush" id="faqlist1">
                                     <div class="accordion-item">
@@ -271,7 +271,7 @@
                             </div>
                         </div>
 
-                        <div class="card border-0 shadow mb-3 mt-4">
+                        <div class="card border-0 bg-white shadow mb-3 mt-4">
                             <div class="card-body">
                                 <h5 class="text-start mb-2"><b>Ringkasan Pembayaran</b></h5>
                                 <div class="" id="ringkasanPembayaran">
@@ -313,7 +313,7 @@
     <script src="{{ asset('lib/axios.min.js') }}"></script>
     <script>
         var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
-        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         const rp = (number, prefix = undefined) => {
             // return new Intl.NumberFormat("id-ID", {
             //     style: "currency",
@@ -437,10 +437,10 @@
                 kecamatan: data.kecamatan_id,
                 desa: data.desa_id,
             }
-            
-            axios.post(`${API_URL}/v1/checkout`, payload, {
+            console.log("payload", payload)
+            axios.post('notive.my.id/v1/checkout`, payload, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'device': 'web'
                     }
                 })

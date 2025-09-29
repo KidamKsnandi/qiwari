@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Balanja.id</title>
+    <title>Terapis</title>
     <meta content="" name="description">
 
     <meta content="" name="keywords">
@@ -37,6 +37,9 @@
 
 <body>
     <style>
+        body {
+            background: #1e1e1e;
+        }
         #map {
             height: 300px;
         }
@@ -45,7 +48,7 @@
         <div class="container">
             <a onclick="javascript:history.back()" class="btn btn-outline-secondary mb-4"><i
                     class="bi bi-arrow-left me-1"></i>Kembali</a>
-            <div class="card">
+            <div class="card bg-dark" style="color: whitesmoke;">
                 <div class="card-header">
                     <h5>Tambah Alamat Baru</h5>
                 </div>
@@ -172,8 +175,7 @@
                             <span class="text-secondary" style="font-size: 13px;">Warna rumah, patokan, pesan khusus,
                                 dll.</span>
                         </div>
-                        <button type="button" onclick="tambahAlamat()" class="btn w-100 text-white"
-                            style="background: rgb(20, 169, 20);">Tambah
+                        <button type="button" onclick="tambahAlamat()" class="btn w-100 text-white btn-primary">Tambah
                             Alamat</button>
                     </form>
                 </div>
@@ -199,7 +201,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
-        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         $(".theSelect").select2();
         var user = localStorage.getItem('user')
         if (user == null) {
@@ -274,9 +276,9 @@
         getProvinsi()
 
         function getProvinsi() {
-            axios.get(`${API_URL}/v1/wilayah/provinsi`, {
+            axios.get(`${API_URL}/wilayah/provinsi`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'device': 'web'
                     }
                 })
@@ -299,9 +301,9 @@
             $('#provinsi_id').on('change', function() {
                 var id_provinsi = this.value;
                 axios.get(
-                        `${API_URL}/v1/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
+                        `${API_URL}/wilayah/kab-kota?id_provinsi=${id_provinsi}`, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'device': 'web'
                             }
                         })
@@ -324,9 +326,9 @@
             $('#kab_kota_id').on('change', function() {
                 var id_kab_kota = this.value;
                 axios.get(
-                        `${API_URL}/v1/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
+                        `${API_URL}/wilayah/kecamatan?id_kab_kota=${id_kab_kota}`, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'device': 'web'
                             }
                         })
@@ -348,9 +350,9 @@
             $('#kecamatan_id').on('change', function() {
                 var id_kecamatan = this.value;
                 axios.get(
-                        `${API_URL}/v1/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
+                        `${API_URL}/wilayah/kelurahan?id_kecamatan=${id_kecamatan}`, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'device': 'web'
                             }
                         })
@@ -408,9 +410,9 @@
                 alert('Harap isi semua form!')
 
             } else {
-                axios.post(`${API_URL}/v1/member/inputalamat`, payload, {
+                axios.post(`${API_URL}/member/input-alamat`, payload, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }

@@ -42,8 +42,8 @@
             height: 25px;
             border-radius: 50%;
             background:
-                radial-gradient(farthest-side, #F4F4F4 94%, #0000) top/4px 4px no-repeat,
-                conic-gradient(#0000 30%, #F4F4F4);
+                radial-gradient(farthest-side, #39A74A 94%, #0000) top/4px 4px no-repeat,
+                conic-gradient(#0000 30%, #39A74A);
             -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 4px), #000 0);
             animation: s3 0.5s infinite linear;
         }
@@ -94,14 +94,23 @@
         }
 
         .type-option {
-            padding: 10px;
+            padding: 7px 13px;
             margin-right: 10px;
             cursor: pointer;
             border: 1px solid #ccc;
+            border-radius: 13px;
+            transition: 0.3s ease;
         }
-
+        
         .type-option:hover {
-            border: 1px solid #333;
+            border: 1px solid #39A74A;
+            color: #39A74A;
+            box-shadow: 0px 5px 10px rgba(151, 127, 33, 0.179);
+        }
+        .type-option.active {
+            background: #39A74A;
+            color: white;
+            box-shadow: 0px 4px 8px rgba(136, 123, 50, 0.3);
         }
 
         @keyframes shimer {
@@ -252,22 +261,19 @@
                 <div class="col-lg-6 mt-5 mt-lg-0">
                     <div class="" data-aos="fade-up" style="">
                         <div class="card-body ">
-                            <h2 style="color: gray; font-size: 20px; font-weight: bold;">
-                                DETAIL PRODUK
-                            </h2>
 
-                            <div class="mb-2">
-                                <h4><b id="namaProduk">
+                            <div class="">
+                                <h4 class=""><b id="namaProduk">
                                         <div class="skeleton-content"></div>
                                     </b></h4>
                             </div>
                             <div class="">
-                                <h2 id="hargaProduk" class="text--primary" style="">
+                                <h3 id="hargaProduk" class="text--primary fw-bold" style="">
                                     <div class="skeleton-content"></div>
-                                </h2>
+                                </h3>
                                 <input type="hidden" id="harga_produk">
-                                <hr>
                             </div>
+                            <hr>
                             {{-- <div class="chips mb-3">
                                 @if ($varian != '[]')
                                     <b class="mb-2">Pilih Varian</b><br>
@@ -285,7 +291,7 @@
                                     <hr>
                                 @endif
                             </div> --}}
-                            <p>Varian:</p>
+                            <div class="mb-1">Varian</div>
                             <div id="typeOptions" class="type-options mb-3"></div>
 
                             <div class="row">
@@ -306,14 +312,14 @@
                                     </b>
                                 </span>
                             </div>
-                            {{-- <div class="mb-2 ">
+                            <div class="mb-2 ">
                                 <span style="" id="labelBerat">
                                     Berat :
                                     <b class="" id="beratProduk">
                                         <div class="skeleton-content"></div>
                                     </b>
                                 </span>
-                            </div> --}}
+                            </div>
                             <br>
                             <div class="mb-3 ">
                                 <label for=""><b> Deskripsi </b></label> <br>
@@ -329,29 +335,20 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card" data-aos="fade-left">
-                        <div class="card-header bg-white">
-                            Atur Jumlah Dan Catatan
-                        </div>
-                        <div class="container">
-                            <br>
-                            <div class="bungkus" id="bungkus" style="display:flex">
-
-                                <i id="sub" style="cursor: pointer;" class="sub bi bi-dash-circle"
-                                    data-feather="minus-circle"></i>
-                                &nbsp;
-                                <input type="number" id="qty" value="1"
-                                    style="width: 40px; border: 0; text-align: center; font-weight: bold;" />
-
-                                &nbsp;
-                                <i id="add" data-feather="plus-circle" class="add bi bi-plus-circle"
-                                    style="cursor: pointer;"></i>
-                            </div>
-                            <div class="row">
+                    <div class="card border-0 bg-white shadow" style="border-radius: 20px;">
+                        <div class="p-3">
+                            <h6><b> Atur Jumlah Dan Catatan </b></h6>
+                            <hr>
+                            <div class="bungkus" id="bungkus">
+                                <i id="sub" class="sub bi bi-dash-circle"></i>
+                                <input type="number" id="qty" value="1" />
+                                <i id="add" class="add bi bi-plus-circle"></i>
+                              </div>
+                            <div class="row mt-1">
                                 <div class="col" id="stokView">
                                     <span style="" class="mt-2">Stok total </span>: <b> <span id="stok">
-                                            <div class="custom-loader"></div>
-                                        </span>
+                                        <div class="custom-loader"></div>
+                                    </span>
                                     </b>
                                 </div>
                             </div>
@@ -371,16 +368,16 @@
 
 
                                 {{-- <button onclick="masukKeranjang()" type="button"
-                                    class="btn col-sm-12 text--primary btn-white"
-                                    style="border: 1px solid #7044ef; width: 100%">+ Masukan
+                                    class="btn w-100 fw-bold"
+                                    width: 100%">+ Masukan
                                     Keranjang </button>
-                                <button type="submit" class=" btn--primary form-control mt-3"> Beli
+                                <button type="submit" class=" btn btn-primary fw-bold mt-2"> Beli
                                     Sekarang
                                 </button> --}}
 
 
                             </form>
-                            <hr>
+                            <hr class="mt-3">
                             <div class="row">
                                 {{-- <div class="col">
                                     <center>
@@ -406,8 +403,8 @@
                                 <div class="col">
                                     <center>
                                         <a href="https://wa.me/6285861345339?text=Apakah Barang Masih Ada??   ""
-                                            style="cursor: pointer; color:green"> <i class="bi bi-whatsapp"
-                                                style="font-size: 25px;"></i>
+                                            style="cursor: pointer;"> <i class="bi bi-whatsapp"
+                                                style="font-size: 25px; color: grey;"></i>
                                         </a>
                                     </center>
                                 </div>
@@ -420,7 +417,6 @@
                                     </center>
                                 </div>
                             </div>
-                            <br>
                         </div>
                     </div>
                 </div>
@@ -489,7 +485,7 @@
                         <div class="mb-3">
                             <label for="tanggal" class="form-label">Tanggal</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="day" disabled>
+                                <input type="text" class="form-control" id="day" readonly>
                                 <input type="date" class="form-control" id="tanggal" onchange="displayDay()">
                             </div>
                         </div>
@@ -499,7 +495,7 @@
                         </div>
                         <div class="mb-3" id="keteranganPreOrder">
                             <label for="keterangan" class="form-label">Keterangan/Keluhan</label>
-                            <textarea class="form-control" id="keterangan" rows="3" placeholder="Tambahkan keterangan/keluhan" required></textarea>
+                            <textarea class="form-control" id="keterangan" rows="3" placeholder="Tambahkan keterangan/keluhan"></textarea>
                         </div>
                         <div class="mb-3">
                             <div class="alert alert-info" role="alert">
@@ -530,7 +526,7 @@
     </script>
     <script>
         var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
-        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
         var member = urlParams.get('member');
@@ -603,9 +599,9 @@
                         member_id: JSON.parse(user).karyawan.id,
                     }
                     var token = localStorage.getItem('token')
-                    axios.post(`${API_URL}/v1/input/cart`, [payload], {
+                    axios.post(`${API_URL}/input/cart`, [payload], {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'Author': 'bearer ' + token,
                                 'device': 'web'
                             }
@@ -701,8 +697,6 @@
         }
 
         function booking(detailProduk, detailProduks) {
-            window.location.href = `/member/pre-order/member-card`
-            return false
             let data = []
             var qty = $('#qty').val()
             data.push({
@@ -717,6 +711,7 @@
 
             localStorage.setItem('produkItem', JSON.stringify(data))
             activeModalBooking()
+            // window.location.href = `/checkout?pass_cart=n`
         }
 
         function bookingPesan() {
@@ -761,14 +756,15 @@
                 $('#jumlah').attr('readonly', true)
                 $('#jumlahPreOrder').hide()
             } else {
+                $('#alamatPreOrder').hide()
                 $('#keteranganPreOrder').hide()
             }
         }
 
         function cekMember() {
-            axios.get(`${API_URL}/v1/affiliator/member-public/${gerai_id}`, {
+            axios.get(`${API_URL}/affiliator/member-public/${gerai_id}`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'device': 'web'
                     }
                 })
@@ -793,9 +789,9 @@
         }
 
         function getGudang() {
-            axios.get(`${API_URL}/v1/gudang-public?member_id=${gerai_id}`, {
+            axios.get(`${API_URL}/gudang-public?member_id=${gerai_id}`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'device': 'web'
                     }
                 })
@@ -822,9 +818,9 @@
         function getProduk() {
 
             axios.get(
-                    `${API_URL}/v1/toko-penyimpanan-public?harga=retail&gudang_id=${gudang_id}&show_as_product=1`, {
+                    `${API_URL}/toko-penyimpanan-public?harga=retail&gudang_id=${gudang_id}&show_as_product=1`, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'device': 'web'
                         }
                     })
@@ -838,17 +834,17 @@
                     if (detailProduk) {
                         if (produkDetail.barang.product_type != 'jasa') {
                             $('#handleButton').html(`<button ${detailProduk.jumlah == 0 ? 'disabled' : ''} id="keranjangButton" onclick='masukKeranjang(${JSON.stringify(detailProduk)})' type="button"
-                                        class="btn col-sm-12 text--primary btn-white"
-                                        style="border: 1px solid #7044ef; width: 100%">
+                                        class="btn w-100 fw-bold"
+                                        width: 100%">
                                         <center>
-                                        <div class="custom-keranjang">+ Masukan Keranjang </div>
+                                        <div class="custom-keranjang">Masukan Keranjang </div>
                                         <div class="custom-loader" hidden></div>
                                         </center>
                                         </button>
-                                        <button ${detailProduk.jumlah == 0 ? 'disabled' : ''} type="button" onclick='beliSekarang(${JSON.stringify(detailProduk)}, ${JSON.stringify(detailProduks)})' class=" btn--primary form-control mt-3"> Beli Sekarang
+                                        <button ${detailProduk.jumlah == 0 ? 'disabled' : ''} type="button" onclick='beliSekarang(${JSON.stringify(detailProduk)}, ${JSON.stringify(detailProduks)})' class=" btn btn-primary fw-bold mt-2"> Beli Sekarang
                                         </button>`);
                         }
-                        $('#productImage').html(` <img src="${detailProduk.barang.photo[0] != null && detailProduk.barang.photo[0].path != null ? detailProduk.barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}" data-aos="fade-right" class="rounded"
+                        $('#productImage').html(` <img src="${detailProduk.barang.photo[0] != null && detailProduk.barang.photo[0].path != null ? detailProduk.barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}" class="" style="border-radius: 20px;"
                         width="100%" alt="">`);
                         $('#namaProduk').html(detailProduk.barang.nama + ` - ${detailProduk.barang.varian}`);
                         $('#hargaProduk').html(rupiah(detailProduk.harga) + " " +
@@ -891,7 +887,7 @@
                                 $('#namaProduk').html(type.barang.nama +
                                     ` - ${type.barang.varian}`);
                                 $('#productImage').html(
-                                    ` <img src="${type.barang.photo[0] && type.barang.photo[0].path != null ? type.barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}" data-aos="fade-right" class="rounded" width="100%" alt="">`
+                                    ` <img src="${type.barang.photo[0] && type.barang.photo[0].path != null ? type.barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}" class="" style="border-radius: 20px;" width="100%" alt="">`
                                 );
                                 if (type.barang.product_type != 'jasa') {
                                     $('#stok').html(type.jumlah);
@@ -908,14 +904,14 @@
                                 produkDetail = type
                                 if (type.barang.product_type != 'jasa') {
                                     $('#handleButton').html(`<button ${type.jumlah == 0 ? 'disabled' : ''} id="keranjangButton" onclick='masukKeranjang(${JSON.stringify(type)})' type="button"
-                                        class="btn col-sm-12 text--primary btn-white"
-                                        style="border: 1px solid #7044ef; width: 100%">
+                                        class="btn w-100 fw-bold"
+                                        width: 100%">
                                         <center>
-                                        <div class="custom-keranjang">+ Masukan Keranjang </div>
+                                        <div class="custom-keranjang">Masukan Keranjang </div>
                                         <div class="custom-loader" hidden></div>
                                         </center>
                                         </button>
-                                        <button ${type.jumlah == 0 ? 'disabled' : ''} type="button" onclick='beliSekarang(${JSON.stringify(type)}, ${JSON.stringify(detailProduks)})' class=" btn--primary form-control mt-3"> Beli Sekarang
+                                        <button ${type.jumlah == 0 ? 'disabled' : ''} type="button" onclick='beliSekarang(${JSON.stringify(type)}, ${JSON.stringify(detailProduks)})' class=" btn btn-primary fw-bold mt-2"> Beli Sekarang
                                         </button>`);
                                 }
                             });
@@ -940,9 +936,9 @@
         }
 
         function getDetailProduk() {
-            axios.get(`${API_URL}/v1/toko-penyimpanan/${slug}?harga=retail&show_as_product=1`, {
+            axios.get(`${API_URL}/toko-penyimpanan/${slug}?harga=retail&show_as_product=1`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'device': 'web'
                     }
                 })
@@ -951,12 +947,19 @@
                     let detailProduk = detailProduks.varian_barang.find(response => response.barang.slug == slug)
                     produkDetail = detailProduk
                     if (produkDetail.barang.product_type != 'jasa') {
-                        $('#handleButton').html(`
-                                            <button ${detailProduk.jumlah == 0 ? 'disabled' : ''} type="button" onclick='beliSekarang(${JSON.stringify(detailProduk)}, ${JSON.stringify(detailProduks)})' class='${detailProduk.jumlah == 0 ? 'btn btn-secondary' : 'btn--primary' } form-control mt-3'> Beli Sekarang
+                        $('#handleButton').html(`<button ${detailProduk.jumlah == 0 ? 'disabled' : ''} id="keranjangButton" onclick='masukKeranjang(${JSON.stringify(detailProduk)})' type="button"
+                                            class="btn w-100 fw-bold"
+                                            width: 100%">
+                                            <center>
+                                            <div class="custom-keranjang">Masukan Keranjang </div>
+                                            <div class="custom-loader" hidden></div>
+                                            </center>
+                                            </button>
+                                            <button ${detailProduk.jumlah == 0 ? 'disabled' : ''} type="button" onclick='beliSekarang(${JSON.stringify(detailProduk)}, ${JSON.stringify(detailProduks)})' class='${detailProduk.jumlah == 0 ? 'btn btn-secondary' : 'btn btn-primary w-100' } fw-bold mt-2'> Beli Sekarang
                                             </button>`);
                         if (detailProduk.barang.is_pre_order) {
                             $('#handleButton').append(`
-                                <button type="button" onclick='booking(${JSON.stringify(detailProduk)}, ${JSON.stringify(detailProduks)})' class='btn--primary form-control mt-3'> Pre-Order
+                                <button type="button" onclick='booking(${JSON.stringify(detailProduk)}, ${JSON.stringify(detailProduks)})' class='btn btn-outline-primary w-100 mt-2'> Pre-Order
                         </button>
                             `)
                         }
@@ -964,12 +967,12 @@
                         $('#handleButton').html('');
                         if (detailProduk.barang.is_pre_order) {
                             $('#handleButton').append(`
-                                    <button type="button" onclick='booking(${JSON.stringify(detailProduk)}, ${JSON.stringify(detailProduks)})' class='btn--primary form-control mt-3'> Pesan Sekarang
+                                    <button type="button" onclick='booking(${JSON.stringify(detailProduk)}, ${JSON.stringify(detailProduks)})' class='btn btn-primary w-100 mt-2'> Pesan Sekarang
                             </button>
                                 `)
                         }
                     }
-                    $('#productImage').html(` <img src="${detailProduk.barang.photo[0] != null && detailProduk.barang.photo[0].path != null ? detailProduk.barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}" data-aos="fade-right" class="rounded"
+                    $('#productImage').html(` <img src="${detailProduk.barang.photo[0] != null && detailProduk.barang.photo[0].path != null ? detailProduk.barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}" class="" style="border-radius: 20px;"
                         width="100%" alt="">`);
                     $('#namaProduk').html(detailProduk.barang.nama + ` - ${detailProduk.barang.varian}`);
                     // if (detailProduk.jumlah == 0) {
@@ -1017,7 +1020,7 @@
                             $('#namaProduk').html(type.barang.nama +
                                 ` - ${type.barang.varian}`);
                             $('#productImage').html(
-                                ` <img src="${type.barang.photo[0] && type.barang.photo[0].path != null ? type.barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}" data-aos="fade-right" class="rounded" width="100%" alt="">`
+                                ` <img src="${type.barang.photo[0] && type.barang.photo[0].path != null ? type.barang.photo[0].path : 'https://removal.ai/wp-content/uploads/2021/02/no-img.png'}" class="" style="border-radius: 20px;" width="100%" alt="">`
                             );
                             if (type.barang.product_type != 'jasa') {
                                 $('#stok').html(type.jumlah);
@@ -1039,18 +1042,18 @@
                             produkDetail = type
                             if (type.barang.product_type != 'jasa') {
                                 $('#handleButton').html(`<button ${type.jumlah == 0 ? 'disabled' : ''} id="keranjangButton" onclick='masukKeranjang(${JSON.stringify(type)})' type="button"
-                                        class="btn col-sm-12 text--primary btn-white"
-                                        style="border: 1px solid #7044ef; width: 100%">
+                                        class="btn w-100 fw-bold"
+                                        width: 100%">
                                         <center>
-                                        <div class="custom-keranjang">+ Masukan Keranjang </div>
+                                        <div class="custom-keranjang">Masukan Keranjang </div>
                                         <div class="custom-loader" hidden></div>
                                         </center>
                                         </button>
-                                         <button ${type.jumlah == 0 ? 'disabled' : ''} type="button" onclick='beliSekarang(${JSON.stringify(type)}, ${JSON.stringify(detailProduks)})' class='${type.jumlah == 0 ? 'btn btn-secondary' : 'btn--primary' } form-control mt-3'> Beli Sekarang
+                                         <button ${type.jumlah == 0 ? 'disabled' : ''} type="button" onclick='beliSekarang(${JSON.stringify(type)}, ${JSON.stringify(detailProduks)})' class='${type.jumlah == 0 ? 'btn btn-secondary' : 'btn btn-primary w-100' } fw-bold form-contro2 mt-3'> Beli Sekarang
                                         </button>`);
                                 if (type.barang.is_pre_order) {
                                     $('#handleButton').append(`
-                                            <button type="button" onclick='booking(${JSON.stringify(type)}, ${JSON.stringify(detailProduks)})' class='btn--primary form-control mt-3'> Pre-Order
+                                            <button type="button" onclick='booking(${JSON.stringify(type)}, ${JSON.stringify(detailProduks)})' class='btn btn-outline-primary w-100 mt-2'> Pre-Order
                                             </button>
                                             `)
                                 }
@@ -1058,7 +1061,7 @@
                                 $('#handleButton').html('');
                                 if (detailProduk.barang.is_pre_order) {
                                     $('#handleButton').append(`
-                                    <button type="button" onclick='booking(${JSON.stringify(detailProduk)}, ${JSON.stringify(detailProduks)})' class='btn--primary form-control mt-3'> Pesan Sekarang
+                                    <button type="button" onclick='booking(${JSON.stringify(detailProduk)}, ${JSON.stringify(detailProduks)})' class='btn btn-primary w-100 mt-2'> Pesan Sekarang
                             </button>
                                 `)
                                 }

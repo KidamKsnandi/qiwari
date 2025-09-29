@@ -12,7 +12,7 @@
             <span>{{ $artikel->user->name }} |
                 {{ Carbon::parse($artikel->created_at)->translatedFormat('D, d F Y') }}</span>
         </header>
-        <div class="card border-0">
+        <div class="card border-0 bg-dark">
             {!! $artikel->teks !!}
         </div>
     </div> --}}

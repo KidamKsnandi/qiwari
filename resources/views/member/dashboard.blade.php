@@ -150,7 +150,7 @@
     {{-- <div class="container" data-aos="fade-left">
         <h5 style="color: #36cc14;"><b>Paket Saya</b></h5>
         <hr>
-        <div class="card border-0 shadow" data-aos="zoom-in" data-aos-delay="100">
+        <div class="card border-0 bg-white shadow" data-aos="zoom-in" data-aos-delay="100">
             <div class="card-body">
                 <div class="">
                     Nama Paket <br>
@@ -173,7 +173,7 @@
             <input name="nav" type="radio" class="nav home-radio" id="home" checked="checked" />
             <div class="page home-page mt-4">
                 <div class="page-contents">
-                    <div class="card border-0 shadow">
+                    <div class="card border-0 bg-white shadow">
                         <div class="card-body">
                             <div class="">
                                 Nama Paket <br>
@@ -202,7 +202,7 @@
             <input name="nav" type="radio" class="about-radio" id="about" />
             <div class="page about-page mt-4">
                 <div class="page-contents">
-                    <div class="card border-0 shadow">
+                    <div class="card border-0 bg-white shadow">
                         <div class="card-body">
                             <div class="">
                                 Nama Paket <br>
@@ -232,7 +232,7 @@
             <div class="page contact-page mt-4">
                 <div class="page-contents">
                     <div class="alert alert-info">Menunggu Konfirmasi Dari Admin</div>
-                    <div class="card border-0 shadow">
+                    <div class="card border-0 bg-white shadow">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">

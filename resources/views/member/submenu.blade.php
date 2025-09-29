@@ -129,7 +129,7 @@
             @endif
 
             @if ($submenu->konten->halaman->teks)
-                <div class="card border-0">
+                <div class="card border-0 bg-dark">
                     {!! $submenu->konten->halaman->teks !!}
                 </div>
             @endif
@@ -250,7 +250,7 @@
                     style="width: 100%; height: 500px; object-fit: cover; border-top: 5px solid blue; border-bottom: 5px solid red;">
             @endif
             <h1 class="mt-4 text-uppercase">{{ $submenu->konten->artikel->judul }}</h1>
-            <div class="card border-0">
+            <div class="card border-0 bg-dark">
                 {!! $submenu->konten->artikel->teks !!}
             </div>
         @elseif ($submenu->konten->kegiatan != '')
@@ -261,7 +261,7 @@
                     style="width: 100%; height: 500px; object-fit: cover; border-top: 5px solid blue; border-bottom: 5px solid red;">
             @endif
             <h1 class="mt-4 text-uppercase">{{ $submenu->konten->kegiatan->judul }}</h1>
-            <div class="card border-0">
+            <div class="card border-0 bg-dark">
                 {!! $submenu->konten->kegiatan->teks !!}
             </div>
         @else

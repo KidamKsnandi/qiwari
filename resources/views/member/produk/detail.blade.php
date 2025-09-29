@@ -373,7 +373,7 @@
     <script src="{{ asset('lib/axios.min.js') }}"></script>
     <script>
         var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
-        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         var slug = '{{ $slug }}'
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
@@ -389,9 +389,9 @@
 
         function getDetailProduk() {
 
-            axios.get(`${API_URL}/v1/barang-public/${slug}?harga=retail`, {
+            axios.get(`${API_URL}/barang-public/${slug}?harga=retail`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'device': 'web'
                     }
                 })

@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-7">
-                <div class="card border-0 shadow rounded mb-4" style="background: white;" data-aos="fade-right">
+                <div class="card border-0 bg-white shadow rounded mb-4" style="background: white;" data-aos="fade-right">
                     <livewire:buat-usaha />
                 </div>
             </div>

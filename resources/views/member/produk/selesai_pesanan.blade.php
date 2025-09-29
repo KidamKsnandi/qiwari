@@ -2,16 +2,16 @@
 <script src="{{ asset('lib/axios.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-    var tokenEmail = "{{ $slug }}"
-    var formData = new FormData();
     var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
     var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+    var tokenEmail = "{{ $slug }}"
+    var formData = new FormData();
 
     formData.append('token', tokenEmail);
 
-    axios.post(`${API_URL}/v1/complete-checkout`, formData, {
+    axios.post(`${API_URL}/complete-checkout', formData, {
             headers: {
-                'secret': API_SECRET,
+                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                 'device': 'web'
             }
         })

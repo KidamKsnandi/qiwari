@@ -106,7 +106,7 @@
             @endif
 
             @if ($menu->konten->halaman->teks)
-                <div class="card border-0">
+                <div class="card border-0 bg-dark">
                     {!! $menu->konten->halaman->teks !!}
                 </div>
             @endif
@@ -251,7 +251,7 @@
                     style="width: 100%; height: 500px; object-fit: cover; border-top: 5px solid blue; border-bottom: 5px solid red;">
             @endif
             <h1 class="mt-4 text-uppercase">{{ $menu->konten->artikel->judul }}</h1>
-            <div class="card border-0">
+            <div class="card border-0 bg-dark">
                 {!! $menu->konten->artikel->teks !!}
             </div>
         @elseif ($menu->konten->kegiatan != '')
@@ -261,7 +261,7 @@
                     style="width: 100%; height: 500px; object-fit: cover; border-top: 5px solid blue; border-bottom: 5px solid red;">
             @endif
             <h1 class="mt-4 text-uppercase">{{ $menu->konten->kegiatan->judul }}</h1>
-            <div class="card border-0">
+            <div class="card border-0 bg-dark">
                 {!! $menu->konten->kegiatan->teks !!}
             </div>
         @else

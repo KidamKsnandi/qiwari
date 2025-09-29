@@ -249,7 +249,7 @@
             .green-button {
                 margin: 25px 14px;
                 background: #4294e3;
-                background: linear-gradient(47deg, rgb(126, 213, 149) 0%, #23ca23 68%);
+                background: linear-gradient(47deg, #cea249 0%, #35a949 68%);
                 /* Warna hijau */
                 color: #fff;
                 /* Warna teks putih */
@@ -346,7 +346,7 @@
     <script src="{{ asset('lib/axios.min.js') }}"></script>
     <script>
         var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
-        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
         const rp = (number, prefix = undefined) => {
             // return new Intl.NumberFormat("id-ID", {
             //     style: "currency",
@@ -395,9 +395,9 @@
                 `)
                 var token = localStorage.getItem('token')
                 let dataKeranjang;
-                axios.get(`${API_URL}/v1/cart?member_id`${JSON.parse(user).karyawan.id}`, {
+                axios.get(`${API_URL}/cart?member_id=${JSON.parse(user).karyawan.id}`, {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -469,9 +469,9 @@
                                             member_id: JSON.parse(user).karyawan.id,
                                         }
                                         var token = localStorage.getItem('token')
-                                        axios.post(`${API_URL}/v1/input/cart`, [payload], {
+                                        axios.post(`${API_URL}/input/cart`, [payload], {
                                                 headers: {
-                                                    'secret': API_SECRET,
+                                                    'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                                     'Author': 'bearer ' + token,
                                                     'device': 'web'
                                                 }
@@ -511,9 +511,9 @@
                                             member_id: JSON.parse(user).karyawan.id,
                                         }
                                         var token = localStorage.getItem('token')
-                                        axios.post(`${API_URL}/v1/input/cart`, [payload], {
+                                        axios.post(`${API_URL}/input/cart`, [payload], {
                                                 headers: {
-                                                    'secret': API_SECRET,
+                                                    'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                                     'Author': 'bearer ' + token,
                                                     'device': 'web'
                                                 }
@@ -678,6 +678,7 @@
                     } else {
                         var filterNot = dataCheckout.filter(res => res.id != item.id)
                     }
+                    console.log(filterNot)
                     localStorage.setItem('listCheckout', JSON.stringify(filterNot))
                 }
             }
@@ -716,9 +717,9 @@
                     id: id,
                 }
                 var token = localStorage.getItem('token')
-                axios.post(`${API_URL}/v1/delete/cart`, [payload], {
+                axios.post(`${API_URL}/delete/cart`, [payload], {
                         headers: {
-                            'secret': API_SECRET,
+                            'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                             'Author': 'bearer ' + token,
                             'device': 'web'
                         }
@@ -777,9 +778,9 @@
                         member_id: JSON.parse(user).karyawan.id,
                     }
                     var token = localStorage.getItem('token')
-                    axios.post(`${API_URL}/v1/input/cart`, [payload], {
+                    axios.post(`${API_URL}/input/cart`, payload, {
                             headers: {
-                                'secret': API_SECRET,
+                                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                                 'Author': 'bearer ' + token,
                                 'device': 'web'
                             }

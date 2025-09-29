@@ -32,7 +32,7 @@
                 @foreach ($wishList as $item)
                     <div class="col-lg-3 col-6">
                         <a href="{{ route('paket.detail', $item->produk->slug) }}">
-                            <div class="card border-0" data-aos="fade-in"
+                            <div class="card border-0 bg-dark" data-aos="fade-in"
                                 style="box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.119);">
                                 <img src="{{ $item->produk->gambar() }}"
                                     style="height: 180px; width: 100%; object-fit: cover;" data-aos="zoom-out"

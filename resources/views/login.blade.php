@@ -40,27 +40,6 @@
             }
         }
 
-        .otp-input-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .otp-input {
-            width: 60px;
-            height: 50px;
-            font-size: 24px;
-            text-align: center;
-            border: 2px solid rgba(10, 115, 250, 0.5);
-            border-radius: 10px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .otp-input:focus {
-            border-color: rgb(74, 239, 68);
-            box-shadow: 0 0 5px rgb(74, 239, 67);
-        }
     </style>
     <br><br><br>
 
@@ -94,144 +73,66 @@
 
 
 
-    <section id="contact" class="contact" style="background: rgba(245, 245, 245, 0.116);">
+    <div style="">
 
-        <div class="container py-5" data-aos="fade-up" id="loginView" style="display: none">
-            <h2 class="text-center text--primary mb-4"><b>Login</b></h2>
-
-            <div style="display: flex; justify-content: center;">
-                <form action="" method="post" id="php-email-form"
-                    class="col-lg-6 php-email-form bg-white card border-0 p-4"
-                    style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.13); border-radius: 15px;">
-                    <div class="row gy-4">
-                        <!-- Conditional rendering based on URL parameter -->
-                        <!-- Jika type=whatsapp -->
-                        <div id="whatsapp-login" style="display: none;">
-                            <div class="col-md-12">
-                                <label for="phone" class="form-label">Nomor Telepon Whatsapp</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class="bi bi-phone"></i>
-                                    </span>
-                                    <input type="tel" id="phone" class="form-control" name="phone"
-                                        placeholder="Masukkan Nomor Telepon" required min="12">
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-12 text-center">
-                                <button type="submit" onclick="loginWhatsapp()" class="btn btn-primary col-10 mt-3"
-                                    style="background: linear-gradient(47deg, rgb(126, 213, 149) 0%, #23ca23 68%); border-radius: 25px;">
-                                    <div class="custom-login"> <i class="bi bi-whatsapp me-2"></i>Login via WhatsApp</div>
-                                    <center>
-                                        <div class="custom-loader" hidden></div>
-                                    </center>
-
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Jika type=email -->
-                        <div id="email-login" style="display: none;">
-                            <div class="col-md-12">
-                                <label for="email" class="form-label">Email</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class="bi bi-envelope"></i>
-                                    </span>
-                                    <input type="email" id="email" class="form-control" name="email"
-                                        placeholder="Masukkan Email" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <label for="password" class="form-label">Password</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class="bi bi-lock"></i>
-                                    </span>
-                                    <input type="password" id="password" class="form-control" name="password"
-                                        placeholder="Masukkan Password" required>
-                                </div>
-                                <div class="form-text text-start mt-1">
-                                    <input type="checkbox" onclick="showPassword()">&nbsp; Lihat Password
-                                </div>
-                            </div>
-
-                            <div class="col-md-12 text-center">
-                                <button type="submit" onclick="loginEmail()" class="btn btn-primary col-8 mt-3"
-                                    style="background: linear-gradient(47deg, rgb(126, 213, 149) 0%, #23ca23 68%); border-radius: 25px;">
-                                    {{-- <div class="custom-login"> <i class="bi bi-envelope me-2"></i>Login via Email</div> --}}
-                                    <div class="custom-login">Login</div>
-                                    <center>
-                                        <div class="custom-loader" hidden></div>
-                                    </center>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Link untuk beralih login -->
-                        <div class="col-md-12 text-center mt-4">
-                            <a href="?type=email" id="link-email" class="btn btn-link" style="display: none;">
-                                <i class="bi bi-envelope"></i> Login via Email
-                            </a>
-                            <a href="?type=whatsapp" id="link-whatsapp" class="btn btn-link" style="display: none;">
-                                <i class="bi bi-whatsapp"></i> Login via WhatsApp
-                            </a>
-                        </div>
-
-                        <div class="text-center mt-3">Belum punya akun? <a href="/daftar" class="text-primary">Daftar
-                                Disini</a></div>
+        <div class="container d-flex justify-content-center" style="margin-top: 100px;">
+            <div class="card border-0 bg-white shadow p-4 col-lg-4 col-md-7 col-11 rounded-4">
+                <h2 class=" fw-bold mb-3">Login</h2>
+                <form onsubmit="kirimOtp(event)">
+                    <div class="mb-3">
+                        <label for="phone" class="form-label fw-semibold">Nomor HP</label>
+                        <input type="phone" id="phone" class="form-control" name="phone" required placeholder="08123xxx">
                     </div>
+                
+                    <div class="d-grid mt-2">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="custom-daftar">Login</span>
+                            <div class="custom-loader" hidden></div>
+                        </button>
+                    </div>
+                    <!-- Additional Login Options -->
+            <div class="d-flex justify-content-center my-4">
+                <span class="text-muted">ATAU</span>
+            </div>
+
+            <div class="d-grid gap-1 mt-2">
+                <a href="/login-user" type="button" class="btn btn-outline-primary mb-1">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>Login dengan Username
+                </a>
+                {{-- <button class="btn mb-2" style="background-color: white; border: 1px solid rgb(208, 208, 208); font-weight: bold;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                      <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.19 3.61l6.85-6.85C35.9 2.7 30.47 0 24 0 14.64 0 6.48 5.36 2.69 13.11l7.97 6.19C12.57 13.42 17.88 9.5 24 9.5z"/>
+                      <path fill="#4285F4" d="M46.5 24c0-1.5-.14-2.95-.39-4.35H24v8.26h12.7c-.55 2.98-2.19 5.5-4.66 7.19l7.1 5.51C43.48 36.5 46.5 30.72 46.5 24z"/>
+                      <path fill="#FBBC05" d="M10.66 28.3c-.47-1.38-.73-2.85-.73-4.3s.26-2.92.73-4.3l-7.97-6.19C1.66 16.64 0 20.13 0 24s1.66 7.36 4.69 10.49l7.97-6.19z"/>
+                      <path fill="#34A853" d="M24 48c6.48 0 11.91-2.12 15.88-5.77l-7.1-5.51c-2 1.36-4.61 2.16-8.78 2.16-6.12 0-11.43-3.92-13.34-9.39l-7.97 6.19C6.48 42.64 14.64 48 24 48z"/>
+                    </svg>
+                    <span>Login dengan Akun Google</span>
+                </button> --}}
+                  
+            </div>
+                    <div class="text-center mt-4 text-muted">
+                        Belum punya akun? <a href="/daftar" class="text-decoration-none fw-semibold">Daftar Disini</a>
+                    </div>
+
                 </form>
             </div>
         </div>
+        
+    </div>
 
-        <div class="container py-5" data-aos="fade-up" id="kodeOtpView" style="display: none">
-            <h2 class="text-center text--primary mb-4"><b>Masukkan Kode OTP</b></h2>
-
-            <div style="display: flex; justify-content: center;">
-                <form action="" method="post" class="col-lg-6 bg-white card border-0 p-4"
-                    style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.13); border-radius: 15px;">
-                    <div class="row gy-4">
-
-                        <!-- Tampilan khusus untuk Kode OTP -->
-                        <div id="otp-input" style="display: none;">
-                            <div class="col-md-12 text-center mb-3">
-                                <p class="text-muted">Masukkan 6 digit kode OTP yang telah dikirimkan ke nomor WhatsApp
-                                    Anda.</p>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="otp-input-container text-center">
-                                    <input type="text" maxlength="1" class="otp-input mx-1" id="otp1" required>
-                                    <input type="text" maxlength="1" class="otp-input mx-1" id="otp2" required>
-                                    <input type="text" maxlength="1" class="otp-input mx-1" id="otp3" required>
-                                    <input type="text" maxlength="1" class="otp-input mx-1" id="otp4" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12 text-center mt-3">
-                                <button type="submit" onclick="verifyOtp()" class="btn btn-primary col-8 mt-3"
-                                    style="background: linear-gradient(47deg, rgb(126, 213, 149) 0%, #23ca23 68%); border-radius: 25px;">
-                                    <i class="bi bi-check-circle me-2"></i>Verifikasi OTP
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Tautan kembali ke login jika diperlukan -->
-                        <div class="col-md-12 text-center mt-4">
-                            <a href="?type=whatsapp" class="btn btn-link">
-                                <i class="bi bi-arrow-left"></i> Kembali ke Login WhatsApp
-                            </a>
-                        </div>
-
+    {{-- <div class="mb-3">
+                        <label for="email" class="form-label fw-semibold">Email</label>
+                        <input type="email" id="email" class="form-control " name="email" required>
                     </div>
-                </form>
-            </div>
-        </div>
-
-    </section>
+        
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-semibold">Password</label>
+                        <input type="password" id="password" class="form-control" name="password" required>
+                        <div class="form-check mt-2">
+                            <input type="checkbox" class="form-check-input" onclick="showPassword()" id="showPass">
+                            <label for="showPass" class="form-check-label mt-1">Lihat Password</label>
+                        </div>
+                    </div> --}}
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
@@ -244,60 +145,8 @@
 
     <script>
         var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
-        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
-        window.onload = function() {
-            const params = new URLSearchParams(window.location.search);
-            const type = params.get('type');
-            const kode_otp = params.get('kode_otp');
-
-            if (type === 'whatsapp' && kode_otp === 'waiting') {
-                document.getElementById('otp-input').style.display = 'block';
-                document.getElementById('kodeOtpView').style.display = 'block';
-                document.getElementById('loginView').remove();
-                const inputs = document.querySelectorAll('.otp-input')[0].focus();
-            }
-
-            if (type === 'whatsapp') {
-                document.getElementById('loginView').style.display = 'block';
-                document.getElementById('kodeOtpView').remove();
-                document.getElementById('whatsapp-login').style.display = 'block';
-                document.getElementById('link-email').style.display = 'block';
-                document.getElementById('email-login').remove();
-                document.getElementById('link-whatsapp').remove();
-            } else {
-                document.getElementById('loginView').style.display = 'block';
-                document.getElementById('kodeOtpView').remove();
-                document.getElementById('email-login').style.display = 'block';
-                document.getElementById('link-whatsapp').style.display = 'none';
-                document.getElementById('whatsapp-login').remove();
-                document.getElementById('link-email').remove();
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const inputs = document.querySelectorAll('.otp-input');
-
-            inputs.forEach((input, index) => {
-                input.addEventListener('input', (e) => {
-                    if (input.value.length === 1) {
-                        // Pindah ke input berikutnya
-                        if (index < inputs.length - 1) {
-                            inputs[index + 1].focus();
-                        }
-                    } else if (input.value.length === 0 && index > 0) {
-                        // Pindah ke input sebelumnya jika dihapus
-                        inputs[index - 1].focus();
-                    }
-                });
-
-                input.addEventListener('keydown', (e) => {
-                    if (e.key === 'Backspace' && input.value.length === 0 && index > 0) {
-                        inputs[index - 1].focus();
-                    }
-                });
-            });
-        });
-
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+        localStorage.removeItem("phone");
         function showPassword() {
             var x = document.getElementById("password");
             if (x.type === "password") {
@@ -316,29 +165,72 @@
             }
         }
 
-        function loginEmail() {
-            const form = document.getElementById('php-email-form');
+        function kirimOtp(e) {
+            e.preventDefault(); // cegah form submit reload halaman
 
-            // Mengecek apakah form valid
-            if (!form.checkValidity()) {
-                return false;
-            }
+            let phone = document.getElementById('phone').value;
+
+            let data = {
+                phone: phone,
+                action: "login"
+            };
+
+            $(".custom-daftar").attr("hidden", true);
+            $(".custom-loader").attr("hidden", false);
+
+            const headers = {
+                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
+                'device': 'web',
+            };
+
+            axios.post(`${API_URL}/otp/request`, data, { headers })
+                .then(function(response) {
+                    $(".custom-daftar").attr("hidden", false);
+                    $(".custom-loader").attr("hidden", true);
+
+                    // simpan nomor HP ke localStorage
+                    localStorage.setItem("phone", phone);
+                    localStorage.setItem("otp_expiry", Date.now() + 60 * 1000);
+
+                    // redirect ke halaman verifikasi OTP
+                    window.location.href = "/login/verifikasi";
+                })
+                .catch(function(error) {
+                    $(".custom-daftar").attr("hidden", false);
+                    $(".custom-loader").attr("hidden", true);
+
+                    document.getElementById("message").innerHTML = error.response.data.message;
+
+                    var toastElList = [].slice.call(document.querySelectorAll('.toast-error'))
+                    var toastList = toastElList.map(function(toastEl) {
+                        return new bootstrap.Toast(toastEl)
+                    })
+                    toastList.forEach(toast => toast.show())
+                })
+                .finally(function() {
+                    $(".custom-daftar").attr("hidden", false);
+                    $(".custom-loader").attr("hidden", true);
+                });
+        }
+
+
+        function login() {
             let data = {
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value,
             }
-            $(".custom-login").attr("hidden", true);
+            $(".custom-daftar").attr("hidden", true);
             $(".custom-loader").attr("hidden", false);
             const headers = {
-                'secret': API_SECRET,
+                'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                 'device': 'web',
             }
 
-            axios.post(`${API_URL}/v1/auth/user-login`, data, {
+            axios.post(`${API_URL}/auth/user-login`, data, {
                     headers: headers
                 })
                 .then(function(response) {
-                    $(".custom-login").attr("hidden", false);
+                    $(".custom-daftar").attr("hidden", false);
                     $(".custom-loader").attr("hidden", true);
                     var toastElList = [].slice.call(document.querySelectorAll('.toast-success'))
                     var toastList = toastElList.map(function(toastEl) {
@@ -350,7 +242,7 @@
                     window.location.href = "/";
                 })
                 .catch(function(error) {
-                    $(".custom-login").attr("hidden", false);
+                    $(".custom-daftar").attr("hidden", false);
                     $(".custom-loader").attr("hidden", true);
                     document.getElementById("message").innerHTML = error.response.data.message;
                     var toastElList = [].slice.call(document.querySelectorAll('.toast-error'))
@@ -361,68 +253,6 @@
                     console.log(error);
                 });
 
-        }
-
-        function loginWhatsapp() {
-            const form = document.getElementById('php-email-form');
-            // Mengecek apakah form valid
-            if (!form.checkValidity()) {
-                return false;
-            }
-            $(".custom-login").attr("hidden", true);
-            $(".custom-loader").attr("hidden", false);
-            window.location.href = '?type=whatsapp&kode_otp=waiting'
-        }
-
-        function verifyOtp() {
-            // Logika verifikasi OTP
-            let otp = '';
-            for (let i = 1; i <= 4; i++) {
-                otp += document.getElementById('otp' + i).value;
-            }
-
-            if (otp.length === 4) {
-                // Lakukan verifikasi dengan OTP yang dikirimkan
-                // alert('OTP Verifikasi: ' + otp);
-                $(".custom-login").attr("hidden", true);
-                $(".custom-loader").attr("hidden", false);
-                const data = {
-                    kode_otp: otp
-                }
-                const headers = {
-                    'secret': API_SECRET,
-                    'device': 'web',
-                }
-
-                axios.post(`${API_URL}/v1/auth/user-login`, data, {
-                        headers: headers
-                    })
-                    .then(function(response) {
-                        $(".custom-login").attr("hidden", false);
-                        $(".custom-loader").attr("hidden", true);
-                        var toastElList = [].slice.call(document.querySelectorAll('.toast-success'))
-                        var toastList = toastElList.map(function(toastEl) {
-                            return new bootstrap.Toast(toastEl)
-                        })
-                        toastList.forEach(toast => toast.show())
-                        localStorage.setItem('token', response.data.tokens)
-                        localStorage.setItem('user', JSON.stringify(response.data.data))
-                        window.location.href = "/";
-                    })
-                    .catch(function(error) {
-                        $(".custom-login").attr("hidden", false);
-                        $(".custom-loader").attr("hidden", true);
-                        document.getElementById("message").innerHTML = error.response.data.message;
-                        var toastElList = [].slice.call(document.querySelectorAll('.toast-error'))
-                        var toastList = toastElList.map(function(toastEl) {
-                            return new bootstrap.Toast(toastEl)
-                        })
-                        toastList.forEach(toast => toast.show())
-                        console.log(error);
-                    });
-            } else {
-                alert('Masukkan 4 digit kode OTP');
-            }
         }
     </script>
 @endsection

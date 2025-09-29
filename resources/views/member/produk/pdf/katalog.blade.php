@@ -9,7 +9,7 @@
     <link href="{{ asset('images/logo-balanja.png') }}" rel="apple-touch-icon">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Katalog Balanja.id</title>
+    <title>Katalog Terapis</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -107,7 +107,7 @@
 <body>
     <div class="container print-area">
         <header>
-            <img src="{{ asset('images/logo-balanja.png') }}" alt="Qiwari Logo">
+            <img src="{{ asset('images/logo-balanja.png') }}" alt="Terapis Logo">
             <h1>PASTI HEMAT EDISI 4 PERIODE: {{ date('d F Y') }}</h1>
 
         </header>

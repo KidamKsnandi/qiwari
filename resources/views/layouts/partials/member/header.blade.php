@@ -15,26 +15,18 @@
         margin-right: 10px;
         /* Jarak antara gambar dan teks */
     }
-
-    .getstarted {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 5px 15px;
-        border-radius: 5px;
-        background-color: #007bff;
-        /* Warna background tombol */
-        color: #fff;
-        text-decoration: none;
-    }
 </style>
 
-<header id="header" class="header fixed-top bg-white shadow">
+<header id="header" class="header fixed-top shadow-sm bg-white">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
         <a href="/" class="logo d-flex align-items-center">
-            <img src="{{ asset('images/logo-balanja.png') }}" width="100%" alt="Logo">
-            {{-- <span class="">mybisnis</span> --}}
+            <div class="rounded">
+                <div class="p-2 px-3">
+                    <img src="{{ asset('images/logo-balanja.png') }}" width="100%" alt="Logo">
+                </div>
+            </div>
+            {{-- <span class="" style="color: #35a949">Terapis</span> --}}
         </a>
 
 
@@ -47,12 +39,12 @@
                 margin: 0;
                 padding: 0;">
                 <li><a class="nav-link scrollto "
-                        href="https://wa.me/6285861345339?text=Hai,%20Qiwari.id%20Saya%20Butuh%20Bantuan!!"> <span
+                        href="https://wa.me/6285861345339?text=Hai,%Matrial%20Saya%20Butuh%20Bantuan!!"> <span
                             class="position-relative">
                             <i class="bi bi-whatsapp" style="font-size: 20px;"></i></span></a></li>
                 <li><a class="nav-link scrollto " onclick="alert('Coming Soon')"> <span class="position-relative">
                             <i class="bi bi-bell" style="font-size: 20px;"></i></span></a></li>
-                <li id="loginM"><a style="height: 30px" class="getstarted scrollto" href="/login">Login</a></li>
+                <li id="loginM"><a style="height: 30px" class="button-primary scrollto" href="/login">Login</a></li>
                 <li id="userLogins" class="dropdown">
                     <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
                         id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,8 +54,8 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser">
                         <li><a class="dropdown-item" href="/profile-dashboard">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="/member/pre-order/member-card">Pre-Order</a></li>
-                        <li><a class="dropdown-item" href="https://app.balanja.id">Seller</a></li>
+                        {{-- <li><a class="dropdown-item" href="https://app.balanja.id">Seller</a></li>
+                        <li><a class="dropdown-item" href="https://app.balanja.id">Affiliator</a></li> --}}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -85,48 +77,47 @@
                         </select> --}}
                         <input type="text" value="" id="search" class="form-control" style=" width: 500px;"
                             placeholder="Cari produk..."aria-describedby="submitButton">
-                        <button onclick="cari()" class="btn"
-                            style="background: rgb(31, 198, 16); color: white; margin-right: 10px;" type="button"
+                        <button onclick="cari()" class="btn btn-primary"
+                            style="" type="button"
                             id="submitButton"><i class="bi bi-search text-white"></i></button>
                     </div>
                 </li>
                 {{-- <li><a class="nav-link scrollto" href="/produk">Produk</a></li>
                 <li id="cabang"></li> --}}
-                <li><a class="nav-link scrollto mt-2"
-                        href="https://wa.me/6285861345339?text=Hai,%20Balanja.id%20Saya%20Butuh%20Bantuan!!"> <span
-                            class="position-relative">
+                <li><a class="nav-link scrollto mt-1"
+                        href="https://wa.me/6285861345339?text=Hai,%Matrial%20Saya%20Butuh%20Bantuan!!"> <span
+                            class="position-relative" style="color: rgb(80, 80, 80);">
                             <i class="bi bi-whatsapp" style="font-size: 20px;"></i>
                     </a></li>
-                <li style="display: none"><a class="nav-link scrollto mt-1" href="/keranjang"> <span class="position-relative">
+                <li><a class="nav-link scrollto mt-1" href="/keranjang"> <span class="position-relative" style="color: rgb(80, 80, 80);">
                             <i class="bi bi-cart" style="font-size: 20px;"></i>
                             <span id="jmlKeranjang"
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>
                         </span></a></li>
-                <li><a class="nav-link scrollto mt-1" href="/list-transaksi"> <span class="position-relative">
+                <li><a class="nav-link scrollto mt-1 me-3" href="/transaksi/jasa"> <span class="position-relative" style="color: rgb(80, 80, 80);">
                             <i class="bi bi-bag" style="font-size: 20px;"></i>
                             <span id="jmlTransaksi"
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>
                         </span></a></li>
-                <li id="daftar"><a class="getstarted scrollto" href="/daftar">Daftar</a></li>
-                <li id="login"><a class="getstarted scrollto" href="/login">Login</a></li>
+                <li id="login"><a class="button-primary scrollto" href="/login">Login</a></li>
                 <li id="userLogin">
                     {{-- <a class="nav-link scrollto" href="/profile"><i class="bi bi-person"
                             style="font-size: 20px;"></i><span id="userName" class="ms-2"></span></a> --}}
                     <div class="dropdown">
-                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                        <a href="#" class="d-flex align-items-center text-decoration-none"
                             id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png"
-                                alt="Profile Picture" class="rounded-circle me-2" width="40" height="40">
-                            <span class="d-none d-sm-inline" id="userName"></span>
+                            <img src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
+                            alt="Profile Picture" class="rounded-circle me-2" width="30" height="30">
+                            <span class="d-none d-sm-inline text-dark" id="userName"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser">
-                            <li><a class="dropdown-item" href="/profile-dashboard">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="/member/pre-order/member-card">Pre-Order</a></li>
-                            <li><a class="dropdown-item" href="https://app.balanja.id">Seller</a></li>
+                            <li><a class="dropdown-item text-dark" href="/profile-dashboard">Dashboard</a></li>
+                            {{-- <li><a class="dropdown-item" href="https://app.balanja.id">Seller</a></li>
+                            <li><a class="dropdown-item" href="https://app.balanja.id">Affiliator</a></li> --}}
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
+                            <li><a class="dropdown-item text-dark" href="/logout">Logout</a></li>
                         </ul>
                     </div>
                 </li>
@@ -145,10 +136,10 @@
     <div class="search-mobile">
         <div class="container">
             <div class="input-group">
-                <input type="text" value="" id="searchM" class="form-control"
+                <input type="text" value="" id="searchM" class="form-control mt-2"
                     placeholder="Cari produk..."aria-describedby="submitButtonMobile">
-                <button onclick="cariM()" class="btn"
-                    style="background: rgb(31, 198, 16); color: white; margin-right: 10px;" type="button"
+                <button onclick="cariM()" class="btn btn-primary mt-2"
+                    style="margin-right: 10px;" type="button"
                     id="submitButtonMobile"><i class="bi bi-search text-white"></i></button>
             </div>
         </div>
@@ -158,15 +149,15 @@
 <script src="{{ asset('lib/axios.min.js') }}"></script>
 <script>
     var API_URL = document.querySelector('meta[name="api-url"]').getAttribute('content');
-        var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
+    var API_SECRET = document.querySelector('meta[name="api-secret"]').getAttribute('content');
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
     var search = urlParams.get('search')
     let checkMember = localStorage.getItem('member_id')
-    var user = localStorage.getItem('user')
+    var user = localStorage.getItem('user');
     var token = localStorage.getItem('token')
-    var transaksi = localStorage.getItem('dataTransaksi') || []
-    var keranjang = localStorage.getItem('listKeranjang') || []
+    var transaksi = localStorage.getItem('dataTransaksi')
+    var keranjang = localStorage.getItem('listKeranjang')
 
     if (window.innerWidth <= 768) {
         document.getElementById("searchM").addEventListener("keyup", function(event) {
@@ -188,9 +179,9 @@
 
     if (user != null) {
         var token = localStorage.getItem('token')
-        axios.get(`${API_URL}/v1/cart?member_id=${JSON.parse(user).karyawan.id}`, {
+        axios.get(`${API_URL}/cart?member_id=${JSON.parse(user).karyawan.id}`, {
                 headers: {
-                    'secret': API_SECRET,
+                    'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                     'Author': 'bearer ' + token,
                     'device': 'web'
                 }
@@ -211,17 +202,17 @@
                 console.log(error);
             });
         axios.get(
-                `${API_URL}/v1/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=pending&view_as_invoice=1&start=0&length=20`, {
+                `${API_URL}/transaksi-online?konsumen_member_id=${JSON.parse(user).karyawan.id}&show_bukti_tf=1&status=pending&view_as_invoice=1&start=0&length=20`, {
                     headers: {
-                        'secret': API_SECRET,
+                        'secret': 'aKndsan23928h98hKJbkjwlKHD9dsbjwiobqUJGHBDWHvkHSJQUBSQOPSAJHVwoihdapq',
                         'Author': 'bearer ' + token,
                         'device': 'web'
                     }
                 })
             .then(function(response) {
                 let dataTransaksi = response.data
-                if (dataTransaksi.length > 0) {
-                    document.getElementById('jmlTransaksi').innerHTML = dataTransaksi.length || 0
+                if (dataTransaksi[0]) {
+                    document.getElementById('jmlTransaksi').innerHTML = dataTransaksi.length
                     // document.getElementById('jmlTransaksiM').innerHTML = dataTransaksi.length
                 } else {
                     document.getElementById('jmlTransaksi').style.display = "none"
@@ -240,14 +231,14 @@
         document.getElementById('daftar').style.display = "none";
         document.getElementById('userName').innerHTML = JSON.parse(user).karyawan.nama_lengkap;
     } else {
-        if (transaksi.length > 0) {
+        if (transaksi) {
             document.getElementById('jmlTransaksi').innerHTML = JSON.parse(transaksi).length
             // document.getElementById('jmlTransaksiM').innerHTML = JSON.parse(transaksi).length
         } else {
             document.getElementById('jmlTransaksi').style.display = "none";
             // document.getElementById('jmlTransaksiM').style.display = "none";
         }
-        if (keranjang.length > 0) {
+        if (keranjang) {
             document.getElementById('jmlKeranjang').innerHTML = JSON.parse(keranjang).length
             // document.getElementById('jmlKeranjangM').innerHTML = JSON.parse(keranjang).length
         } else {
@@ -271,36 +262,20 @@
     // }
 
     function cari() {
-        const search = document.getElementById('search').value;
-        const path = window.location.pathname;
-        let url = '';
-        if (path == '/member/pre-order/produk/ubah' || path == '/member/pre-order/produk') {
-            url = `${path}?search=${encodeURIComponent(search)}`;
+        var search = document.getElementById('search').value;
+        if (checkMember == null) {
+            window.location.href = `/list-produk?search=${search}`
         } else {
-            if (checkMember == null) {
-                url = `/list-produk?search=${encodeURIComponent(search)}`;
-            } else {
-                url = `/list-produk?member=${checkMember}&search=${encodeURIComponent(search)}`;
-            }
+            window.location.href = `/list-produk?member=${checkMember}&search=${search}`
         }
-
-        window.location.href = url;
     }
 
     function cariM() {
-        const searchM = document.getElementById('searchM').value;
-        const path = window.location.pathname;
-        let url = '';
-        if (path == '/member/pre-order/produk/ubah' || path == '/member/pre-order/produk') {
-            url = `${path}?search=${encodeURIComponent(searchM)}`;
+        var searchM = document.getElementById('searchM').value;
+        if (checkMember == null) {
+            window.location.href = `/list-produk?search=${searchM}`
         } else {
-            if (checkMember == null) {
-                url = `/list-produk?search=${encodeURIComponent(searchM)}`;
-            } else {
-                url = `/list-produk?member=${checkMember}&search=${encodeURIComponent(searchM)}`;
-            }
+            window.location.href = `/list-produk?member=${checkMember}&search=${searchM}`
         }
-
-        window.location.href = url;
     }
 </script>
